@@ -205,10 +205,20 @@ const capOrderEmail = (orderData) => {
 </head>
 <body>
   <div class="container">
-    <div class="header">
-      <img src="https://elipsestudio.com/studentlife/studdentlifeemail.jpg" alt="Studentlife">
-      <h1>🎓 Premium kvalitet & Personligt design</h1>
+    <div class="header" style="background: #fff; color: #111; text-align: center; padding: 0; border-bottom: 1px solid #e5e7eb;">
+  <img src="https://elipsestudio.com/studentlife/studdentlifeemail.jpg" 
+       alt="Studentlife caps" 
+       style="width: 100%; max-width: 700px; display: block; margin: 0 auto; border-radius: 0;">
+  
+  <div style="display: flex; justify-content: center; background: #f9fafb; padding: 15px 0; gap: 40px; border-top: 1px solid #e5e7eb;">
+    <div style="font-size: 16px; font-weight: bold; color: #111827;">
+      ✓ Premium kvalitet
     </div>
+    <div style="font-size: 16px; font-weight: bold; color: #111827;">
+      ✓ Personligt design
+    </div>
+  </div>
+</div>
 
     <div class="content">
       <p>Kære <strong>${customerDetails.firstName} ${customerDetails.lastName}</strong>,</p>
