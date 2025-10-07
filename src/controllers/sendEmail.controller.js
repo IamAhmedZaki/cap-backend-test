@@ -57,7 +57,7 @@ const capOrderEmail = (orderData) => {
     currency,
     orderNumber,
     orderDate,
-    program
+    packageName
   } = orderData;
 
   // Enhanced formatOptions to handle different value structures
@@ -253,7 +253,7 @@ const capOrderEmail = (orderData) => {
 
       <div class="section">
         <h2>Ordre detaljer</h2>
-        <p><strong>${program|| 'Hue Pakke'}</strong></p>
+        <p><strong>${packageName|| 'Hue Pakke'}</strong></p>
         <p>${totalPrice || ''} DKK</p>
 
         <div class="category">Information om huen</div>
@@ -693,7 +693,7 @@ const sendCapEmail = async (req, res) => {
       orderNumber,
       orderDate,
       email,
-      program
+      packageName
     } = req.body;
 
     // Validate required fields
@@ -711,7 +711,7 @@ const sendCapEmail = async (req, res) => {
       currency: currency || 'DKK',
       orderNumber: orderNumber || `CAP-${Date.now()}`,
       orderDate: orderDate || new Date().toISOString(),
-      program:program
+      packageName:packageName
     });
     const emailContentAdmin = capOrderAdminEmail({
       customerDetails,
@@ -719,7 +719,8 @@ const sendCapEmail = async (req, res) => {
       totalPrice: totalPrice || '299.00',
       currency: currency || 'DKK',
       orderNumber: orderNumber || `CAP-${Date.now()}`,
-      orderDate: orderDate || new Date().toISOString()
+      orderDate: orderDate || new Date().toISOString(),
+      packageName:packageName
     });
 
     const mailOptions = {
