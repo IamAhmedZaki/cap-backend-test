@@ -535,29 +535,28 @@ const capOrderEmail = (orderData) => {
 
         <div class="category">Information om huen</div>
         ${Object.entries(selectedOptions)
-          .map(([category, options]) => {
-            const hasOptions = Object.values(options).some(val =>
-              val && val !== '' && val !== null && val !== false &&
-              !(typeof val === 'object' && Object.keys(val).length === 0)
-            );
-            if (!hasOptions) return '';
-            return `
-              <div class="category">${formatLabel(category)}</div>
-              ${Object.entries(options)
-                .map(([key, val]) => {
-                  if (!val || val === '' || val === null || val === false) return '';
-                  if (typeof val === 'object' && Object.keys(val).length === 0) return '';
-                  return `
-                    <div class="option-item">
-                      <span class="option-label">${formatLabel(key)}</span>
-                      <span class="option-value">${val}</span>
-                    </div>
-                  `;
-                })
-                .join('')}
-            `;
-          })
-          .join('')}
+        .map(([category, options]) => {
+          const hasOptions = Object.values(options).some(
+            val => val && val !== '' && val !== null && val !== false
+          );
+          if (!hasOptions) return '';
+          return `
+            <div class="category">${formatLabel(category)}</div>
+            ${Object.entries(options)
+              .map(([key, value]) => {
+                if (!value || value === '' || value === null || value === false) return '';
+                let displayValue =
+                  typeof value === 'object' && value.name ? value.name : value;
+                return `
+                  <div class="option-box">
+                    <p class="label">${formatLabel(key)}</p>
+                    <p>${displayValue}</p>
+                  </div>`;
+              })
+              .join('')}
+          `;
+        })
+        .join('')}
       </div>
 
       <div class="total">
