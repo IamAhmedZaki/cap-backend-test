@@ -457,7 +457,7 @@ const capOrderEmail = (orderData) => {
   <style>
     body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; background: #f9fafb; }
     .container { max-width: 700px; margin: 0 auto; background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-    
+
     .header img { width: 100%; max-width: 400px; border-radius: 8px; margin-bottom: 10px; }
     .content { padding: 25px; }
     h1, h2, h3 { color: #111827; }
@@ -468,6 +468,15 @@ const capOrderEmail = (orderData) => {
     table { width: 100%; border-collapse: collapse; margin-top: 10px; }
     td { padding: 6px 0; vertical-align: top; }
     .category { background: #f3f4f6; font-weight: bold; padding: 8px; border-radius: 5px; margin-top: 15px; }
+    
+    /* Two-column layout for billing + shipping */
+    .two-column { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+    .two-column .section { flex: 1; min-width: 300px; }
+
+    /* Category item styling (Roset farve → Royal Blue layout) */
+    .option-item { margin-bottom: 10px; }
+    .option-item .option-label { font-weight: bold; display: block; color: #111827; }
+    .option-item .option-value { margin-left: 0; color: #333; }
   </style>
 </head>
 <body>
@@ -476,80 +485,91 @@ const capOrderEmail = (orderData) => {
       <img src="https://elipsestudio.com/studentlife/studentlifeemail.jpg" 
            alt="Studentlife caps" 
            style="width: 100%; max-width: 700px; display: block; margin: 0 auto; border-radius: 0;">
-  
+
       <div style="background: #f9fafb; padding: 15px 0; border-top: 1px solid #e5e7eb; text-align: center;">
         <span style="font-size: 16px; font-weight: bold; color: #111827; display: inline-block; margin: 0 10px;">
-          ✓ Premium Quality
+          ✓ Premium kvalitet
         </span>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <span style="font-size: 16px; font-weight: bold; color: #111827; display: inline-block; margin: 0 10px;">
-          ✓ Personal Design
+          ✓ Personligt design
         </span>
       </div>
     </div>
 
     <div class="content">
-      <p>Dear <strong>${customerDetails.firstName} ${customerDetails.lastName}</strong>,</p>
-      <p>Thank you for your order with Studentlife.</p>
-      <p>Your order with order number <strong>${orderNumber}</strong> has now been paid.</p>
+      <p>Kære <strong>${customerDetails.firstName} ${customerDetails.lastName}</strong>,</p>
+      <p>Tak for din bestilling hos Studentlife.</p>
+      <p>Din bestilling med ordrenummer <strong>${orderNumber}</strong> er nu betalt.</p>
 
-      <p><strong>Note:</strong> Please make sure all details are correct, including delivery time (3 months from order date unless express), the school logo, and school embroidery.</p>
-      <p>We hope you’ll love your graduation cap.</p>
+      <p><strong>Bemærk:</strong> Husk at tjekke, at alle detaljer er korrekte, herunder leveringstid (3 måneder fra bestilling, medmindre det er ekspres), skolens logo samt skolebroderi.</p>
+      <p>Vi håber, at du kommer til at elske din studenterhue.</p>
 
       <div class="section">
-        <h2>Your Order Information</h2>
-        <p><span class="label">Order Created:</span> ${new Date(orderDate).toLocaleString('en-GB')}</p>
-        <p><span class="label">Order Number:</span> ${orderNumber}</p>
+        <h2>Din ordre oplysninger</h2>
+        <p><span class="label">Ordren er oprettet:</span> ${new Date(orderDate).toLocaleString('da-DK')}</p>
+        <p><span class="label">Ordrenummer:</span> ${orderNumber}</p>
+      </div>
+
+      <div class="two-column">
+        <div class="section">
+          <h2>Betalingsinformation</h2>
+          <p><span class="label">Navn</span><br>${customerDetails.firstName} ${customerDetails.lastName}</p>
+          <p><span class="label">Adresse</span><br>${customerDetails.address}</p>
+          <p><span class="label">Post & By</span><br>${customerDetails.postalCode} ${customerDetails.city}</p>
+        </div>
+
+        <div class="section">
+          <h2>Leveringsinformation</h2>
+          <p><span class="label">Navn</span><br>${customerDetails.firstName} ${customerDetails.lastName}</p>
+          <p><span class="label">Adresse</span><br>${customerDetails.address}</p>
+          <p><span class="label">Post & By</span><br>${customerDetails.postalCode} ${customerDetails.city}</p>
+          ${customerDetails.notes ? `<p><span class="label">Leveringsnote</span><br>${customerDetails.notes}</p>` : ''}
+        </div>
       </div>
 
       <div class="section">
-        <h2>Billing Information</h2>
-        <p><span class="label">Name:</span> ${customerDetails.firstName} ${customerDetails.lastName}</p>
-        <p><span class="label">Address:</span> ${customerDetails.address}</p>
-        <p><span class="label">Postal Code & City:</span> ${customerDetails.postalCode} ${customerDetails.city}</p>
-      </div>
+        <h2>Ordre detaljer</h2>
+        <p><strong>Package</strong><br>${packageName || 'Hue Pakke'}</p>
+        <p><strong>Pris</strong><br>${totalPrice || ''} DKK</p>
 
-      <div class="section">
-        <h2>Shipping Information</h2>
-        <p><span class="label">Name:</span> ${customerDetails.firstName} ${customerDetails.lastName}</p>
-        <p><span class="label">Address:</span> ${customerDetails.address}</p>
-        <p><span class="label">Postal Code & City:</span> ${customerDetails.postalCode} ${customerDetails.city}</p>
-        ${customerDetails.notes ? `<p><span class="label">Delivery Note:</span> ${customerDetails.notes}</p>` : ''}
-      </div>
-
-      <div class="section">
-        <h2>Order Details</h2>
-        <p><strong>Package: ${packageName || 'Cap Package'}</strong></p>
-        <p>Price: ${totalPrice || ''} DKK</p>
-
-        <div class="category">Cap Information</div>
+        <div class="category">Information om huen</div>
         ${Object.entries(selectedOptions)
-      .map(([category, options]) => {
-        const hasOptions = Object.values(options).some(val =>
-          val && val !== '' && val !== null && val !== false &&
-          !(typeof val === 'object' && Object.keys(val).length === 0)
-        );
-        if (!hasOptions) return '';
-        return `
+          .map(([category, options]) => {
+            const hasOptions = Object.values(options).some(val =>
+              val && val !== '' && val !== null && val !== false &&
+              !(typeof val === 'object' && Object.keys(val).length === 0)
+            );
+            if (!hasOptions) return '';
+            return `
               <div class="category">${formatLabel(category)}</div>
-              <table>
-                ${formatOptions(options)}
-              </table>
+              ${Object.entries(options)
+                .map(([key, val]) => {
+                  if (!val || val === '' || val === null || val === false) return '';
+                  if (typeof val === 'object' && Object.keys(val).length === 0) return '';
+                  return `
+                    <div class="option-item">
+                      <span class="option-label">${formatLabel(key)}</span>
+                      <span class="option-value">${val}</span>
+                    </div>
+                  `;
+                })
+                .join('')}
             `;
-      })
-      .join('')}
+          })
+          .join('')}
       </div>
 
       <div class="total">
         <p>Total: <strong>${totalPrice} ${currency}</strong></p>
-        <p>Including VAT</p>
-        <p>SHIPPING: 0 DKK</p>
-        <p>VAT: 20% of total amount</p>
+        <p>Inklusiv moms</p>
+        <p>LEVERING: 0 DKK</p>
+        <p>MOMS: 20% af totalbeløbet</p>
       </div>
 
       <div class="section" style="text-align:center;">
-        <p>Thank you for your order ❤️</p>
-        <p>We will process it shortly and contact you if we need any further information.</p>
+        <p>Tak for din ordre ❤️</p>
+        <p>Vi behandler den snarest og kontakter dig, hvis vi har brug for yderligere oplysninger.</p>
       </div>
     </div>
   </div>
