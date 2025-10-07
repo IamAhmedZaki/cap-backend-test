@@ -201,6 +201,7 @@ const capOrderEmail = (orderData) => {
     <body>
       <div class="container">
         <div class="header">
+          <img src="https://elipsestudio.com/studentlife/studdentlifeemail.jpg" alt="cap" >
           <h1>🎩 Din Tilpassede Hue Ordre</h1>
           <p>Ordrenummer: ${orderNumber}</p>
         </div>
@@ -316,7 +317,7 @@ const capOrderEmail = (orderData) => {
   `;
 
   return {
-    subject: `🎩 Hue Ordre Bekræftelse - ${orderNumber}`,
+    subject: `Tak for din bestilling hos Studentlife`,
     html,
     text
   };
