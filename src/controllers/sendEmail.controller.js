@@ -190,7 +190,7 @@ const capOrderEmail = (orderData) => {
   <style>
     body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; background: #f9fafb; }
     .container { max-width: 700px; margin: 0 auto; background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-    .header { background: linear-gradient(135deg, #10b981, #059669); color: white; padding: 20px; text-align: center; }
+    
     .header img { width: 100%; max-width: 400px; border-radius: 8px; margin-bottom: 10px; }
     .content { padding: 25px; }
     h1, h2, h3 { color: #111827; }
