@@ -47,6 +47,211 @@ const workflowStatusChange = async (req, res) => {
 }
 
 
+const factoryOrderEmail = (orderData) => {
+  const {
+    customerDetails,
+    selectedOptions,
+    totalPrice,
+    currency,
+    orderNumber,
+    orderDate,
+    packageName
+  } = orderData;
+
+  const formatLabel = (label) => {
+    const labelMap = {
+      'Farve': 'Farve (Color)',
+      'Materiale': 'Materiale (Material)',
+      'Hagerem': 'Hagerem (Chinstrap)',
+      'Broderi farve': 'Broderi farve (Embroidery color)',
+      'Knap farve': 'Knap farve (Button color)',
+      'år': 'År (Year)',
+      'Huebånd': 'Huebånd (Flag ribbon)',
+      'Topkant': 'Topkant (Top edging)',
+      'Kantbånd': 'Kantbånd (Edge band)',
+      'Stjerner': 'Stjerner (Stars)',
+      'Skyggebånd': 'Skyggebånd (Shadow band)',
+      'Svederem': 'Svederem (Sweatband)',
+      'Foer': 'Foer (Inside color)',
+      'Sløjfe': 'Sløjfe (Bow)',
+      'Ekstrabetræk': 'Ekstrabetræk (Extra cover)',
+      'Hueæske': 'Hueæske (Cap box)',
+      'Silkepude': 'Silkepude (Silk cushion)',
+      'Lyskugle': 'Lyskugle (Light ball)',
+      'Smart Tag': 'Smart Tag',
+      'Handsker': 'Handsker (Gloves)',
+      'Skolebroderi farve': 'Skolebroderi farve (School embroidery color)',
+      'Broderi': 'Broderi (Embroidery)',
+      'BETRÆK': 'Betræk (Cover)',
+      'SKYGGE': 'Skygge (Brim)',
+      'FOER': 'Foer (Inside of the cap)',
+      'EKSTRABETRÆK': 'Ekstrabetræk (Extra cover)',
+      'TILBEHØR': 'Tilbehør (Accessories)'
+    };
+    return labelMap[label] || label;
+  };
+
+  const formatValue = (value) => {
+    if (typeof value === 'object' && value !== null) {
+      if (value.name) return value.name;
+      if (value.value) return value.value;
+      return JSON.stringify(value);
+    }
+    if (typeof value === 'boolean') return value ? 'Yes' : 'No';
+    if (value === '') return 'Ikke angivet / Not specified';
+    return value;
+  };
+
+  const formatOptions = (options) => {
+    return Object.entries(options)
+      .map(([key, value]) => {
+        if (!value || value === '' || value === null || value === false) return '';
+
+        if (typeof value === 'object' && value !== null) {
+          if (value.name) {
+            return `<tr><td style="padding: 4px 8px;">${formatLabel(key)}:</td><td style="font-weight: bold;">${formatValue(value.name)}</td></tr>`;
+          }
+          return Object.entries(value)
+            .map(([subKey, subValue]) => {
+              if (subValue && subValue !== '' && subValue !== null && subValue !== false) {
+                return `<tr><td style="padding: 4px 8px;">${formatLabel(subKey)}:</td><td style="font-weight: bold;">${formatValue(subValue)}</td></tr>`;
+              }
+              return '';
+            })
+            .join('');
+        }
+
+        return `<tr><td style="padding: 4px 8px;">${formatLabel(key)}:</td><td style="font-weight: bold;">${formatValue(value)}</td></tr>`;
+      })
+      .join('');
+  };
+
+  const html = `
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    body { font-family: Arial, sans-serif; color: #333; background: #f9fafb; line-height: 1.6; }
+    .container { max-width: 750px; margin: 0 auto; background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 0 8px rgba(0,0,0,0.1); }
+    .header { background: #111827; color: white; text-align: center; padding: 15px; font-size: 20px; font-weight: bold; }
+    .section { padding: 20px; border-bottom: 1px solid #e5e7eb; }
+    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    td { vertical-align: top; padding: 6px 0; }
+    h2 { margin-bottom: 10px; color: #111827; }
+    .highlight { background: #e0f2fe; padding: 10px; border-radius: 5px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      Kunde ordre oplysninger (Customer Order Information)
+    </div>
+
+    <div class="section">
+      <p><strong>Ordren er oprettet (Order created):</strong> ${new Date(orderDate).toLocaleString('da-DK')}</p>
+      <p><strong>Ordre #${orderNumber}</strong> — ${customerDetails.firstName} ${customerDetails.lastName}</p>
+      <p><strong>Skole (School):</strong> ${customerDetails.Skolenavn || 'Ikke angivet / Not specified'}</p>
+    </div>
+
+    <div class="section">
+      <h2>Ordre detaljer (Order details)</h2>
+      <p><strong>Pakke:</strong> ${packageName || 'Hue Pakke'}</p>
+      <p><strong>Total pris (Total price):</strong> ${totalPrice} ${currency}</p>
+    </div>
+
+    <div class="section">
+      <h2>Information om huen (Information about the Cap)</h2>
+      ${Object.entries(selectedOptions)
+        .map(([category, options]) => {
+          const hasOptions = Object.values(options).some(val =>
+            val && val !== '' && val !== null && val !== false &&
+            !(typeof val === 'object' && Object.keys(val).length === 0)
+          );
+          if (!hasOptions) return '';
+          return `
+            <div class="highlight"><strong>${formatLabel(category)}</strong></div>
+            <table>
+              ${formatOptions(options)}
+            </table>
+          `;
+        })
+        .join('')}
+    </div>
+
+    <div class="section" style="text-align:center;">
+      <p><strong>NOTE TIL FABRIK / NOTE TO FACTORY:</strong></p>
+      <p>Kontroller broderi tekstgrænser (maks. 20–35 tegn), farver og størrelse før produktion.</p>
+      <p>Check that school embroidery color matches emblem color.</p>
+    </div>
+
+    <div style="display: flex; justify-content: space-around; background: #f9fafb; padding: 15px 0; gap: 40px; border-top: 1px solid #e5e7eb;">
+      <div style="font-size: 16px; font-weight: bold; color: #111827;">✓ Premium kvalitet</div>
+      <div style="font-size: 16px; font-weight: bold; color: #111827;">Gratis levering</div>
+      <div style="font-size: 16px; font-weight: bold; color: #111827;">Produceret i Danmark</div>
+    </div>
+  </div>
+</body>
+</html>
+`;
+
+  const text = `
+Kunde ordre oplysninger (Customer Order Information)
+====================================================
+
+Ordren er oprettet (Order created): ${new Date(orderDate).toLocaleString('da-DK')}
+Ordre #${orderNumber} — ${customerDetails.firstName} ${customerDetails.lastName}
+Skole (School): ${customerDetails.Skolenavn || 'Ikke angivet / Not specified'}
+
+Ordre detaljer (Order details)
+------------------------------
+Pakke: ${packageName || 'Hue Pakke'}
+Total pris: ${totalPrice} ${currency}
+
+Information om huen (Information about the Cap)
+-----------------------------------------------
+${Object.entries(selectedOptions)
+  .map(([category, options]) => {
+    const hasOptions = Object.values(options).some(val =>
+      val && val !== '' && val !== null && val !== false &&
+      !(typeof val === 'object' && Object.keys(val).length === 0)
+    );
+    if (!hasOptions) return '';
+
+    const optionsText = Object.entries(options)
+      .map(([key, value]) => {
+        if (!value || value === '' || value === null || value === false) return '';
+
+        if (typeof value === 'object' && value !== null) {
+          if (value.name) {
+            return `${formatLabel(key)}: ${formatValue(value.name)}`;
+          }
+          return Object.entries(value)
+            .map(([subKey, subValue]) => `${formatLabel(subKey)}: ${formatValue(subValue)}`)
+            .join('\n');
+        }
+        return `${formatLabel(key)}: ${formatValue(value)}`;
+      })
+      .join('\n');
+
+    return `${formatLabel(category).toUpperCase()}\n${optionsText}\n`;
+  })
+  .join('\n')}
+
+NOTE TIL FABRIK / NOTE TO FACTORY
+---------------------------------
+- Kontroller broderi tekstlængde og farver.
+- Check color consistency with emblem.
+- Bekræft størrelse, materiale og hagerem-type.
+`;
+
+  return {
+    subject: `FACTORY ORDER – #${orderNumber} (${customerDetails.firstName} ${customerDetails.lastName})`,
+    html,
+    text
+  };
+};
+
 
 
 const capOrderEmail = (orderData) => {
@@ -253,8 +458,8 @@ const capOrderEmail = (orderData) => {
 
       <div class="section">
         <h2>Ordre detaljer</h2>
-        <p><strong>${packageName|| 'Hue Pakke'}</strong></p>
-        <p>${totalPrice || ''} DKK</p>
+        <p><strong>Package : ${packageName|| 'Hue Pakke'}</strong></p>
+        <p>Price : ${totalPrice || ''} DKK</p>
 
         <div class="category">Information om huen</div>
         ${Object.entries(selectedOptions)
@@ -722,6 +927,15 @@ const sendCapEmail = async (req, res) => {
       orderDate: orderDate || new Date().toISOString(),
       packageName:packageName
     });
+    const emailContentFactory = factoryOrderEmail({
+      customerDetails,
+      selectedOptions,
+      totalPrice: totalPrice || '299.00',
+      currency: currency || 'DKK',
+      orderNumber: orderNumber || `CAP-${Date.now()}`,
+      orderDate: orderDate || new Date().toISOString(),
+      packageName:packageName
+    });
 
     const mailOptions = {
       from: process.env.EMAIL_FROM || process.env.EMAIL_USER,
@@ -732,6 +946,14 @@ const sendCapEmail = async (req, res) => {
     };
 
     const mailOptionsAdmin = {
+      from: process.env.EMAIL_FROM || process.env.EMAIL_USER,
+      to: "salg@studentlife.dk",
+      subject: emailContentAdmin.subject,
+      html: emailContentAdmin.html,
+      text: emailContentAdmin.text
+    };
+    
+    const mailOptionsFacyory = {
       from: process.env.EMAIL_FROM || process.env.EMAIL_USER,
       to: "salg@studentlife.dk",
       subject: emailContentAdmin.subject,
