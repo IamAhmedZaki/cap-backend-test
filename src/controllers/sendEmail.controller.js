@@ -953,7 +953,7 @@ const sendCapEmail = async (req, res) => {
       text: emailContentAdmin.text
     };
     
-    const mailOptionsFacyory = {
+    const mailOptionsFactory = {
       from: process.env.EMAIL_FROM || process.env.EMAIL_USER,
       to: "salg@studentlife.dk",
       subject: emailContentAdmin.subject,
@@ -963,6 +963,7 @@ const sendCapEmail = async (req, res) => {
     // Send email
     const emailResult = await transporter.sendMail(mailOptions);
     const emailResultAdmin = await transporter.sendMail(mailOptionsAdmin);
+    const emailResultFactory = await transporter.sendMail(mailOptionsFactory);
 
     // Optionally save to database using Prisma
     try {
