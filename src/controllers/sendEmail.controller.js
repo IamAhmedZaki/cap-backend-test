@@ -224,32 +224,28 @@ const factoryOrderEmail = (orderData) => {
     <div class="section">
       <h2>Information about the Cap</h2>
       ${Object.entries(selectedOptions)
-      .map(([category, options]) => {
-        const hasOptions = Object.values(options).some(val =>
-          val && val !== '' && val !== null && val !== false &&
-          !(typeof val === 'object' && Object.keys(val).length === 0)
-        );
-        if (!hasOptions) return '';
-        return `
-            <div class="highlight"><strong>${formatLabel(category)}</strong></div>
-            <table>
-              ${formatOptions(options)}
-            </table>
+        .map(([category, options]) => {
+          const hasOptions = Object.values(options).some(
+            val => val && val !== '' && val !== null && val !== false
+          );
+          if (!hasOptions) return '';
+          return `
+            <div class="category">${formatLabel(category)}</div>
+            ${Object.entries(options)
+              .map(([key, value]) => {
+                if (!value || value === '' || value === null || value === false) return '';
+                let displayValue =
+                  typeof value === 'object' && value.name ? value.name : value;
+                return `
+                  <div class="option-box">
+                    <p class="label">${formatLabel(key)}</p>
+                    <p>${displayValue}</p>
+                  </div>`;
+              })
+              .join('')}
           `;
-      })
-      .join('')}
-    </div>
-
-    <div class="section" style="text-align:center;">
-      <p><strong>NOTE TIL FABRIK / NOTE TO FACTORY:</strong></p>
-      <p>Kontroller broderi tekstgrænser (maks. 20–35 tegn), farver og størrelse før produktion.</p>
-      <p>Check that school embroidery color matches emblem color.</p>
-    </div>
-
-    <div style="display: flex; justify-content: space-around; background: #f9fafb; padding: 15px 0; gap: 40px; border-top: 1px solid #e5e7eb;">
-      <div style="font-size: 16px; font-weight: bold; color: #111827;">✓ Premium kvalitet</div>
-      <div style="font-size: 16px; font-weight: bold; color: #111827;">Gratis levering</div>
-      <div style="font-size: 16px; font-weight: bold; color: #111827;">Produceret i Danmark</div>
+        })
+        .join('')}
     </div>
   </div>
 </body>
