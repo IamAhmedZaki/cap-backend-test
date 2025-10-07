@@ -211,7 +211,7 @@ const capOrderEmail = (orderData) => {
        style="width: 100%; max-width: 700px; display: block; margin: 0 auto; border-radius: 0;">
   
   <div style="display: flex; justify-content: space-around; background: #f9fafb; padding: 15px 0; gap: 40px; border-top: 1px solid #e5e7eb;">
-    <div style="font-size: 16px; font-weight: bold; color: #111827;">
+    <div style="font-size: 16px; font-weight: bold; color: #0454ffff;">
       ✓ Premium kvalitet
     </div>
     <div style="font-size: 16px; font-weight: bold; color: #111827;">
