@@ -92,14 +92,14 @@ const factoryOrderEmail = (orderData) => {
       'STØRRELSE': 'Size',
 
       // HHX - KOKARDE Section
-      'KOKARDE': 'Cockade',
+      'KOKARDE': 'Kokarde',
       'Emblem': 'Emblem',
-      'Kokarde': 'Cockade type',
+      'Kokarde': 'Kokarde type',
       'Roset farve': 'Rosette color',
       'Type': 'Type',
 
       // HHX - UDDANNELSESBÅND Section
-      'UDDANNELSESBÅND': 'Education ribbon',
+      'UDDANNELSESBÅND': 'UDDANNELSESBÅND',
       'Broderi foran': 'Front embroidery',
       'Broderi farve foran': 'Front embroidery color',
       'Hagerem Materiale': 'Chinstrap Material',
@@ -201,6 +201,22 @@ const factoryOrderEmail = (orderData) => {
     td { vertical-align: top; padding: 6px 0; }
     h2 { margin-bottom: 10px; color: #111827; }
     .highlight { background: #e0f2fe; padding: 10px; border-radius: 5px; }
+        .category { background: #f3f4f6; font-weight: bold; padding: 8px; border-radius: 5px; margin-top: 15px; }
+.option-box {
+      background: #f9fafb;
+      padding: 10px 15px;
+      border-radius: 6px;
+      margin-bottom: 8px;
+    }
+    .option-box p {
+      margin: 0;
+    }
+    .option-box .label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 3px;
+    }
+    
   </style>
 </head>
 <body>
@@ -464,6 +480,20 @@ const capOrderEmail = (orderData) => {
     table { width: 100%; border-collapse: collapse; margin-top: 10px; }
     td { padding: 6px 0; vertical-align: top; }
     .category { background: #f3f4f6; font-weight: bold; padding: 8px; border-radius: 5px; margin-top: 15px; }
+    .option-box {
+      background: #f9fafb;
+      padding: 10px 15px;
+      border-radius: 6px;
+      margin-bottom: 8px;
+    }
+    .option-box p {
+      margin: 0;
+    }
+    .option-box .label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 3px;
+    }
     
     /* Two-column layout for billing + shipping */
     .two-column { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
