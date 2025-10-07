@@ -183,138 +183,194 @@ const capOrderEmail = (orderData) => {
   };
 
   const html = `
-    <!DOCTYPE html>
-    <html>
-    <head>
-      <meta charset="utf-8">
-      <style>
-        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
-        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-        .header { background: linear-gradient(135deg, #10b981, #059669); color: white; padding: 20px; text-align: center; border-radius: 10px 10px 0 0; }
-        .content { background: #f9fafb; padding: 20px; border-radius: 0 0 10px 10px; }
-        .section { background: white; padding: 15px; margin: 10px 0; border-radius: 8px; border: 1px solid #e5e7eb; }
-        .total { background: #d1fae5; padding: 15px; border-radius: 8px; text-align: center; font-weight: bold; }
-        table { width: 100%; border-collapse: collapse; }
-        .category-header { background: #f3f4f6; padding: 8px 12px; margin: 15px 0 8px 0; border-radius: 4px; font-weight: bold; }
-      </style>
-    </head>
-    <body>
-      <div class="container">
-        <div class="header">
-          <img src="https://elipsestudio.com/studentlife/studdentlifeemail.jpg" alt="cap" >
-          <h1>🎩 Din Tilpassede Hue Ordre</h1>
-          <p>Ordrenummer: ${orderNumber}</p>
-        </div>
-        
-        <div class="content">
-          <div class="section">
-            <h2>Kundeinformation</h2>
-            <p><strong>Navn:</strong> ${customerDetails.firstName} ${customerDetails.lastName}</p>
-            <p><strong>E-mail:</strong> ${customerDetails.email}</p>
-            <p><strong>Telefon:</strong> ${customerDetails.phone}</p>
-            ${customerDetails.Skolenavn ? `<p><strong>Skolenavn:</strong> ${customerDetails.Skolenavn}</p>` : ''}
-            <p><strong>Adresse:</strong> ${customerDetails.address}, ${customerDetails.city}, ${customerDetails.postalCode}, ${customerDetails.country}</p>
-            ${customerDetails.notes ? `<p><strong>Bemærkninger:</strong> ${customerDetails.notes}</p>` : ''}
-            ${customerDetails.deliverToSchool ? `<p><strong>Leveres til skole:</strong> Ja</p>` : ''}
-          </div>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; background: #f9fafb; }
+    .container { max-width: 700px; margin: 0 auto; background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    .header { background: linear-gradient(135deg, #10b981, #059669); color: white; padding: 20px; text-align: center; }
+    .header img { width: 100%; max-width: 400px; border-radius: 8px; margin-bottom: 10px; }
+    .content { padding: 25px; }
+    h1, h2, h3 { color: #111827; }
+    p { margin: 6px 0; }
+    .section { margin: 25px 0; padding: 15px; border: 1px solid #e5e7eb; border-radius: 8px; background: #f9fafb; }
+    .total { background: #d1fae5; padding: 20px; border-radius: 8px; text-align: center; font-weight: bold; }
+    .label { font-weight: bold; color: #111827; }
+    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    td { padding: 6px 0; vertical-align: top; }
+    .category { background: #f3f4f6; font-weight: bold; padding: 8px; border-radius: 5px; margin-top: 15px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <img src="https://elipsestudio.com/studentlife/studdentlifeemail.jpg" alt="Studentlife">
+      <h1>🎓 Premium kvalitet & Personligt design</h1>
+    </div>
 
-          <div class="section">
-            <h2>Hue Konfiguration</h2>
-            ${Object.entries(selectedOptions)
-      .map(([category, options]) => {
-        const hasOptions = Object.values(options).some(val => 
-          val && val !== '' && val !== null && val !== false && 
-          !(typeof val === 'object' && Object.keys(val).length === 0)
-        );
-        if (!hasOptions) return '';
+    <div class="content">
+      <p>Kære <strong>${customerDetails.firstName} ${customerDetails.lastName}</strong>,</p>
+      <p>Tak for din bestilling hos Studentlife.</p>
+      <p>Din bestilling med ordrenummer <strong>${orderNumber}</strong> er nu betalt.</p>
 
-        return `
-                  <div class="category-header">${formatLabel(category)}</div>
-                  <table>
-                    ${formatOptions(options)}
-                  </table>
-                `;
-      })
-      .join('')}
-          </div>
+      <p><strong>Bemærk:</strong> Husk at tjekke, at alle detaljer er korrekte, herunder leveringstid (3 måneder fra bestilling, medmindre det er ekspres), skolens logo samt skolebroderi.</p>
+      <p>Vi håber, at du kommer til at elske din studenterhue.</p>
 
-          <div class="total">
-            <h2>Total Beløb</h2>
-            <p style="font-size: 24px; margin: 0;">${totalPrice} ${currency}</p>
-          </div>
-
-          <div class="section">
-            <p><strong>Ordredato:</strong> ${new Date(orderDate).toLocaleDateString('da-DK')}</p>
-            <p>Tak for din ordre! Vi behandler den snarest og kontakter dig, hvis vi har brug for yderligere oplysninger.</p>
-          </div>
-        </div>
+      <div class="section">
+        <h2>Din ordre oplysninger</h2>
+        <p><span class="label">Ordren er oprettet:</span> ${new Date(orderDate).toLocaleString('da-DK')}</p>
+        <p><span class="label">Ordrenummer:</span> ${orderNumber}</p>
       </div>
-    </body>
-    </html>
-  `;
+
+      <div class="section">
+        <h2>Betalingsinformation</h2>
+        <p><span class="label">Navn:</span> ${customerDetails.firstName} ${customerDetails.lastName}</p>
+        <p><span class="label">Adresse:</span> ${customerDetails.address}</p>
+        <p><span class="label">Post & By:</span> ${customerDetails.postalCode} ${customerDetails.city}</p>
+      </div>
+
+      <div class="section">
+        <h2>Leveringsinformation</h2>
+        <p><span class="label">Navn:</span> ${customerDetails.firstName} ${customerDetails.lastName}</p>
+        <p><span class="label">Adresse:</span> ${customerDetails.address}</p>
+        <p><span class="label">Post & By:</span> ${customerDetails.postalCode} ${customerDetails.city}</p>
+        ${customerDetails.notes ? `<p><span class="label">Leveringsnote:</span> ${customerDetails.notes}</p>` : ''}
+      </div>
+
+      <div class="section">
+        <h2>Ordre detaljer</h2>
+        <p><strong>${selectedOptions?.pakke?.name || 'Hue Pakke'}</strong></p>
+        <p>${selectedOptions?.pakke?.price || ''} DKK</p>
+
+        <div class="category">Information om huen</div>
+        ${Object.entries(selectedOptions)
+          .map(([category, options]) => {
+            const hasOptions = Object.values(options).some(val =>
+              val && val !== '' && val !== null && val !== false &&
+              !(typeof val === 'object' && Object.keys(val).length === 0)
+            );
+            if (!hasOptions) return '';
+            return `
+              <div class="category">${formatLabel(category)}</div>
+              <table>
+                ${formatOptions(options)}
+              </table>
+            `;
+          })
+          .join('')}
+      </div>
+
+      <div class="total">
+        <p>Total: <strong>${totalPrice} ${currency}</strong></p>
+        <p>Inklusiv moms</p>
+        <p>LEVERING: 0 DKK</p>
+        <p>MOMS: 20% af totalbeløbet</p>
+      </div>
+
+      <div class="section" style="text-align:center;">
+        <p>Tak for din ordre ❤️</p>
+        <p>Vi behandler den snarest og kontakter dig, hvis vi har brug for yderligere oplysninger.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+`;
 
   // Enhanced text version formatting
   const text = `
-    TILPASSET HUE ORDRE BEKRÆFTELSE
-    ================================
+PREMIUM KVALITET & PERSONLIGT DESIGN
+=====================================
 
-    Ordrenummer: ${orderNumber}
-    Ordredato: ${new Date(orderDate).toLocaleDateString('da-DK')}
+Kære ${customerDetails.firstName} ${customerDetails.lastName},
 
-    KUNDEINFORMATION:
-    -----------------
-    Navn: ${customerDetails.firstName} ${customerDetails.lastName}
-    E-mail: ${customerDetails.email}
-    Telefon: ${customerDetails.phone}
-    ${customerDetails.Skolenavn ? `Skolenavn: ${customerDetails.Skolenavn}` : ''}
-    Adresse: ${customerDetails.address}, ${customerDetails.city}, ${customerDetails.postalCode}, ${customerDetails.country}
-    ${customerDetails.notes ? `Bemærkninger: ${customerDetails.notes}` : ''}
-    ${customerDetails.deliverToSchool ? `Leveres til skole: Ja` : ''}
+Tak for din bestilling hos Studentlife.
 
-    HUE KONFIGURATION:
-    ------------------
-    ${Object.entries(selectedOptions)
-      .map(([category, options]) => {
-        const hasOptions = Object.values(options).some(val => 
-          val && val !== '' && val !== null && val !== false && 
-          !(typeof val === 'object' && Object.keys(val).length === 0)
-        );
-        if (!hasOptions) return '';
+Din bestilling med ordrenummer: ${orderNumber} er nu betalt.
+Husk at tjekke, at alle detaljer er korrekte, herunder leveringstid (3 måneder fra bestilling, medmindre det er ekspres), skolens logo samt skolebroderi.
 
-        const optionsText = Object.entries(options)
-          .map(([key, value]) => {
-            if (!value || value === '' || value === null || value === false) return '';
+Vi håber, at du kommer til at elske din studenterhue.
 
-            if (typeof value === 'object' && value !== null) {
-              if (value.name) {
-                return `${formatLabel(key)}: ${formatValue(value.name)}`;
+
+ORDREOPLYSNINGER
+-----------------
+Ordren er oprettet: ${new Date(orderDate).toLocaleString('da-DK')}
+Ordrenummer: ${orderNumber}
+
+
+BETALINGSINFORMATION
+---------------------
+Navn: ${customerDetails.firstName} ${customerDetails.lastName}
+Adresse: ${customerDetails.address}
+Post & By: ${customerDetails.postalCode} ${customerDetails.city}
+
+
+LEVERINGSINFORMATION
+---------------------
+Navn: ${customerDetails.firstName} ${customerDetails.lastName}
+Adresse: ${customerDetails.address}
+Post & By: ${customerDetails.postalCode} ${customerDetails.city}
+${customerDetails.notes ? `Leveringsnote: ${customerDetails.notes}` : ''}
+
+
+ORDRE DETALJER
+---------------
+${selectedOptions?.pakke?.name ? `Valgt pakke: ${selectedOptions.pakke.name}` : ''}
+${selectedOptions?.pakke?.price ? `Pris: ${selectedOptions.pakke.price} DKK` : ''}
+
+Information om huen:
+--------------------
+${Object.entries(selectedOptions)
+  .map(([category, options]) => {
+    const hasOptions = Object.values(options).some(val =>
+      val && val !== '' && val !== null && val !== false &&
+      !(typeof val === 'object' && Object.keys(val).length === 0)
+    );
+    if (!hasOptions) return '';
+
+    const optionsText = Object.entries(options)
+      .map(([key, value]) => {
+        if (!value || value === '' || value === null || value === false) return '';
+
+        if (typeof value === 'object' && value !== null) {
+          if (value.name) {
+            return `${formatLabel(key)}: ${formatValue(value.name)}`;
+          }
+          return Object.entries(value)
+            .map(([subKey, subValue]) => {
+              if (subValue && subValue !== '' && subValue !== null && subValue !== false) {
+                return `${formatLabel(subKey)}: ${formatValue(subValue)}`;
               }
-              return Object.entries(value)
-                .map(([subKey, subValue]) => {
-                  if (subValue && subValue !== '' && subValue !== null && subValue !== false) {
-                    return `${formatLabel(subKey)}: ${formatValue(subValue)}`;
-                  }
-                  return '';
-                })
-                .filter(Boolean)
-                .join('\n');
-            }
-            return `${formatLabel(key)}: ${formatValue(value)}`;
-          })
-          .filter(Boolean)
-          .join('\n');
-
-        return `${formatLabel(category).toUpperCase()}\n${optionsText}\n`;
+              return '';
+            })
+            .filter(Boolean)
+            .join('\n');
+        }
+        return `${formatLabel(key)}: ${formatValue(value)}`;
       })
       .filter(Boolean)
-      .join('\n')}
+      .join('\n');
 
-    TOTAL BELØB:
-    ------------
-    ${totalPrice} ${currency}
+    return `${formatLabel(category).toUpperCase()}\n${optionsText}\n`;
+  })
+  .filter(Boolean)
+  .join('\n')}
 
-    Tak for din ordre! Vi behandler den snarest.
-  `;
+
+TOTAL
+------
+Total: ${totalPrice} ${currency}
+Inklusiv moms
+LEVERING: 0 DKK
+MOMS: 20% af totalbeløbet
+
+
+Tak for din ordre ❤️
+Vi behandler den snarest og kontakter dig, hvis vi har brug for yderligere oplysninger.
+`;
+
 
   return {
     subject: `Tak for din bestilling hos Studentlife`,
