@@ -211,14 +211,15 @@ const capOrderEmail = (orderData) => {
        alt="Studentlife caps" 
        style="width: 100%; max-width: 700px; display: block; margin: 0 auto; border-radius: 0;">
   
-  <div style="display: flex; justify-content: space-around; background: #f9fafb; padding: 15px 0; gap: 40px; border-top: 1px solid #e5e7eb;">
-    <div style="font-size: 16px; font-weight: bold; color: #111827;">
-      ✓ Premium kvalitet
-    </div>
-    <div style="font-size: 16px; font-weight: bold; color: #111827;">
-      ✓ Personligt design
-    </div>
-  </div>
+ <div style="background: #f9fafb; padding: 15px 0; border-top: 1px solid #e5e7eb; text-align: center;">
+  <span style="font-size: 16px; font-weight: bold; color: #111827; display: inline-block; margin: 0 10px;">
+    ✓ Premium kvalitet
+  </span>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <span style="font-size: 16px; font-weight: bold; color: #111827; display: inline-block; margin: 0 10px;">
+    ✓ Personligt design
+  </span>
+</div>
 </div>
 
     <div class="content">
