@@ -449,7 +449,7 @@ const capOrderEmail = (orderData) => {
     return value;
   };
 
-  const html = `
+ const html = `
 <!DOCTYPE html>
 <html>
 <head>
@@ -473,56 +473,56 @@ const capOrderEmail = (orderData) => {
 <body>
   <div class="container">
     <div class="header" style="background: #fff; color: #111; text-align: center; padding: 0; border-bottom: 1px solid #e5e7eb;">
-  <img src="https://elipsestudio.com/studentlife/studentlifeemail.jpg" 
-       alt="Studentlife caps" 
-       style="width: 100%; max-width: 700px; display: block; margin: 0 auto; border-radius: 0;">
+      <img src="https://elipsestudio.com/studentlife/studentlifeemail.jpg" 
+           alt="Studentlife caps" 
+           style="width: 100%; max-width: 700px; display: block; margin: 0 auto; border-radius: 0;">
   
- <div style="background: #f9fafb; padding: 15px 0; border-top: 1px solid #e5e7eb; text-align: center;">
-  <span style="font-size: 16px; font-weight: bold; color: #111827; display: inline-block; margin: 0 10px;">
-    ✓ Premium kvalitet
-  </span>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <span style="font-size: 16px; font-weight: bold; color: #111827; display: inline-block; margin: 0 10px;">
-    ✓ Personligt design
-  </span>
-</div>
-</div>
+      <div style="background: #f9fafb; padding: 15px 0; border-top: 1px solid #e5e7eb; text-align: center;">
+        <span style="font-size: 16px; font-weight: bold; color: #111827; display: inline-block; margin: 0 10px;">
+          ✓ Premium Quality
+        </span>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <span style="font-size: 16px; font-weight: bold; color: #111827; display: inline-block; margin: 0 10px;">
+          ✓ Personal Design
+        </span>
+      </div>
+    </div>
 
     <div class="content">
-      <p>Kære <strong>${customerDetails.firstName} ${customerDetails.lastName}</strong>,</p>
-      <p>Tak for din bestilling hos Studentlife.</p>
-      <p>Din bestilling med ordrenummer <strong>${orderNumber}</strong> er nu betalt.</p>
+      <p>Dear <strong>${customerDetails.firstName} ${customerDetails.lastName}</strong>,</p>
+      <p>Thank you for your order with Studentlife.</p>
+      <p>Your order with order number <strong>${orderNumber}</strong> has now been paid.</p>
 
-      <p><strong>Bemærk:</strong> Husk at tjekke, at alle detaljer er korrekte, herunder leveringstid (3 måneder fra bestilling, medmindre det er ekspres), skolens logo samt skolebroderi.</p>
-      <p>Vi håber, at du kommer til at elske din studenterhue.</p>
+      <p><strong>Note:</strong> Please make sure all details are correct, including delivery time (3 months from order date unless express), the school logo, and school embroidery.</p>
+      <p>We hope you’ll love your graduation cap.</p>
 
       <div class="section">
-        <h2>Din ordre oplysninger</h2>
-        <p><span class="label">Ordren er oprettet:</span> ${new Date(orderDate).toLocaleString('da-DK')}</p>
-        <p><span class="label">Ordrenummer:</span> ${orderNumber}</p>
+        <h2>Your Order Information</h2>
+        <p><span class="label">Order Created:</span> ${new Date(orderDate).toLocaleString('en-GB')}</p>
+        <p><span class="label">Order Number:</span> ${orderNumber}</p>
       </div>
 
       <div class="section">
-        <h2>Betalingsinformation</h2>
-        <p><span class="label">Navn:</span> ${customerDetails.firstName} ${customerDetails.lastName}</p>
-        <p><span class="label">Adresse:</span> ${customerDetails.address}</p>
-        <p><span class="label">Post & By:</span> ${customerDetails.postalCode} ${customerDetails.city}</p>
+        <h2>Billing Information</h2>
+        <p><span class="label">Name:</span> ${customerDetails.firstName} ${customerDetails.lastName}</p>
+        <p><span class="label">Address:</span> ${customerDetails.address}</p>
+        <p><span class="label">Postal Code & City:</span> ${customerDetails.postalCode} ${customerDetails.city}</p>
       </div>
 
       <div class="section">
-        <h2>Leveringsinformation</h2>
-        <p><span class="label">Navn:</span> ${customerDetails.firstName} ${customerDetails.lastName}</p>
-        <p><span class="label">Adresse:</span> ${customerDetails.address}</p>
-        <p><span class="label">Post & By:</span> ${customerDetails.postalCode} ${customerDetails.city}</p>
-        ${customerDetails.notes ? `<p><span class="label">Leveringsnote:</span> ${customerDetails.notes}</p>` : ''}
+        <h2>Shipping Information</h2>
+        <p><span class="label">Name:</span> ${customerDetails.firstName} ${customerDetails.lastName}</p>
+        <p><span class="label">Address:</span> ${customerDetails.address}</p>
+        <p><span class="label">Postal Code & City:</span> ${customerDetails.postalCode} ${customerDetails.city}</p>
+        ${customerDetails.notes ? `<p><span class="label">Delivery Note:</span> ${customerDetails.notes}</p>` : ''}
       </div>
 
       <div class="section">
-        <h2>Ordre detaljer</h2>
-        <p><strong>Package : ${packageName || 'Hue Pakke'}</strong></p>
-        <p>Price : ${totalPrice || ''} DKK</p>
+        <h2>Order Details</h2>
+        <p><strong>Package: ${packageName || 'Cap Package'}</strong></p>
+        <p>Price: ${totalPrice || ''} DKK</p>
 
-        <div class="category">Information om huen</div>
+        <div class="category">Cap Information</div>
         ${Object.entries(selectedOptions)
       .map(([category, options]) => {
         const hasOptions = Object.values(options).some(val =>
@@ -542,20 +542,21 @@ const capOrderEmail = (orderData) => {
 
       <div class="total">
         <p>Total: <strong>${totalPrice} ${currency}</strong></p>
-        <p>Inklusiv moms</p>
-        <p>LEVERING: 0 DKK</p>
-        <p>MOMS: 20% af totalbeløbet</p>
+        <p>Including VAT</p>
+        <p>SHIPPING: 0 DKK</p>
+        <p>VAT: 20% of total amount</p>
       </div>
 
       <div class="section" style="text-align:center;">
-        <p>Tak for din ordre ❤️</p>
-        <p>Vi behandler den snarest og kontakter dig, hvis vi har brug for yderligere oplysninger.</p>
+        <p>Thank you for your order ❤️</p>
+        <p>We will process it shortly and contact you if we need any further information.</p>
       </div>
     </div>
   </div>
 </body>
 </html>
 `;
+
 
   // Enhanced text version formatting
   const text = `
