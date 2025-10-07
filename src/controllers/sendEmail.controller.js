@@ -798,7 +798,8 @@ const stripePayment = async (req, res) => {
       currency,
       orderNumber,
       orderDate,
-      email } = req.body;
+      email,
+    packageName } = req.body;
 
   try {
    const order = await prisma.order.create({
@@ -810,7 +811,8 @@ const stripePayment = async (req, res) => {
     orderNumber,
     orderDate,
     customerEmail: email,
-    status: 'PENDING'
+    status: 'PENDING',
+    packageName:packageName
   }
 });
 
