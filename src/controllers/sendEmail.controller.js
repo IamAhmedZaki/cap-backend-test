@@ -56,7 +56,8 @@ const capOrderEmail = (orderData) => {
     totalPrice,
     currency,
     orderNumber,
-    orderDate
+    orderDate,
+    program
   } = orderData;
 
   // Enhanced formatOptions to handle different value structures
@@ -206,12 +207,12 @@ const capOrderEmail = (orderData) => {
 <body>
   <div class="container">
     <div class="header" style="background: #fff; color: #111; text-align: center; padding: 0; border-bottom: 1px solid #e5e7eb;">
-  <img src="https://elipsestudio.com/studentlife/studdentlifeemail.jpg" 
+  <img src="https://elipsestudio.com/studentlife/studentlifeemail.jpg" 
        alt="Studentlife caps" 
        style="width: 100%; max-width: 700px; display: block; margin: 0 auto; border-radius: 0;">
   
   <div style="display: flex; justify-content: space-around; background: #f9fafb; padding: 15px 0; gap: 40px; border-top: 1px solid #e5e7eb;">
-    <div style="font-size: 16px; font-weight: bold; color: #0454ffff;">
+    <div style="font-size: 16px; font-weight: bold; color: #111827;">
       ✓ Premium kvalitet
     </div>
     <div style="font-size: 16px; font-weight: bold; color: #111827;">
@@ -251,8 +252,8 @@ const capOrderEmail = (orderData) => {
 
       <div class="section">
         <h2>Ordre detaljer</h2>
-        <p><strong>${selectedOptions?.pakke?.name || 'Hue Pakke'}</strong></p>
-        <p>${selectedOptions?.pakke?.price || ''} DKK</p>
+        <p><strong>${program|| 'Hue Pakke'}</strong></p>
+        <p>${totalPrice || ''} DKK</p>
 
         <div class="category">Information om huen</div>
         ${Object.entries(selectedOptions)
@@ -690,7 +691,8 @@ const sendCapEmail = async (req, res) => {
       currency,
       orderNumber,
       orderDate,
-      email
+      email,
+      program
     } = req.body;
 
     // Validate required fields
@@ -707,7 +709,8 @@ const sendCapEmail = async (req, res) => {
       totalPrice: totalPrice || '299.00',
       currency: currency || 'DKK',
       orderNumber: orderNumber || `CAP-${Date.now()}`,
-      orderDate: orderDate || new Date().toISOString()
+      orderDate: orderDate || new Date().toISOString(),
+      program:program
     });
     const emailContentAdmin = capOrderAdminEmail({
       customerDetails,
