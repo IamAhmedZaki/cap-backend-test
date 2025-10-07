@@ -886,7 +886,8 @@ await sendCapEmail(
       currency: order.currency,
       orderNumber: order.orderNumber,
       orderDate: order.orderDate,
-      email: order.customerEmail
+      email: order.customerEmail,
+      packageName:order.packageName
     }
   },
   { status: () => ({ json: () => {} }) }
