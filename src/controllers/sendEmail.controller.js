@@ -61,92 +61,174 @@ const factoryOrderEmail = (orderData) => {
   const formatLabel = (label) => {
     const labelMap = {
       // General Cap Options
-      'Farve': 'Color',
-      'Materiale': 'Material',
-      'Hagerem': 'Chinstrap',
-      'Hagerem Materiale': 'Chinstrap Material',
-      'Broderi farve': 'Embroidery color',
-      'Knap farve': 'Button color',
-      'år': 'Year',
-      'Huebånd': 'Flag ribbon',
-      'Topkant': 'Top edging',
-      'Kantbånd': 'Edge band',
-      'Stjerner': 'Stars',
-      'Skyggebånd': 'Shadow band',
-      'Svederem': 'Sweatband',
-      'Foer': 'Inside color',
-      'Sløjfe': 'Bow',
-      'Ekstrabetræk': 'Extra cover',
-      'Hueæske': 'Cap box',
-      'Silkepude': 'Silk cushion',
-      'Lyskugle': 'Light ball',
-      'Smart Tag': 'Smart Tag',
-      'Handsker': 'Gloves',
-      'Skolebroderi farve': 'School embroidery color',
-      'Broderi': 'Embroidery',
-      'BETRÆK': 'Cover',
-      'SKYGGE': 'Brim',
-      'FOER': 'Inside of the cap',
-      'EKSTRABETRÆK': 'Extra cover',
-      'TILBEHØR': 'Accessories',
-      'STØRRELSE': 'Size',
+      // 'Farve': 'Color',
+      // 'Materiale': 'Material',
+      // 'Hagerem': 'Chinstrap',
+      // 'Hagerem Materiale': 'Chinstrap Material',
+      // 'Broderi farve': 'Embroidery color',
+      // 'Knap farve': 'Button color',
+      // 'år': 'Year',
+      // 'Huebånd': 'Flag ribbon',
+      // 'Topkant': 'Top edging',
+      // 'Kantbånd': 'Edge band',
+      // 'Stjerner': 'Stars',
+      // 'Skyggebånd': 'Shadow band',
+      // 'Svederem': 'Sweatband',
+      // 'Foer': 'Inside color',
+      // 'Sløjfe': 'Bow',
+      // 'Ekstrabetræk': 'Extra cover',
+      // 'Hueæske': 'Cap box',
+      // 'Silkepude': 'Silk cushion',
+      // 'Lyskugle': 'Light ball',
+      // 'Smart Tag': 'Smart Tag',
+      // 'Handsker': 'Gloves',
+      // 'Skolebroderi farve': 'School embroidery color',
+      // 'Broderi': 'Embroidery',
+      // 'BETRÆK': 'Cover',
+      // 'SKYGGE': 'Brim',
+      // 'FOER': 'Inside of the cap',
+      // 'EKSTRABETRÆK': 'Extra cover',
+      // 'TILBEHØR': 'Accessories',
+      // 'STØRRELSE': 'Size',
 
-      // HHX - KOKARDE Section
-      'KOKARDE': 'Kokarde',
-      'Emblem': 'Emblem',
-      'Kokarde': 'Kokarde type',
-      'Roset farve': 'Rosette color',
-      'Type': 'Type',
+      // // HHX - KOKARDE Section
+      // 'KOKARDE': 'KOKARDE',
+      // 'Emblem': 'Emblem',
+      // 'Kokarde': 'Kokarde type',
+      // 'Roset farve': 'Rosette color',
+      // 'Type': 'Type',
 
-      // HHX - UDDANNELSESBÅND Section
-      'UDDANNELSESBÅND': 'UDDANNELSESBÅND',
-      'Broderi foran': 'Front embroidery',
-      'Broderi farve foran': 'Front embroidery color',
-      'Hagerem Materiale': 'Chinstrap Material',
-      'Hagerem Type': 'Chinstrap Type',
-      'Broderi farve bagpå': 'Back embroidery color',
+      // // HHX - UDDANNELSESBÅND Section
+      // 'UDDANNELSESBÅND': 'UDDANNELSESBÅND',
+      // 'Broderi foran': 'Front embroidery',
+      // 'Broderi farve foran': 'Front embroidery color',
+      // 'Hagerem Materiale': 'Chinstrap Material',
+      // 'Hagerem Type': 'Chinstrap Type',
+      // 'Broderi farve bagpå': 'Back embroidery color',
 
-      // HHX - BRODERI Section
-      'Broderifarve': 'Embroidery color',
-      'Ingen': 'None',
-      'Navne broderi': 'Name embroidery',
-      'Skolebroderi': 'School embroidery',
 
-      // HHX - BETRÆK Section
-      'BETRÆK Farve': 'Cover color',
+      // // HHX - BRODERI Section
+      // 'Broderifarve': 'Embroidery color',
+      // 'Ingen': 'None',
+      // 'Navne broderi': 'Name embroidery',
+      // 'Skolebroderi': 'School embroidery',
 
-      // HHX - SKYGGE Section
-      'Skygge': 'Brim',
-      'Skyggegravering Line 1': 'Brim engraving line 1',
-      'Skyggegravering Line 2': 'Brim engraving line 2',
-      'Skyggegravering Line 3': 'Brim engraving line 3',
-      'Skyggegravering': 'Brim engraving',
-      'Linje 1': 'Line 1',
-      'Linje 2': 'Line 2',
-      'Linje 3': 'Line 3',
+      // // HHX - BETRÆK Section
+      // 'BETRÆK Farve': 'Cover color',
 
-      // HHX - FOER Section
-      'SatinType': 'Satin type',
-      'SilkeType': 'Silk type',
+      // // HHX - SKYGGE Section
+      // 'Skygge': 'Brim',
+      // 'Skyggegravering Line 1': 'Brim engraving line 1',
+      // 'Skyggegravering Line 2': 'Brim engraving line 2',
+      // 'Skyggegravering Line 3': 'Brim engraving line 3',
+      // 'Skyggegravering': 'Brim engraving',
+      // 'Linje 1': 'Line 1',
+      // 'Linje 2': 'Line 2',
+      // 'Linje 3': 'Line 3',
 
-      // HHX - EKSTRABETRÆK Section
-      'Tilvælg': 'Add-on option',
+      // // HHX - FOER Section
+      // 'SatinType': 'Satin type',
+      // 'SilkeType': 'Silk type',
 
-      // HHX - TILBEHØR Section
-      'Bucketpins': 'Bucket pins',
-      'Ekstra korkarde': 'Extra korkarde  ',
-      'Ekstra korkarde Text': 'Extra korkarde text',
-      'Fløjte': 'Whistle',
-      'Huekuglepen': 'Cap pen',
-      'Luksus champagneglas': 'Luxury champagne glass',
-      'Premium æske': 'Premium box',
-      'Store kuglepen': 'Large pen',
-      'Trompet': 'Trumpet',
+      // // HHX - EKSTRABETRÆK Section
+      // 'Tilvælg': 'Optional',
 
-      // HHX - STØRRELSE Section
-      'Millimeter tilpasningssæt': 'Millimeter adjustment set',
-      'Vælg størrelse': 'Foam to adjust the size'
-    };
+      // // HHX - TILBEHØR Section
+      // 'Bucketpins': 'Bucket pins',
+      // 'Ekstra korkarde': 'Extra korkarde  ',
+      // 'Ekstra korkarde Text': 'Extra korkarde text',
+      // 'Fløjte': 'Whistle',
+      // 'Huekuglepen': 'Cap pen',
+      // 'Luksus champagneglas': 'Luxury champagne glass',
+      // 'Premium æske': 'Premium box',
+      // 'Store kuglepen': 'Large pen',
+      // 'Trompet': 'Trumpet',
+
+      // // HHX - STØRRELSE Section
+      // 'Millimeter tilpasningssæt': 'Millimeter adjustment set',
+      // 'Vælg størrelse': 'Foam to adjust the size'
+      KOKARDE: "KOKARDE",
+      Emblem: "Emblem",
+      Kokarde: "Kokarde",
+      "Roset farve": "Rosette color",
+      Type: "Type",
+
+      UDDANNELSESBÅND: "Education band",
+      "Broderi farve": "Embroidery color",
+      "Broderi foran": "Front embroidery",
+      Hagerem: "Chin strap",
+      "Hagerem Materiale": "Chin strap material",
+      Huebånd: "Cap band",
+      "Knap farve": "Button color",
+      Materiale: "Material",
+      år: "Year",
+
+      BRODERI: "Embroidery",
+      Broderifarve: "Embroidery color",
+      Ingen: "None",
+      "Navne broderi": "Name embroidery",
+      Skolebroderi: "School embroidery",
+      "Skolebroderi farve": "School embroidery color",
+
+      BETRÆK: "Cover",
+      Farve: "Color",
+      Kantbånd: "Edge band",
+      Stjerner: "Stars",
+      Topkant: "Top edge",
+
+      SKYGGE: "Brim",
+      Materiale: "Material",
+      Skyggebånd: "Brim band",
+      "Skyggegravering Line 1": "Brim engraving line 1",
+      "Skyggegravering Line 2": "Brim engraving line 2",
+      "Skyggegravering Line 3": "Brim engraving line 3",
+      Type: "Type",
+
+      FOER: "Lining",
+      Farve: "Color",
+      Foer: "Lining",
+      Sløjfe: "Bow",
+      Svederem: "Sweatband",
+
+      EKSTRABETRÆK: "Extra cover",
+      Tilvælg: "Optional",
+
+      TILBEHØR: "Accessories",
+      Bucketpins: "Bucket pins",
+      "Ekstra korkarde": "Extra Kokarde",
+      "Ekstra korkarde Text": "Extra Kokarde text",
+      Fløjte: "Whistle",
+      Handsker: "Gloves",
+      Huekuglepen: "Cap pen",
+      Hueæske: "Cap box",
+      "Luksus champagneglas": "Luxury champagne glass",
+      Lyskugle: "Light ball",
+      "Premium æske": "Premium box",
+      Silkepude: "Silk pillow",
+      "Smart Tag": "Smart tag",
+      "Store kuglepen": "Large pen",
+      Trompet: "Trumpet",
+
+      STØRRELSE: "Size",
+      "Millimeter tilpasningssæt": "Millimeter fitting set",
+      "Vælg størrelse": "Choosen size ",
+
+      STX: 'bordaux',
+      HTX: 'Navy Blue',
+      HHX: ' Royal Blue',
+      HF: 'Light Blue',
+      EUX: 'Grey',
+      EUD: 'Purple',
+      Sosuassistent: 'Purple',
+      Sosuhjælper: 'Light purple',
+      Frisør: 'Light pink',
+      Kosmetolog: 'Pink',
+      Pædagog: 'Dark purple',
+      PAU: 'Orange',
+      Ernæringsassisten: 'Yellow',
+
+
+    }
 
     return labelMap[label] || label;
   };
@@ -238,30 +320,30 @@ const factoryOrderEmail = (orderData) => {
     </div>
 
     <div class="section">
-      <h2>Information about the Cap</h2>
+      <h2>Information about the Cap</h2>  
       ${Object.entries(selectedOptions)
-        .map(([category, options]) => {
-          const hasOptions = Object.values(options).some(
-            val => val && val !== '' && val !== null && val !== false
-          );
-          if (!hasOptions) return '';
-          return `
+      .map(([category, options]) => {
+        const hasOptions = Object.values(options).some(
+          val => val && val !== '' && val !== null && val !== false
+        );
+        if (!hasOptions) return '';
+        return `
             <div class="category">${formatLabel(category)}</div>
             ${Object.entries(options)
-              .map(([key, value]) => {
-                if (!value || value === '' || value === null || value === false) return '';
-                let displayValue =
-                  typeof value === 'object' && value.name ? value.name : value;
-                return `
+            .map(([key, value]) => {
+              if (!value || value === '' || value === null || value === false) return '';
+              let displayValue =
+                typeof value === 'object' && value.name ? value.name : value;
+              return `
                   <div class="option-box">
                     <p class="label">${formatLabel(key)}</p>
                     <p>${displayValue}</p>
                   </div>`;
-              })
-              .join('')}
+            })
+            .join('')}
           `;
-        })
-        .join('')}
+      })
+      .join('')}
     </div>
   </div>
 </body>
@@ -461,7 +543,7 @@ const capOrderEmail = (orderData) => {
     return value;
   };
 
- const html = `
+  const html = `
 <!DOCTYPE html>
 <html>
 <head>
@@ -561,28 +643,28 @@ const capOrderEmail = (orderData) => {
 
         <div class="category">Information om huen</div>
         ${Object.entries(selectedOptions)
-        .map(([category, options]) => {
-          const hasOptions = Object.values(options).some(
-            val => val && val !== '' && val !== null && val !== false
-          );
-          if (!hasOptions) return '';
-          return `
+      .map(([category, options]) => {
+        const hasOptions = Object.values(options).some(
+          val => val && val !== '' && val !== null && val !== false
+        );
+        if (!hasOptions) return '';
+        return `
             <div class="category">${formatLabel(category)}</div>
             ${Object.entries(options)
-              .map(([key, value]) => {
-                if (!value || value === '' || value === null || value === false) return '';
-                let displayValue =
-                  typeof value === 'object' && value.name ? value.name : value;
-                return `
+            .map(([key, value]) => {
+              if (!value || value === '' || value === null || value === false) return '';
+              let displayValue =
+                typeof value === 'object' && value.name ? value.name : value;
+              return `
                   <div class="option-box">
                     <p class="label">${formatLabel(key)}</p>
                     <p>${displayValue}</p>
                   </div>`;
-              })
-              .join('')}
+            })
+            .join('')}
           `;
-        })
-        .join('')}
+      })
+      .join('')}
       </div>
 
       <div class="total">
@@ -950,28 +1032,28 @@ const capOrderAdminEmail = (orderData) => {
       <p><strong>Price:</strong> ${totalPrice} ${currency}</p>
 
       ${Object.entries(selectedOptions)
-        .map(([category, options]) => {
-          const hasOptions = Object.values(options).some(
-            val => val && val !== '' && val !== null && val !== false
-          );
-          if (!hasOptions) return '';
-          return `
+      .map(([category, options]) => {
+        const hasOptions = Object.values(options).some(
+          val => val && val !== '' && val !== null && val !== false
+        );
+        if (!hasOptions) return '';
+        return `  
             <div class="category">${formatLabel(category)}</div>
             ${Object.entries(options)
-              .map(([key, value]) => {
-                if (!value || value === '' || value === null || value === false) return '';
-                let displayValue =
-                  typeof value === 'object' && value.name ? value.name : value;
-                return `
+            .map(([key, value]) => {
+              if (!value || value === '' || value === null || value === false) return '';
+              let displayValue =
+                typeof value === 'object' && value.name ? value.name : value;
+              return `
                   <div class="option-box">
                     <p class="label">${formatLabel(key)}</p>
                     <p>${displayValue}</p>
                   </div>`;
-              })
-              .join('')}
+            })
+            .join('')}
           `;
-        })
-        .join('')}
+      })
+      .join('')}
     </div>
 
     <div class="total">
@@ -1259,8 +1341,8 @@ const stripePayment = async (req, res) => {
       ],
       mode: "payment",
       locale: "da",
-     success_url: `https://elipsestudio.com/studentlife/success?session_id={CHECKOUT_SESSION_ID}`,
-  cancel_url: "https://elipsestudio.com/studentlife/cancel",
+      success_url: `https://elipsestudio.com/studentlife/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: "https://elipsestudio.com/studentlife/cancel",
       metadata: {
         orderId: order.id,   // 👈 only store a small reference here
       },
