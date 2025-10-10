@@ -18,6 +18,7 @@ model Order {
   orderDate      DateTime @default(now())
   status         String   @default("PENDING")
   packageName    String?
+  program         String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
