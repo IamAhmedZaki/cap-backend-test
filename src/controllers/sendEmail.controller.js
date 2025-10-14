@@ -11,21 +11,9 @@ const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 
 const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET;
 
-const createEmailTransporter = () => {
-  return nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 587,
-    secure: false, // use TLS later
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS, // must be an App Password
-    },
-  });
-};
-
 // const createEmailTransporter = () => {
 //   return nodemailer.createTransport({
-//     host: "smtp.simply.com",
+//     host: "smtp.gmail.com",
 //     port: 587,
 //     secure: false, // use TLS later
 //     auth: {
@@ -34,6 +22,18 @@ const createEmailTransporter = () => {
 //     },
 //   });
 // };
+
+const createEmailTransporter = () => {
+  return nodemailer.createTransport({
+    host: "smtp.simply.com",
+    port: 587,
+    secure: false, // use TLS later
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS, // must be an App Password
+    },
+  });
+};
 
 
 
