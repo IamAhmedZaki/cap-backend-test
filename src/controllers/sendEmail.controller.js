@@ -2348,7 +2348,7 @@ const stripePayment = async (req, res) => {
       ],
       mode: "payment",
       locale: "da",
-      success_url: `https://elipsestudio.com/studentlife/success?session_id={CHECKOUT_SESSION_ID}`,
+      success_url: `https://shop.studentlife.dk/thankyou/?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: "https://elipsestudio.com/studentlife/cancel",
       metadata: {
         orderId: order.id,   // 👈 only store a small reference here
