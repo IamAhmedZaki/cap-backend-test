@@ -737,6 +737,10 @@ const capOrderEmail = (orderData) => {
     program
   } = orderData;
 
+  
+const leveringstid = new Date(orderDate);
+leveringstid.setMonth(leveringstid.getMonth() + 3);
+
   // Enhanced formatOptions to handle different value structures
   const formatOptions = (options) => {
     return Object.entries(options)
@@ -982,7 +986,7 @@ const html = `
     <div class="infoBlock">
         <img src="https://elipsestudio.com/studentlife/studentlifeemail.jpg" 
            alt="Studentlife caps" 
-           style="width: 100%; max-width: 700px; display: block; margin: 0 auto; border-radius: 0;">
+           style="display: block; width:100%; border-radius: 0;">
         <div style="background: #f9fafb; padding: 15px 0; border-top: 1px solid #e5e7eb; text-align: center;">
         <span style="font-size: 16px; font-weight: bold; color: #111827; display: inline-block; margin: 0 10px;">
           ✓ Premium kvalitet
@@ -1000,7 +1004,7 @@ const html = `
     <div class="downgap" >Din bestilling med ordre nummer:${orderNumber} er nu betalt. </div>
     <div class="gap"></div>
     
-    <div class="downgap" >Husk at tjekke alle detaljer er korrekte, herunder også leveringstid (delievery time should be 3 months, from ordering, unless its express), skolens logo samt skolebroderi.</div>
+    <div class="downgap" >leveringstiden: ${leveringstid.toLocaleDateString()}</div>
     <div class="gap"></div>
     <div class="downgap" >Vi håber at  du kommer til at elske din studenterhue.</div>
     <div class="gap"></div>
@@ -1010,39 +1014,33 @@ const html = `
     <div class="downgap" >Ordren er oprettet: </div>
     <div class="gap"></div>
   <div><div class="downgap orderNumber">Order nr: ${orderNumber}</div></div>
-  <div class="table-container2">
-      <table>
-        <tr><th>Betalingsinformation</th></tr>
-         <tr class="gap"></tr>
-        <tr><td class="subheading2">Information about the payer </td></tr>
-         <tr class="gap"></tr>
-        <tr><td class="subheading2">Name: ${customerDetails.firstName} ${customerDetails.lastName} </td></tr>
-        <tr><td class="subheading2">Address: ${customerDetails.address} </td></tr>
-        <tr><td class="subheading2">Post and City: ${customerDetails.postalCode} ${customerDetails.city} </td></tr>
-         <tr class="gap"></tr>        
-         <tr class="gap"></tr>        
-         <tr class="gap"></tr>        
-        
+ <div class="table-container2">
+  <table>
+    <tr><th>Betalingsoplysninger</th></tr>
+    <tr class="gap"></tr>
+    <tr><td class="subheading2">Oplysninger om betaleren</td></tr>
+    <tr class="gap"></tr>
+    <tr><td class="subheading2">Navn: ${customerDetails.firstName} ${customerDetails.lastName}</td></tr>
+    <tr><td class="subheading2">Adresse: ${customerDetails.address}</td></tr>
+    <tr><td class="subheading2">Postnummer og by: ${customerDetails.postalCode} ${customerDetails.city}</td></tr>
+    <tr class="gap"></tr>
+    <tr class="gap"></tr>
+    <tr class="gap"></tr>
+  </table>
+</div>
 
-      </table>
-    </div>
+<div class="table-container2">
+  <table>
+    <tr><th>Leveringsoplysninger</th></tr>
+    <tr class="gap"></tr>
+    <tr><td class="subheading2">Navn: ${customerDetails.firstName} ${customerDetails.lastName}</td></tr>
+    <tr><td class="subheading2">Adresse: ${customerDetails.address}</td></tr>
+    <tr><td class="subheading2">Postnummer og by: ${customerDetails.postalCode} ${customerDetails.city}</td></tr>
+    <tr class="gap"></tr>
+    ${customerDetails.notes ? `<tr><td class="subheading2">Levering: ${customerDetails.notes}</td></tr>` : ''}
+  </table>
+</div>
 
-    <div class="table-container2">
-      <table>
-        <tr><th>Leverings information  (Delievery informaton)</th></tr>
-         <tr class="gap"></tr>
-        <tr><td class="subheading2">Name: ${customerDetails.firstName} ${customerDetails.lastName} </td></tr>
-        <tr><td class="subheading2">Address: ${customerDetails.address} </td></tr>
-        <tr><td class="subheading2">Post And City: ${customerDetails.postalCode} ${customerDetails.city} </td></tr>
-         <tr class="gap"></tr>
-        ${customerDetails.notes ? `<tr><td class="subheading2">Levering (Note): ${customerDetails.notes} </td></tr>` : ''}
-        
-       
-        
-       
-
-      </table>
-    </div>
 
     <div class="gap"></div> 
     <div class="gap"></div> 
@@ -1051,15 +1049,14 @@ const html = `
   
   
     <div >Ordre detaljer</div>
-  <div  class="downgap" style="margin-left: 370px; margin-bottom: 10px; margin-top: 4px;">The package choosed: ${packageName}
-
+  <div  class="downgap" style="margin-left: 370px; margin-bottom: 10px; margin-top: 4px;">${packageName}
   </div>
-  <div  class="downgap" style="margin-left: 370px; margin-bottom: 10px; margin-top: 4px;">Price: ${totalPrice} DKK
+  <div  class="downgap" style="margin-left: 370px; margin-bottom: 10px; margin-top: 4px;">Pris: ${totalPrice} DKK
 
   </div>
   <div class="gap"></div>
   <div style="margin-left:370px;">
-    Information about the Cap
+    Oplysninger om Cap
   </div>
   <div class="gap"></div>
   <div class="gap"></div>
@@ -1196,13 +1193,22 @@ ${selectedOptions.EKSTRABETRÆK.Tilvælg === 'Yes' ? `
 <tr><td class="value">${selectedOptions.BRODERI['Skolebroderi farve']}</td></tr>
 <tr class="gap"></tr>
 <tr><td class="subheading">Lyskugle</td></tr>
-<tr><td class="value">${selectedOptions.TILBEHØR.Lyskugle}</td></tr>
+<tr><td class="value">
+  ${selectedOptions.TILBEHØR.Lyskugle === 'Yes' ? 'Ja' : 'Ingen'}
+</td></tr>
 <tr class="gap"></tr>
+
 <tr><td class="subheading">Luksus champagneglas</td></tr>
-<tr><td class="value">${selectedOptions.TILBEHØR['Luksus champagneglas']}</td></tr>
+<tr><td class="value">
+  ${selectedOptions.TILBEHØR['Luksus champagneglas'] === 'Yes' ? 'Ja' : 'Ingen'}
+</td></tr>
 <tr class="gap"></tr>
+
 <tr><td class="subheading">Fløjte</td></tr>
-<tr><td class="value">${selectedOptions.TILBEHØR.Fløjte}</td></tr>
+<tr><td class="value">
+  ${selectedOptions.TILBEHØR.Fløjte === 'Yes' ? 'Ja' : 'Ingen'}
+</td></tr>
+
 <tr class="gap"></tr>
 ` : '' }
 
@@ -1300,35 +1306,66 @@ ${selectedOptions.EKSTRABETRÆK.Tilvælg === 'Yes' ? `
         
         <!-- Tilbehør -->
 <tr><th>Tilbehør</th></tr>
-<tr><td class="subheading">Hueæske </td></tr>
-<tr><td class="value">${selectedOptions.TILBEHØR.Hueæske}</td></tr>
+
+<tr><td class="subheading">Hueæske</td></tr>
+<tr><td class="value">
+  ${selectedOptions.TILBEHØR.Hueæske === 'Yes' ? 'Ja' : 'Ingen'}
+</td></tr>
 <tr class="gap"></tr>
-<tr><td class="subheading">Huekuglepen </td></tr>
-<tr><td class="value">${selectedOptions.TILBEHØR.Huekuglepen}</td></tr>
+
+<tr><td class="subheading">Huekuglepen</td></tr>
+<tr><td class="value">
+  ${selectedOptions.TILBEHØR.Huekuglepen === 'Yes' ? 'Ja' : 'Ingen'}
+</td></tr>
 <tr class="gap"></tr>
-<tr><td class="subheading">Silkepude </td></tr>
-<tr><td class="value">${selectedOptions.TILBEHØR.Silkepude}</td></tr>
+
+<tr><td class="subheading">Silkepude</td></tr>
+<tr><td class="value">
+  ${selectedOptions.TILBEHØR.Silkepude === 'Yes' ? 'Ja' : 'Ingen'}
+</td></tr>
 <tr class="gap"></tr>
+
 <tr><td class="subheading">Ekstra Kokarde</td></tr>
-<tr><td class="value">${selectedOptions.TILBEHØR['Ekstra korkarde Text']==''? 'No' : selectedOptions.TILBEHØR['Ekstra korkarde Text']}</td></tr>
+<tr><td class="value">
+  ${selectedOptions.TILBEHØR['Ekstra korkarde Text'] === '' ? 'Ingen' : selectedOptions.TILBEHØR['Ekstra korkarde Text']}
+</td></tr>
 <tr class="gap"></tr>
+
 <tr><td class="subheading">Handsker</td></tr>
-<tr><td class="value">${selectedOptions.TILBEHØR.Handsker}</td></tr>
+<tr><td class="value">
+  ${selectedOptions.TILBEHØR.Handsker === 'Yes' ? 'Ja' : 'Ingen'}
+</td></tr>
 <tr class="gap"></tr>
-<tr><td class="subheading">Stor kuglepen </td></tr>
-<tr><td class="value">${selectedOptions.TILBEHØR["Store kuglepen"]}</td></tr>
+
+<tr><td class="subheading">Stor kuglepen</td></tr>
+<tr><td class="value">
+  ${selectedOptions.TILBEHØR["Store kuglepen"] === 'Yes' ? 'Ja' : 'Ingen'}
+</td></tr>
 <tr class="gap"></tr>
+
 <tr><td class="subheading">Smarttag</td></tr>
-<tr><td class="value">${selectedOptions.TILBEHØR["Smart Tag"]}</td></tr>
+<tr><td class="value">
+  ${selectedOptions.TILBEHØR["Smart Tag"] === 'Yes' ? 'Ja' : 'Ingen'}
+</td></tr>
 <tr class="gap"></tr>
+
 <tr><td class="subheading">Lille flag</td></tr>
-<tr><td class="value">${!selectedOptions.TILBEHØR['Lille Flag Text'] ? 'No' : selectedOptions.TILBEHØR['Lille Flag Text']}</td></tr>
+<tr><td class="value">
+  ${!selectedOptions.TILBEHØR['Lille Flag Text'] ? 'Ingen' : selectedOptions.TILBEHØR['Lille Flag Text']}
+</td></tr>
 <tr class="gap"></tr>
+
 <tr><td class="subheading">Trompet</td></tr>
-<tr><td class="value">${selectedOptions.TILBEHØR.Trompet}</td></tr>
+<tr><td class="value">
+  ${selectedOptions.TILBEHØR.Trompet === 'Yes' ? 'Ja' : 'Ingen'}
+</td></tr>
 <tr class="gap"></tr>
+
 <tr><td class="subheading">Bucketpins</td></tr>
-<tr><td class="value">${selectedOptions.TILBEHØR.Bucketpins}</td></tr>
+<tr><td class="value">
+  ${selectedOptions.TILBEHØR.Bucketpins === 'Yes' ? 'Ja' : 'Ingen'}
+</td></tr>
+
 <tr class="gap"></tr>
     </table>
     </div>
@@ -1348,7 +1385,7 @@ SUM: ${totalPrice} DKK<br>
 <div class="gap"></div>
 LEVERING: 0 DKK<br>
 <div class="gap"></div>
-MOMS: 20% of the total price DKK (vat)<br>
+MOMS: ${(totalPrice * 0.20).toFixed(2)}<br>
 <div class="gap"></div>
 
   </div>
