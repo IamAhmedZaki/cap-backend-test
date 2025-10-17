@@ -1004,7 +1004,7 @@ const html = `
     <div class="downgap" >Din bestilling med ordre nummer:${orderNumber} er nu betalt. </div>
     <div class="gap"></div>
     
-    <div class="downgap" >leveringstiden: ${leveringstid.toLocaleDateString()}</div>
+    <div class="downgap" >Husk at tjekke alle detaljer er korrekte, herunder også leveringstid ${leveringstid.toLocaleDateString()}, skolens logo samt skolebroderi. </div>
     <div class="gap"></div>
     <div class="downgap" >Vi håber at  du kommer til at elske din studenterhue.</div>
     <div class="gap"></div>
