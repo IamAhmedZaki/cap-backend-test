@@ -449,36 +449,36 @@ const factoryOrderEmail = (orderData) => {
         <tr><th> Embroidery on the backside of the cap</th></tr>
         
         
-        ${!selectedOptions.BRODERI["Navne broderi"]?`
+       ${!selectedOptions.BRODERI || !selectedOptions.BRODERI["Navne broderi"] ? `
          <tr><td class="subheading" style="height: 67px;"></td></tr>
         <tr><td class="value"></td></tr>
         <tr class="gap"></tr>
          <tr><td class="subheading" style="height: 67px;"></td></tr>
         <tr><td class="value"></td></tr>
-        <tr class="gap"></tr>`:
+        <tr class="gap"></tr>` :
       `
           <tr><td class="subheading">Name embroidery (Tekst) maks. 26</td></tr>
         <tr><td class="value">${selectedOptions.BRODERI["Navne broderi"]}</td></tr>
         <tr class="gap"></tr>
          <tr><td class="subheading">Embroidery color </td></tr>
-        <tr><td class="value">${selectedOptions.BRODERI.Broderifarve}</td></tr>
+        <tr><td class="value">${selectedOptions.BRODERI?.Broderifarve || 'Not chosen'}</td></tr>
         <tr class="gap"></tr>`}
        
-        
-        
-        ${!selectedOptions.BRODERI.Skolebroderi  ?`<tr><td class="subheading" style="height: 67px;"></td></tr>
+       
+       
+        ${!selectedOptions.BRODERI || !selectedOptions.BRODERI.Skolebroderi ? `<tr><td class="subheading" style="height: 67px;"></td></tr>
         <tr><td class="value"></td></tr>
         <tr class="gap"></tr>
 
         <tr><td class="subheading" style="height: 67px;"></td></tr>
         <tr><td class="value"></td></tr>
-        <tr class="gap"></tr>`:`
+        <tr class="gap"></tr>` : `
           <tr><td class="subheading">School embroidery (Tekst) maks. 35</td></tr>
         <tr><td class="value">${selectedOptions.BRODERI.Skolebroderi}</td></tr>
         <tr class="gap"></tr>
 
         <tr><td class="subheading">Embroidery color </td></tr>
-        <tr><td class="value">${selectedOptions.BRODERI['Skolebroderi farve']}</td></tr>
+        <tr><td class="value">${selectedOptions.BRODERI?.['Skolebroderi farve'] || 'Not chosen'}</td></tr>
         <tr class="gap"></tr>`}
        
         
