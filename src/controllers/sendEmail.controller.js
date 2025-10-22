@@ -310,14 +310,26 @@ const factoryOrderEmail = (orderData) => {
   <div class="downgap" style="margin-bottom: 10px;">Ordren er oprettet: </div>
   <div><div class="downgap" style="margin-bottom: 10px;">Order nr:${orderNumber}</div> <div class="downgap" style="margin-bottom: 10px;">Navn på kunde:${customerDetails.firstName} ${customerDetails.lastName}</div> <div class="downgap" style="margin-bottom: 10px;">
         Skole:${customerDetails.Skolenavn}</div></div>
-  <div class="downgap" style="margin-bottom: 10px;">Ordre detaljer</div>
-  <div style="margin-left: 327px; margin-bottom: 10px; margin-top: 4px;">${packageName}
+ <div class="table-container23" style="display: inline-block; vertical-align: top; background:#ffffff;">
+      <table style="border-collapse: collapse; width: 342px; margin: 0 auto;">
+       
+        <tr><td class="subheading2" style="font-weight: bold; text-align: left; padding: 9px; font-size: 16px;">Ordre detalje</td></tr>
+        <tr class="gap"></tr>
 
-  </div>
-  <div style="margin-left: 327px;">
-    
-  </div>
-  </div>
+      </table>
+    </div>
+
+    <div class="table-container23" style="display: inline-block; vertical-align: top; background:#ffffff;">
+      <table style="border-collapse: collapse; width: 342px; margin: 0 auto;">
+        <tr class="gap" style="height: 20px;"></tr>
+        <tr class="gap" style="height: 20px;"></tr>
+       
+        <tr><td class="subheading2" style="font-weight: bold; text-align: left; padding: 9px; font-size: 16px;">${packageName}</td></tr>
+        <tr><td class="subheading2" style="font-weight: bold; text-align: left; padding: 9px; font-size: 16px;">Pris: ${totalPrice}</td></tr>
+        <tr class="gap" style="height: 20px;"></tr>
+
+      </table>
+    </div>
   <!-- First row of tables -->
   <div style="text-align:center;">
     <div class="table-container" style="display: inline-block; vertical-align: top;">
@@ -837,6 +849,13 @@ const capOrderEmail = (orderData) => {
       vertical-align: top; /* align tops evenly */
       background:#e7e7e7;
     }
+      .table-container23 {
+      display: inline-block; /* allows side-by-side placement */
+      /* space between tables */
+      vertical-align: top; /* align tops evenly */
+      background:#ffffff;
+    }
+
 
     table {
       border-collapse: collapse;
@@ -990,16 +1009,26 @@ const capOrderEmail = (orderData) => {
     <div class="gap" style="height: 20px;"></div> 
   
   
-    <div style="margin-bottom: 10px;">Ordre detaljer</div>
-  <div class="downgap package" style="margin-left: 370px; margin-bottom: 10px; margin-top: 4px;">${packageName}
-  </div>
-  <div class="downgap package" style="margin-left: 370px; margin-bottom: 10px; margin-top: 4px;">Pris: ${totalPrice} DKK
+    <div class="table-container23" style="display: inline-block; vertical-align: top; background:#ffffff;">
+      <table style="border-collapse: collapse; width: 342px; margin: 0 auto;">
+       
+        <tr><td class="subheading2" style="font-weight: bold; text-align: left; padding: 9px; font-size: 16px;">Ordre detalje</td></tr>
+        <tr class="gap"></tr>
 
-  </div>
-  <div class="gap" style="height: 20px;"></div>
-  <div style="margin-left:370px;">
+      </table>
+    </div>
 
-  </div>
+    <div class="table-container23" style="display: inline-block; vertical-align: top; background:#ffffff;">
+      <table style="border-collapse: collapse; width: 342px; margin: 0 auto;">
+        <tr class="gap" style="height: 20px;"></tr>
+        <tr class="gap" style="height: 20px;"></tr>
+       
+        <tr><td class="subheading2" style="font-weight: bold; text-align: left; padding: 9px; font-size: 16px;">${packageName}</td></tr>
+        <tr><td class="subheading2" style="font-weight: bold; text-align: left; padding: 9px; font-size: 16px;">Pris: ${totalPrice}</td></tr>
+        <tr class="gap" style="height: 20px;"></tr>
+
+      </table>
+    </div>
   <div class="gap" style="height: 20px;"></div>
   <div class="gap" style="height: 20px;"></div>
   <div class="gap" style="height: 20px;"></div>
@@ -1649,17 +1678,26 @@ const capOrderAdminEmail = (orderData) => {
     <div class="gap" style="height: 20px;"></div> 
   
   
-    <div style="margin-bottom: 10px;">Ordre detaljer</div>
-  <div class="downgap" style="margin-left: 370px; margin-bottom: 10px; margin-top: 4px;">${packageName}
+   <div class="table-container23" style="display: inline-block; vertical-align: top; background:#ffffff;">
+      <table style="border-collapse: collapse; width: 342px; margin: 0 auto;">
+       
+        <tr><td class="subheading2" style="font-weight: bold; text-align: left; padding: 9px; font-size: 16px;">Ordre detalje</td></tr>
+        <tr class="gap"></tr>
 
-  </div>
-  <div class="downgap" style="margin-left: 370px; margin-bottom: 10px; margin-top: 4px;">Price: ${totalPrice} DKK
+      </table>
+    </div>
 
-  </div>
-  <div class="gap" style="height: 20px;"></div>
-  <div style="margin-left:370px;">
-   
-  </div>
+    <div class="table-container23" style="display: inline-block; vertical-align: top; background:#ffffff;">
+      <table style="border-collapse: collapse; width: 342px; margin: 0 auto;">
+        <tr class="gap" style="height: 20px;"></tr>
+        <tr class="gap" style="height: 20px;"></tr>
+       
+        <tr><td class="subheading2" style="font-weight: bold; text-align: left; padding: 9px; font-size: 16px;">${packageName}</td></tr>
+        <tr><td class="subheading2" style="font-weight: bold; text-align: left; padding: 9px; font-size: 16px;">Pris: ${totalPrice}</td></tr>
+        <tr class="gap" style="height: 20px;"></tr>
+
+      </table>
+    </div>
   <div class="gap" style="height: 20px;"></div>
   <div class="gap" style="height: 20px;"></div>
   <div class="gap" style="height: 20px;"></div>
