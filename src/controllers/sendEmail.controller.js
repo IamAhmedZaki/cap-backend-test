@@ -310,7 +310,7 @@ const factoryOrderEmail = (orderData) => {
   <div class="downgap" style="margin-bottom: 10px;">Ordren er oprettet: </div>
   <div><div class="downgap" style="margin-bottom: 10px;">Order nr:${orderNumber}</div> <div class="downgap" style="margin-bottom: 10px;">Navn på kunde:${customerDetails.firstName} ${customerDetails.lastName}</div> <div class="downgap" style="margin-bottom: 10px;">
         Skole:${customerDetails.Skolenavn}</div></div>
- <div class="table-container23" style="display: inline-block; vertical-align: top; background:#ffffff;">
+ <div class="table-container23" style="display: inline-block; vertical-align: top; background:#e7e7e7b9;">
       <table style="border-collapse: collapse; width: 342px; margin: 0 auto;">
        
         <tr><td class="subheading2" style="font-weight: bold; text-align: left; padding: 9px; font-size: 16px;">Ordre detalje</td></tr>
@@ -319,7 +319,7 @@ const factoryOrderEmail = (orderData) => {
       </table>
     </div>
 
-    <div class="table-container23" style="display: inline-block; vertical-align: top; background:#ffffff;">
+    <div class="table-container23" style="display: inline-block; vertical-align: top; background:#e7e7e7b9;">
       <table style="border-collapse: collapse; width: 342px; margin: 0 auto;">
         <tr class="gap" style="height: 20px;"></tr>
         <tr class="gap" style="height: 20px;"></tr>
