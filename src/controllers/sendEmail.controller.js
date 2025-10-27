@@ -434,9 +434,13 @@ const factoryOrderEmail = (orderData) => {
         <tr><td class="subheading" style="font-weight: bold; background-color: #ffffff; text-align: left; padding: 9px; font-size: 16px;">Type</td></tr>
         <tr><td class="value" style="font-size: 18px; background-color: #ffffff; text-align: left; padding: 9px; font-size: 16px;">${selectedOptions.SKYGGE.Type}</td></tr> 
         <tr class="gap" style="height: 23px;"></tr>
+        ${selectedOptions.SKYGGE.Type==='Glimmer'?`
+       `:`
         <tr><td class="subheading" style="font-weight: bold; background-color: #ffffff; text-align: left; padding: 9px; font-size: 16px;">Material </td></tr>
         <tr><td class="value" style="font-size: 18px; background-color: #ffffff; text-align: left; padding: 9px; font-size: 16px;">${selectedOptions.SKYGGE.Materiale}</td></tr>
-        <tr class="gap" style="height: 23px;"></tr>
+        <tr class="gap" style="height: 23px;"></tr>`
+        
+        }
         <tr><td class="subheading" style="font-weight: bold; background-color: #ffffff; text-align: left; padding: 9px; font-size: 16px;">Shadow band</td></tr>
         <tr><td class="value" style="font-size: 18px; background-color: #ffffff; text-align: left; padding: 9px; font-size: 16px;">${selectedOptions.SKYGGE.Skyggebånd}</td></tr>
         <tr class="gap" style="height: 23px;"></tr>
@@ -617,7 +621,7 @@ ${!selectedOptions.FOER || !selectedOptions.FOER['Silk Type']  ?``:`
         <tr class="gap" style="height: 23px;"></tr>
 
         <tr><td class="subheading" style="font-weight: bold; background-color: #ffffff; text-align: left; padding: 9px; font-size: 16px;">Small flag</td></tr>
-        <tr><td class="value" style="font-size: 18px; background-color: #ffffff; text-align: left; padding: 9px; font-size: 16px;">${!selectedOptions.TILBEHØR['Lille Flag Text'] ? 'Fravalgt' : selectedOptions.TILBEHØR['Lille Flag Text']}</td></tr>
+        <tr><td class="value" style="font-size: 18px; background-color: #ffffff; text-align: left; padding: 9px; font-size: 16px;">${selectedOptions.TILBEHØR['Lille Flag']==='Fravalgt' ? 'Fravalgt' : selectedOptions.TILBEHØR['Lille Flag Text']}</td></tr>
         <tr class="gap" style="height: 23px;"></tr>
       
     </table>
@@ -1159,9 +1163,13 @@ ${!selectedOptions.BRODERI || !selectedOptions.BRODERI.Skolebroderi  ?``:`
 <tr><td class="subheading" style="font-weight: bold; background-color: #ffffff; text-align: left; padding: 9px; font-size: 16px;">Type</td></tr>
 <tr><td class="value" style="font-size: 18px; background-color: #ffffff; text-align: left; padding: 9px; font-size: 16px;">${selectedOptions.SKYGGE.Type}</td></tr> 
 <tr class="gap" style="height: 20px;"></tr>
-<tr><td class="subheading" style="font-weight: bold; background-color: #ffffff; text-align: left; padding: 9px; font-size: 16px;">Material </td></tr>
-<tr><td class="value" style="font-size: 18px; background-color: #ffffff; text-align: left; padding: 9px; font-size: 16px;">${selectedOptions.SKYGGE.Materiale}</td></tr>
-<tr class="gap" style="height: 20px;"></tr>
+${selectedOptions.SKYGGE.Type==='Glimmer'?`
+       `:`
+        <tr><td class="subheading" style="font-weight: bold; background-color: #ffffff; text-align: left; padding: 9px; font-size: 16px;">Material </td></tr>
+        <tr><td class="value" style="font-size: 18px; background-color: #ffffff; text-align: left; padding: 9px; font-size: 16px;">${selectedOptions.SKYGGE.Materiale}</td></tr>
+        <tr class="gap" style="height: 23px;"></tr>`
+        
+        }
 <tr><td class="subheading" style="font-weight: bold; background-color: #ffffff; text-align: left; padding: 9px; font-size: 16px;">Skyggebånd</td></tr>
 <tr><td class="value" style="font-size: 18px; background-color: #ffffff; text-align: left; padding: 9px; font-size: 16px;">${selectedOptions.SKYGGE.Skyggebånd}</td></tr>
 <tr class="gap" style="height: 20px;"></tr>
@@ -1376,7 +1384,7 @@ ${selectedOptions.TILBEHØR['Premium æske']?`
 
 <tr><td class="subheading" style="font-weight: bold; background-color: #ffffff; text-align: left; padding: 9px; font-size: 16px;">Ekstra Kokarde</td></tr>
 <tr><td class="value" style="font-size: 18px; background-color: #ffffff; text-align: left; padding: 9px; font-size: 16px;">
-  ${!selectedOptions.TILBEHØR['Ekstra korkarde Text']  ? 'Fravalgt' : selectedOptions.TILBEHØR['Ekstra korkarde Text']}
+  ${selectedOptions.TILBEHØR['Ekstra korkarde']==='Fravalgt'  ? 'Fravalgt' : selectedOptions.TILBEHØR['Ekstra korkarde Text']}
 </td></tr>
 <tr class="gap" style="height: 20px;"></tr>
 
@@ -1400,7 +1408,7 @@ ${selectedOptions.TILBEHØR['Premium æske']?`
 
 <tr><td class="subheading" style="font-weight: bold; background-color: #ffffff; text-align: left; padding: 9px; font-size: 16px;">Lille flag</td></tr>
 <tr><td class="value" style="font-size: 18px; background-color: #ffffff; text-align: left; padding: 9px; font-size: 16px;">
-  ${!selectedOptions.TILBEHØR['Lille Flag Text'] ? 'Fravalgt' : selectedOptions.TILBEHØR['Lille Flag Text']}
+  ${selectedOptions.TILBEHØR['Lille Flag']==='Fravalgt' ? 'Fravalgt' : selectedOptions.TILBEHØR['Lille Flag Text']}
 </td></tr>
 <tr class="gap" style="height: 20px;"></tr>
 
@@ -1981,9 +1989,13 @@ ${!selectedOptions.BRODERI || !selectedOptions.BRODERI.Skolebroderi  ?``:`
 <tr><td class="subheading" style="font-weight: bold; background-color: #ffffff; text-align: left; padding: 9px; font-size: 16px;">Type</td></tr>
 <tr><td class="value" style="font-size: 18px; background-color: #ffffff; text-align: left; padding: 9px; font-size: 16px;">${selectedOptions.SKYGGE.Type}</td></tr> 
 <tr class="gap" style="height: 20px;"></tr>
-<tr><td class="subheading" style="font-weight: bold; background-color: #ffffff; text-align: left; padding: 9px; font-size: 16px;">Material </td></tr>
-<tr><td class="value" style="font-size: 18px; background-color: #ffffff; text-align: left; padding: 9px; font-size: 16px;">${selectedOptions.SKYGGE.Materiale}</td></tr>
-<tr class="gap" style="height: 20px;"></tr>
+${selectedOptions.SKYGGE.Type==='Glimmer'?`
+       `:`
+        <tr><td class="subheading" style="font-weight: bold; background-color: #ffffff; text-align: left; padding: 9px; font-size: 16px;">Material </td></tr>
+        <tr><td class="value" style="font-size: 18px; background-color: #ffffff; text-align: left; padding: 9px; font-size: 16px;">${selectedOptions.SKYGGE.Materiale}</td></tr>
+        <tr class="gap" style="height: 23px;"></tr>`
+        
+        }
 <tr><td class="subheading" style="font-weight: bold; background-color: #ffffff; text-align: left; padding: 9px; font-size: 16px;">Skyggebånd</td></tr>
 <tr><td class="value" style="font-size: 18px; background-color: #ffffff; text-align: left; padding: 9px; font-size: 16px;">${selectedOptions.SKYGGE.Skyggebånd}</td></tr>
 <tr class="gap" style="height: 20px;"></tr>
@@ -2198,7 +2210,7 @@ ${selectedOptions.TILBEHØR['Premium æske']?`
 
 <tr><td class="subheading" style="font-weight: bold; background-color: #ffffff; text-align: left; padding: 9px; font-size: 16px;">Ekstra Kokarde</td></tr>
 <tr><td class="value" style="font-size: 18px; background-color: #ffffff; text-align: left; padding: 9px; font-size: 16px;">
-  ${!selectedOptions.TILBEHØR['Ekstra korkarde Text']  ? 'Fravalgt' : selectedOptions.TILBEHØR['Ekstra korkarde Text']}
+  ${selectedOptions.TILBEHØR['Ekstra korkarde']==='Fravalgt'  ? 'Fravalgt' : selectedOptions.TILBEHØR['Ekstra korkarde Text']}
 </td></tr>
 <tr class="gap" style="height: 20px;"></tr>
 
@@ -2222,7 +2234,7 @@ ${selectedOptions.TILBEHØR['Premium æske']?`
 
 <tr><td class="subheading" style="font-weight: bold; background-color: #ffffff; text-align: left; padding: 9px; font-size: 16px;">Lille flag</td></tr>
 <tr><td class="value" style="font-size: 18px; background-color: #ffffff; text-align: left; padding: 9px; font-size: 16px;">
-  ${!selectedOptions.TILBEHØR['Lille Flag Text'] ? 'Fravalgt' : selectedOptions.TILBEHØR['Lille Flag Text']}
+  ${selectedOptions.TILBEHØR['Lille Flag']==='Fravalgt' ? 'Fravalgt' : selectedOptions.TILBEHØR['Lille Flag Text']}
 </td></tr>
 <tr class="gap" style="height: 20px;"></tr>
 
@@ -2388,6 +2400,9 @@ const sendCapEmail = async (req, res) => {
       program
     } = req.body;
 
+
+    
+
     // Validate required fields
     if (!customerDetails || !selectedOptions || !email) {
       return res.status(400).json({
@@ -2437,7 +2452,7 @@ const sendCapEmail = async (req, res) => {
 
     const mailOptionsAdmin = {
       from: process.env.EMAIL_FROM || process.env.EMAIL_USER,
-      to:  "salg@studentlife.dk",
+      to:  'salg@studentlife.dk',
       subject: emailContentAdmin.subject,
       html: emailContentAdmin.html,
       text: emailContentAdmin.text
@@ -2445,7 +2460,7 @@ const sendCapEmail = async (req, res) => {
 
     const mailOptionsFactory = {
       from: process.env.EMAIL_FROM || process.env.EMAIL_USER,
-      to:  "salg@studentlife.dk",
+      to:  'salg@studentlife.dk',
       subject: emailContentFactory.subject,
       html: emailContentFactory.html,
       text: emailContentFactory.text
@@ -2633,6 +2648,8 @@ const emailTester = async (req, res) => {
       program
     } = req.body;
 
+    
+
   try {
     // const event = stripe.webhooks.constructEvent(req.body, sig, process.env.STRIPE_WEBHOOK_SECRET);
 
@@ -2791,7 +2808,7 @@ module.exports = {
         
 //        <!-- Embroidery on frontside -->
 //        ${
-//          !selectedOptions.UDDANNELSESBÅND["Broderi foran"] 
+        //  !selectedOptions.UDDANNELSESBÅND["Broderi foran"] 
 //          ? `
          
 //          `
