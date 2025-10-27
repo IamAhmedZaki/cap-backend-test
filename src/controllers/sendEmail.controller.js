@@ -1296,7 +1296,7 @@ const capOrderEmail = (orderData) => {
                               <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
                                   <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Lille flag</div>
                                   <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.TILBEHØR['Lille Flag'] === 'Fravalgt' ? 'Fravalgt' : selectedOptions.TILBEHØR['Lille Flag Text']}</div>
-                                                                                    ${selectedOptions.TILBEHØR['Lille Flag']==='Fravalgt' ? 'Fravalgt' : selectedOptions.TILBEHØR['Lille Flag Text']}
+                                                                                    
                               </div>
                               <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
                                   <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Trompet</div>
