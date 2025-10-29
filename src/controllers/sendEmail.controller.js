@@ -322,7 +322,7 @@ const factoryOrderEmail = (orderData) => {
 
       <div style="margin-bottom: 30px;">
         <p style="margin-bottom: 15px; font-size: 18px; font-weight: bold;">Customer Order Information:</p>
-        <p style="margin-bottom: 15px; font-size: 18px; font-weight: bold;">Order Created: ${orderDate}</p>
+        <p style="margin-bottom: 15px; font-size: 18px; font-weight: bold;">Order Created: ${orderDate.toLocaleDateString()}</p>
         <p style="margin-bottom: 15px; font-size: 18px; font-weight: bold;">Order No: ${orderNumber}</p> 
         <p style="margin-bottom: 15px; font-size: 18px; font-weight: bold;">Customer Name: ${customerDetails.firstName} ${customerDetails.lastName}</p> 
         <p style="margin-bottom: 15px; font-size: 18px; font-weight: bold;">School Name: ${customerDetails.Skolenavn}</p>
@@ -906,7 +906,7 @@ const capOrderEmail = (orderData) => {
             <!-- Order Information -->
             <div style="margin-bottom: 30px;">
                 <div style="font-size: 21px; font-weight: bold; margin-bottom: 15px; color: #333333;">Din ordre oplysninger:</div>
-                <p style="margin-bottom: 15px; font-size: 16px;">Ordren er oprettet: ${orderDate}</p>
+                <p style="margin-bottom: 15px; font-size: 16px;">Ordren er oprettet: ${orderDate.toLocaleDateString()}</p>
                 <div style="background-color: #f2f3f2; padding: 15px; margin: 20px 0; font-weight: bold; font-size: 15px; text-align: center;">
                     Order nr: ${orderNumber}
                 </div>
@@ -1611,7 +1611,7 @@ const capOrderAdminEmail = (orderData) => {
             <!-- Order Information -->
             <div style="margin-bottom: 30px; margin-top: 20px;">
                 <div style="font-size: 21px; font-weight: bold; margin-bottom: 15px; color: #333333;">Kunde ordre oplysninger:</div>
-                <p style="margin-bottom: 15px; font-size: 16px;">Ordren er oprettet: ${orderDate}</p>
+                <p style="margin-bottom: 15px; font-size: 16px;">Ordren er oprettet: ${orderDate.toLocaleDateString()}</p>
                 <div style="background-color: #f2f3f2; padding: 15px; margin: 20px 0; font-weight: bold; font-size: 15px; text-align: center;">
                     Order nr: ${orderNumber}
                 </div>
