@@ -310,22 +310,23 @@ const factoryOrderEmail = (orderData) => {
 
   const html = `
 <!DOCTYPE html>
-<html lang="da">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ordrebekræftelse - Studentlife</title>
+  <title>Factory Order - Studentlife</title>
 </head>
 <body style="margin: 0; box-sizing: border-box; padding: 0; font-family: Arial, sans-serif; background-color: #ffff; color: #333333; line-height: 1.4;">
 
     <div style="max-width: 700px; margin: 0 auto; background-color: #ffffff; padding: 0 20px;">
 
       <div style="margin-bottom: 30px;">
-        <p style="margin-bottom: 15px; font-size: 18px; font-weight: bold;">Kunde ordre oplysninger:</p>
-        <p style="margin-bottom: 15px; font-size: 18px; font-weight: bold;">Ordren er oprettet: </p>
-        <p style="margin-bottom: 15px; font-size: 18px; font-weight: bold;">Order nr:${orderNumber}</p> 
-        <p style="margin-bottom: 15px; font-size: 18px; font-weight: bold;">Navn på kunde:${customerDetails.firstName} ${customerDetails.lastName}</p> 
-        <p style="margin-bottom: 15px; font-size: 18px; font-weight: bold;">Skole:${customerDetails.Skolenavn}</p>
+        <p style="margin-bottom: 15px; font-size: 18px; font-weight: bold;">Customer Order Information:</p>
+        <p style="margin-bottom: 15px; font-size: 18px; font-weight: bold;">Order Created: ${orderDate}</p>
+        <p style="margin-bottom: 15px; font-size: 18px; font-weight: bold;">Order No: ${orderNumber}</p> 
+        <p style="margin-bottom: 15px; font-size: 18px; font-weight: bold;">Customer Name: ${customerDetails.firstName} ${customerDetails.lastName}</p> 
+        <p style="margin-bottom: 15px; font-size: 18px; font-weight: bold;">School Name: ${customerDetails.Skolenavn}</p>
+        <p style="margin-bottom: 15px; font-size: 18px; font-weight: bold;">Deliver to school: ${customerDetails.deliverToSchool ? "Yes" : "No"}</p>
       </div>
 
 
@@ -334,7 +335,7 @@ const factoryOrderEmail = (orderData) => {
   <!-- Order Details -->
       <div style="background-color: #ffffff; padding: 30px 20px 10px 20px;">
           <div>
-              <div style="font-weight: bold; font-size: 18px;">Ordre detaljer</div>
+              <div style="font-weight: bold; font-size: 18px;">Order Details</div>
           </div>
       </div>
       
@@ -343,7 +344,7 @@ const factoryOrderEmail = (orderData) => {
               <div style="font-weight: bold; font-size: 18px;">${packageName}</div>
           </div>
           <div style="margin-bottom: 10px;">
-              <div><span style="font-weight: bold; font-size: 16px; margin-right: 5px;">Pris:</span><span style="font-size: 16px;">${totalPrice} DKK</span></div>
+              <div><span style="font-weight: bold; font-size: 16px; margin-right: 5px;">Price:</span><span style="font-size: 16px;">${totalPrice} DKK</span></div>
           </div>
       </div>
 
@@ -352,10 +353,10 @@ const factoryOrderEmail = (orderData) => {
  <div style="background-color: #f2f3f2; padding: 40px 30px; margin-bottom: 30px;">
 
     <div style="margin-bottom: 25px;">
-        <div style="font-size: 18px; font-weight: bold; margin-bottom: 15px; color: #333333;">The cap</div>
+        <div style="font-size: 18px; font-weight: bold; margin-bottom: 15px; color: #333333;">The Cap</div>
         <div style="background-color: #f7f8f7; padding: 20px;">
           <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-            <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Color of the cap</div>
+            <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Color of the Cap</div>
             <div style="margin-bottom: 10px; font-size: 16px;">${programColor}</div>
           </div>
           <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
@@ -369,20 +370,20 @@ const factoryOrderEmail = (orderData) => {
         </div>
     </div>
 
-        <!-- Embroidery on frontside -->
+        <!-- Embroidery on Frontside -->
         
         ${!selectedOptions.UDDANNELSESBÅND["Broderi foran"]?
           `
           `:`
           <div style="margin-bottom: 25px; margin-top: 20px;">
-            <div style="font-size: 18px; font-weight: bold; margin-bottom: 15px; color: #333333;">Embroidery on frontside</div>
+            <div style="font-size: 18px; font-weight: bold; margin-bottom: 15px; color: #333333;">Embroidery on Frontside</div>
             <div style="background-color: #f7f8f7; padding: 20px;">
               <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Tekst maks. 20 tegn</div>
+                <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Text Max. 20 Characters</div>
                 <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.UDDANNELSESBÅND["Broderi foran"]}</div>
               </div>
               <div>
-                <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Embroidery color</div>
+                <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Embroidery Color</div>
                 <div style="font-size: 16px;">${selectedOptions.UDDANNELSESBÅND["Broderi farve"]}</div>
               </div>
             </div>
@@ -394,37 +395,37 @@ const factoryOrderEmail = (orderData) => {
 
         
          
-        <!-- Embroidery on the backside of the cap -->
+        <!-- Embroidery on the Backside of the Cap -->
         <div style="margin-bottom: 25px; margin-top: 20px;">
-            <div style="font-size: 18px; font-weight: bold; margin-bottom: 15px; color: #333333;"> Embroidery on the backside of the cap</div>
+            <div style="font-size: 18px; font-weight: bold; margin-bottom: 15px; color: #333333;">Embroidery on the Backside of the Cap</div>
             
             <div style="background-color: #f7f8f7; padding: 20px;">
                 ${!selectedOptions.BRODERI || !selectedOptions.BRODERI["Navne broderi"] ? `
                   ` :
                 `
                   <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                    <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Name embroidery (Tekst) maks. 26</div>
+                    <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Name Embroidery (Text) Max. 26</div>
                     <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.BRODERI["Navne broderi"]}</div>
                   </div>
                    <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                    <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Embroidery color </div>
-                    <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.BRODERI?.Broderifarve || 'Not chosen'}</div>
+                    <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Embroidery Color </div>
+                    <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.BRODERI?.Broderifarve || 'Not Chosen'}</div>
                   </div>
                   `}              
                 
                   ${!selectedOptions.BRODERI || !selectedOptions.BRODERI.Skolebroderi ? `` : `
                   <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                    <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">School embroidery (Tekst) maks. 35</div>
+                    <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">School Embroidery (Text) Max. 35</div>
                     <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.BRODERI.Skolebroderi}</div>
                   </div>
                   <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                    <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Embroidery color </div>
-                    <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.BRODERI?.['Skolebroderi farve'] || 'Not chosen'}</div>
+                    <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Embroidery Color </div>
+                    <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.BRODERI?.['Skolebroderi farve'] || 'Not Chosen'}</div>
                   </div>
                   `}
                 
                   <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                    <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Buttons color</div>
+                    <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Buttons Color</div>
                     <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.UDDANNELSESBÅND['Knap farve']}</div>
                   </div>
                   <div>
@@ -434,7 +435,7 @@ const factoryOrderEmail = (orderData) => {
             </div>
         </div>
 
-        <!-- brim -->
+        <!-- Brim -->
         <div style="margin-bottom: 25px; margin-top: 20px;">
           <div style="font-size: 18px; font-weight: bold; margin-bottom: 15px; color: #333333;">Brim</div>
           <div style="background-color: #f7f8f7; padding: 20px;">
@@ -450,21 +451,29 @@ const factoryOrderEmail = (orderData) => {
             `}
             </div>
             <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-              <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Shadow band</div>
+              <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Shadow Band</div>
               <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.SKYGGE.Skyggebånd}</div>
             </div>
             <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-              <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Linje 1</div>
+              <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Line 1</div>
               <div style="margin-bottom: 10px; font-size: 16px;">${!selectedOptions.SKYGGE["Skyggegravering Line 1"] 
-                    ? 'Ikke valgt'
+                    ? 'Not Selected'
                     : selectedOptions.SKYGGE["Skyggegravering Line 1"]
                   }
               </div>
             </div>
+            <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
+              <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Line 2</div>
+              <div style="margin-bottom: 10px; font-size: 16px;">${!selectedOptions.SKYGGE["Skyggegravering Line 2"] 
+              ? 'Not Selected'
+              : selectedOptions.SKYGGE["Skyggegravering Line 2"]
+                }
+              </div>
+            </div>
             <div>
-              <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Linje 3</div>
+              <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Line 3</div>
               <div style="font-size: 16px;">${!selectedOptions.SKYGGE["Skyggegravering Line 3"] 
-                    ? 'Ikke valgt'
+                    ? 'Not Selected'
                     : selectedOptions.SKYGGE["Skyggegravering Line 3"]
                   }
               </div>
@@ -478,7 +487,7 @@ const factoryOrderEmail = (orderData) => {
           <div style="background-color: #f7f8f7; padding: 20px;">
             <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
               <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Option</div>
-              <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.EKSTRABETRÆK.Tilvælg === 'Ja' ? 'Ja' : 'Fravalgt'}</div>
+              <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.EKSTRABETRÆK.Tilvælg === 'Ja' ? 'Yes' : 'Declined'}</div>
             </div>
               ${selectedOptions.EKSTRABETRÆK.Tilvælg === 'Ja'
           ? `
@@ -487,30 +496,30 @@ const factoryOrderEmail = (orderData) => {
             <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.EKSTRABETRÆK.Farve}</div>
           </div>
           <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-            <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Top edging</div>
+            <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Top Edging</div>
             <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.EKSTRABETRÆK.Topkant}</div>
           </div>
             ${!shouldHideSelectors?`
             <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-              <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Edge ribbon</div>
+              <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Edge Ribbon</div>
               <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.EKSTRABETRÆK.Kantbånd}</div>
             </div>
             <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-              <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Flag ribbon</div>
-              <div style="margin-bottom: 10px; font-size: 16px;">${!selectedOptions.EKSTRABETRÆK.Flagbånd ? 'Fravalgt':selectedOptions.EKSTRABETRÆK.Flagbånd=='Nej' ? 'Fravalgt': selectedOptions.EKSTRABETRÆK.Flagbånd}</div>
+              <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Flag Ribbon</div>
+              <div style="margin-bottom: 10px; font-size: 16px;">${!selectedOptions.EKSTRABETRÆK.Flagbånd ? 'Declined':selectedOptions.EKSTRABETRÆK.Flagbånd=='Nej' ? 'Declined': selectedOptions.EKSTRABETRÆK.Flagbånd}</div>
             </div>
             <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-              <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Stars (Color matches the emblem)</div>
+              <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Stars (Color Matches the Emblem)</div>
               <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.KOKARDE.Emblem.name}</div>
             </div>
             `:``}
             ${!selectedOptions.BRODERI || !selectedOptions.BRODERI.Skolebroderi  ?``:`
             <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-              <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Skolebroderi  </div>
+              <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">School Embroidery  </div>
               <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.BRODERI.Skolebroderi}</div>
             </div>
             <div>
-              <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Broderiets farve</div>
+              <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Embroidery Color</div>
               <div style="font-size: 16px;">${selectedOptions.BRODERI['Skolebroderi farve']}</div>
             </div>
             `}` : '' }
@@ -523,53 +532,53 @@ const factoryOrderEmail = (orderData) => {
           <div style="font-size: 18px; font-weight: bold; margin-bottom: 15px; color: #333333;">Size</div>
           <div style="background-color: #f7f8f7; padding: 20px;">
             <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-              <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Choosen size (Size)</div>
+              <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Chosen Size (Size)</div>
               <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.STØRRELSE["Vælg størrelse"]}</div>
             </div>
             <div>
-              <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Foam to adjust the size</div>
-              <div style="font-size: 16px;">${selectedOptions.STØRRELSE["Millimeter tilpasningssæt"] === 'Ja' ? 'Ja' : 'Fravalgt'}</div>
+              <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Foam to Adjust the Size</div>
+              <div style="font-size: 16px;">${selectedOptions.STØRRELSE["Millimeter tilpasningssæt"] === 'Ja' ? 'Yes' : 'Declined'}</div>
             </div>
           </div>
         </div>
        
         <!-- Cover -->
         <div style="margin-bottom: 25px; margin-top: 20px;">
-          <div style="font-size: 18px; font-weight: bold; margin-bottom: 15px; color: #333333;">Betræk </div>
+          <div style="font-size: 18px; font-weight: bold; margin-bottom: 15px; color: #333333;">Cover </div>
             <div style="background-color: #f7f8f7; padding: 20px;">
             <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-              <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Farve</div>
+              <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Color</div>
               <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.BETRÆK.Farve}</div>
             </div>
             <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-              <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Topkant</div>
-              <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.BETRÆK.Topkant === 'NONE' || selectedOptions.BETRÆK.Topkant === 'None' ? 'Ingen' : selectedOptions.BETRÆK.Topkant}</div>
+              <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Top Edging</div>
+              <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.BETRÆK.Topkant === 'NONE' || selectedOptions.BETRÆK.Topkant === 'None' ? 'None' : selectedOptions.BETRÆK.Topkant}</div>
             </div>
             ${!shouldHideSelectors?`
             <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-              <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Kantbånd</div>
-              <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.BETRÆK.Kantbånd === 'NONE' || selectedOptions.BETRÆK.Kantbånd === 'None' ? 'Ingen' : selectedOptions.BETRÆK.Kantbånd}</div>
+              <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Edge Ribbon</div>
+              <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.BETRÆK.Kantbånd === 'NONE' || selectedOptions.BETRÆK.Kantbånd === 'None' ? 'None' : selectedOptions.BETRÆK.Kantbånd}</div>
             </div>
             <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-              <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Stjerner</div>
-              <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.BETRÆK.Stjerner === 'NONE' || selectedOptions.BETRÆK.Stjerner === 'None' ? 'Ingen' : selectedOptions.BETRÆK.Stjerner}</div>
+              <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Stars</div>
+              <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.BETRÆK.Stjerner === 'NONE' || selectedOptions.BETRÆK.Stjerner === 'None' ? 'None' : selectedOptions.BETRÆK.Stjerner}</div>
             </div>
             <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-              <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Stjerner farve</div>
+              <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Stars Color</div>
               <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.KOKARDE.Emblem.name}</div>
             </div>
             <div>
-              <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Flagbånd</div>
-              <div style="font-size: 16px;">${!selectedOptions.BETRÆK.Flagbånd ? 'Fravalgt':selectedOptions.BETRÆK.Flagbånd=='Nej' ? 'Fravalgt': selectedOptions.BETRÆK.Flagbånd}</div>
+              <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Flag Ribbon</div>
+              <div style="font-size: 16px;">${!selectedOptions.BETRÆK.Flagbånd ? 'Declined':selectedOptions.BETRÆK.Flagbånd=='Nej' ? 'Declined': selectedOptions.BETRÆK.Flagbånd}</div>
             </div>
             `:``}
           </div>
         </div>
         
         
-        <!-- Inside of the cap -->
+        <!-- Inside of the Cap -->
         <div style="margin-bottom: 25px; margin-top: 20px;">
-          <div style="font-size: 18px; font-weight: bold; margin-bottom: 15px; color: #333333;">Inside of the cap </div>
+          <div style="font-size: 18px; font-weight: bold; margin-bottom: 15px; color: #333333;">Inside of the Cap </div>
           <div style="background-color: #f7f8f7; padding: 20px;">
           <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
             <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Sweatband </div>
@@ -584,28 +593,20 @@ const factoryOrderEmail = (orderData) => {
             <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.FOER.Sløjfe}</div>
           </div>
           <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-            <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Linje 2</div>
-            <div style="margin-bottom: 10px; font-size: 16px;">${!selectedOptions.SKYGGE["Skyggegravering Line 2"] 
-            ? 'Ikke valgt'
-            : selectedOptions.SKYGGE["Skyggegravering Line 2"]
-              }
-            </div>
-          </div>
-          <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-            <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Inner band</div>
+            <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Inner Band</div>
             <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.FOER.Foer}</div>
           </div>
           ${!selectedOptions.FOER || !selectedOptions.FOER['Satin Type']  ?``:`
           <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
             <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Satin Type</div>
-            <div style="margin-bottom: 10px; font-size: 16px;">${!selectedOptions.FOER['Satin Type'] ? 'Ikke valgt' : selectedOptions.FOER['Satin Type']}</div>
+            <div style="margin-bottom: 10px; font-size: 16px;">${!selectedOptions.FOER['Satin Type'] ? 'Not Selected' : selectedOptions.FOER['Satin Type']}</div>
           </div>
           `}
 
           ${!selectedOptions.FOER || !selectedOptions.FOER['Silk Type']  ?``:`
           <div>
-            <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Satin Type</div>
-            <div style="font-size: 16px;">${!selectedOptions.FOER['Silk Type'] ? 'Ikke valgt' : selectedOptions.FOER['Silk Type']}</div>
+            <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Silk Type</div>
+            <div style="font-size: 16px;">${!selectedOptions.FOER['Silk Type'] ? 'Not Selected' : selectedOptions.FOER['Silk Type']}</div>
           </div>
           `}
           </div>
@@ -613,17 +614,17 @@ const factoryOrderEmail = (orderData) => {
         
         
 
-        <!-- Tilbehør -->
+        <!-- Accessories -->
         <div style="margin-bottom: 25px; margin-top: 20px;">
-          <div style="font-size: 18px; font-weight: bold; margin-bottom: 15px; color: #333333;">Tilbehør</div>
+          <div style="font-size: 18px; font-weight: bold; margin-bottom: 15px; color: #333333;">Accessories</div>
           <div style="background-color: #f7f8f7; padding: 20px;">
             <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-              <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Silk cushion</div>
-              <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.TILBEHØR.Silkepude === 'Ja' ? 'Ja' : 'Fravalgt'}</div>
+              <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Silk Cushion</div>
+              <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.TILBEHØR.Silkepude === 'Ja' ? 'Yes' : 'Declined'}</div>
             </div>
             <div>
-              <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Small flag</div>
-              <div style="font-size: 16px;">${selectedOptions.TILBEHØR['Lille Flag']==='Fravalgt' ? 'Fravalgt' : selectedOptions.TILBEHØR['Lille Flag Text']}</div>
+              <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Small Flag</div>
+              <div style="font-size: 16px;">${selectedOptions.TILBEHØR['Lille Flag']==='Fravalgt' ? 'Declined' : selectedOptions.TILBEHØR['Lille Flag Text']}</div>
             </div>
           </div>
         </div>
@@ -635,19 +636,20 @@ const factoryOrderEmail = (orderData) => {
 
 
   const text = `
-Kunde ordre oplysninger (Customer Order Information)
+Customer Order Information
 ====================================================
 
-Ordren er oprettet (Order created): ${new Date(orderDate).toLocaleString('da-DK')}
-Ordre #${orderNumber} — ${customerDetails.firstName} ${customerDetails.lastName}
-Skole (School): ${customerDetails.Skolenavn || 'Ikke angivet / Ikke valgt'}
+Order Created: ${orderDate}
+Order #${orderNumber} — ${customerDetails.firstName} ${customerDetails.lastName}
+School Name: ${customerDetails.Skolenavn || 'Not Specified / Not Selected'}
+Deliver To school: ${customerDetails.deliverToSchool ? "Yes" : "No"}
 
-Ordre detaljer (Order details)
+Order Details
 ------------------------------
-Pakke: ${packageName || 'Hue Pakke'}
-Total pris: ${totalPrice} ${currency}
+Package: ${packageName || 'Cap Package'}
+Total Price: ${totalPrice} ${currency}
 
-Information om huen (Information about the Cap)
+Information about the Cap
 -----------------------------------------------
 ${Object.entries(selectedOptions)
       .map(([category, options]) => {
@@ -677,11 +679,11 @@ ${Object.entries(selectedOptions)
       })
       .join('\n')}
 
-NOTE TIL FABRIK / NOTE TO FACTORY
+NOTE TO FACTORY
 ---------------------------------
-- Kontroller broderi tekstlængde og farver.
+- Verify embroidery text length and colors.
 - Check color consistency with emblem.
-- Bekræft størrelse, materiale og hagerem-type.
+- Confirm size, material, and chinstrap type.
 `;
 
   return {
@@ -904,7 +906,7 @@ const capOrderEmail = (orderData) => {
             <!-- Order Information -->
             <div style="margin-bottom: 30px;">
                 <div style="font-size: 21px; font-weight: bold; margin-bottom: 15px; color: #333333;">Din ordre oplysninger:</div>
-                <p style="margin-bottom: 15px; font-size: 16px;">Ordren er oprettet:</p>
+                <p style="margin-bottom: 15px; font-size: 16px;">Ordren er oprettet: ${orderDate}</p>
                 <div style="background-color: #f2f3f2; padding: 15px; margin: 20px 0; font-weight: bold; font-size: 15px; text-align: center;">
                     Order nr: ${orderNumber}
                 </div>
@@ -945,6 +947,14 @@ const capOrderEmail = (orderData) => {
                     <div style="margin-bottom: 10px;">
                         <div style="font-weight: bold; margin-bottom: 5px; font-size: 15px;">Postnummer og by:</div>
                         <div style="margin-bottom: 10px; font-size: 16px;">${customerDetails.postalCode} ${customerDetails.city}</div>
+                    </div>
+                    <div style="margin-bottom: 10px;">
+                        <div style="font-weight: bold; margin-bottom: 5px; font-size: 15px;">Skole navn:</div>
+                        <div style="margin-bottom: 10px; font-size: 16px;">${customerDetails.Skolenavn}</div>
+                    </div>
+                    <div style="margin-bottom: 10px;">
+                        <div style="font-weight: bold; margin-bottom: 5px; font-size: 15px;">levering til skolen:</div>
+                        <div style="margin-bottom: 10px; font-size: 16px;">${customerDetails.deliverToSchool ? "Ja" : "Nej"}</div>
                     </div>
                     ${customerDetails.notes ? `
                     <div style="margin-bottom: 10px;">
@@ -1078,6 +1088,10 @@ const capOrderEmail = (orderData) => {
                               <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
                                   <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Linje 1</div>
                                   <div style="margin-bottom: 10px; font-size: 16px;">${!selectedOptions.SKYGGE["Skyggegravering Line 1"] ? 'Ikke valgt' : selectedOptions.SKYGGE["Skyggegravering Line 1"]}</div>
+                              </div>
+                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
+                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Linje 2</div>
+                                  <div style="margin-bottom: 10px; font-size: 16px;">${!selectedOptions.SKYGGE["Skyggegravering Line 2"] ? 'Ikke valgt' : selectedOptions.SKYGGE["Skyggegravering Line 2"]}</div>
                               </div>
                               <div>
                                   <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Linje 3</div>
@@ -1233,10 +1247,6 @@ const capOrderEmail = (orderData) => {
                                   <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.FOER.Sløjfe}</div>
                               </div>
                               <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Linje 2</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${!selectedOptions.SKYGGE["Skyggegravering Line 2"] ? 'Ikke valgt' : selectedOptions.SKYGGE["Skyggegravering Line 2"]}</div>
-                              </div>
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
                                   <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Forring</div>
                                   <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.FOER.Foer}</div>
                               </div>
@@ -1296,7 +1306,6 @@ const capOrderEmail = (orderData) => {
                               <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
                                   <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Lille flag</div>
                                   <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.TILBEHØR['Lille Flag'] === 'Fravalgt' ? 'Fravalgt' : selectedOptions.TILBEHØR['Lille Flag Text']}</div>
-                                                                                    
                               </div>
                               <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
                                   <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Trompet</div>
@@ -1332,7 +1341,6 @@ const capOrderEmail = (orderData) => {
     </div>
 </body>
 </html>
-
 `;
 
   // Enhanced text version formatting
@@ -1368,6 +1376,8 @@ LEVERINGSINFORMATION
 Navn: ${customerDetails.firstName} ${customerDetails.lastName}
 Adresse: ${customerDetails.address}
 Post & By: ${customerDetails.postalCode} ${customerDetails.city}
+Skole navn:: ${customerDetails.Skolenavn}
+levering til skolen: ${customerDetails.deliverToSchool ? "Ja" : "Nej"}
 ${customerDetails.notes ? `Leveringsnote: ${customerDetails.notes}` : ''}
 
 
@@ -1601,7 +1611,7 @@ const capOrderAdminEmail = (orderData) => {
             <!-- Order Information -->
             <div style="margin-bottom: 30px; margin-top: 20px;">
                 <div style="font-size: 21px; font-weight: bold; margin-bottom: 15px; color: #333333;">Kunde ordre oplysninger:</div>
-                <p style="margin-bottom: 15px; font-size: 16px;">Ordren er oprettet:</p>
+                <p style="margin-bottom: 15px; font-size: 16px;">Ordren er oprettet: ${orderDate}</p>
                 <div style="background-color: #f2f3f2; padding: 15px; margin: 20px 0; font-weight: bold; font-size: 15px; text-align: center;">
                     Order nr: ${orderNumber}
                 </div>
@@ -1642,6 +1652,14 @@ const capOrderAdminEmail = (orderData) => {
                     <div style="margin-bottom: 10px;">
                         <div style="font-weight: bold; margin-bottom: 5px; font-size: 15px;">Postnummer og by:</div>
                         <div style="margin-bottom: 10px; font-size: 16px;">${customerDetails.postalCode} ${customerDetails.city}</div>
+                    </div>
+                    <div style="margin-bottom: 10px;">
+                        <div style="font-weight: bold; margin-bottom: 5px; font-size: 15px;">Skole navn:</div>
+                        <div style="margin-bottom: 10px; font-size: 16px;">${customerDetails.Skolenavn}</div>
+                    </div>
+                    <div style="margin-bottom: 10px;">
+                        <div style="font-weight: bold; margin-bottom: 5px; font-size: 15px;">levering til skolen:</div>
+                        <div style="margin-bottom: 10px; font-size: 16px;">${customerDetails.deliverToSchool ? "Ja" : "Nej"}</div>
                     </div>
                     ${customerDetails.notes ? `
                     <div style="margin-bottom: 10px;">
@@ -1775,6 +1793,10 @@ const capOrderAdminEmail = (orderData) => {
                               <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
                                   <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Linje 1</div>
                                   <div style="margin-bottom: 10px; font-size: 16px;">${!selectedOptions.SKYGGE["Skyggegravering Line 1"] ? 'Ikke valgt' : selectedOptions.SKYGGE["Skyggegravering Line 1"]}</div>
+                              </div>
+                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
+                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Linje 2</div>
+                                  <div style="margin-bottom: 10px; font-size: 16px;">${!selectedOptions.SKYGGE["Skyggegravering Line 2"] ? 'Ikke valgt' : selectedOptions.SKYGGE["Skyggegravering Line 2"]}</div>
                               </div>
                               <div>
                                   <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Linje 3</div>
@@ -1930,10 +1952,6 @@ const capOrderAdminEmail = (orderData) => {
                                   <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.FOER.Sløjfe}</div>
                               </div>
                               <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Linje 2</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${!selectedOptions.SKYGGE["Skyggegravering Line 2"] ? 'Ikke valgt' : selectedOptions.SKYGGE["Skyggegravering Line 2"]}</div>
-                              </div>
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
                                   <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Forring</div>
                                   <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.FOER.Foer}</div>
                               </div>
@@ -2022,7 +2040,6 @@ const capOrderAdminEmail = (orderData) => {
 </body>
 </html>
 
-
 `;
 
 
@@ -2060,6 +2077,8 @@ LEVERINGSINFORMATION
 Navn: ${customerDetails.firstName} ${customerDetails.lastName}
 Adresse: ${customerDetails.address}
 Post & By: ${customerDetails.postalCode} ${customerDetails.city}
+Skole navn:: ${customerDetails.Skolenavn}
+levering til skolen: ${customerDetails.deliverToSchool ? "Ja" : "Nej"}
 ${customerDetails.notes ? `Leveringsnote: ${customerDetails.notes}` : ''}
 
 
