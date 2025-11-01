@@ -315,320 +315,488 @@ const factoryOrderEmail = (orderData) => {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Factory Order - Studentlife</title>
+  <!--[if mso]>
+  <xml>
+    <o:OfficeDocumentSettings>
+      <o:AllowPNG/>
+      <o:PixelsPerInch>96</o:PixelsPerInch>
+    </o:OfficeDocumentSettings>
+  </xml>
+  <![endif]-->
+  <style>
+    @media only screen and (max-width: 600px) {
+      table[class="container"] { width: 100% !important; }
+    }
+  </style>
 </head>
-<body style="margin: 0; box-sizing: border-box; padding: 0; font-family: Arial, sans-serif; background-color: #ffff; color: #333333; line-height: 1.4;">
+<body style="margin:0; padding:0; background-color:#ffffff; font-family:Arial, sans-serif; color:#333333; line-height:1.4;">
 
-    <div style="max-width: 700px; margin: 0 auto; background-color: #ffffff; padding: 0 20px;">
+  <table width="100%" border="0" cellpadding="0" cellspacing="0" style="background-color:#ffffff;">
+    <tr>
+      <td align="center">
+        <table width="700" border="0" cellpadding="0" cellspacing="0" class="container" style="max-width:700px; width:100%;">
+          <tr>
+            <td style="padding:0 20px;">
 
-      <div style="margin-bottom: 30px;">
-        <p style="margin-bottom: 15px; font-size: 18px; font-weight: bold;">Customer Order Information:</p>
-        <p style="margin-bottom: 15px; font-size: 18px; font-weight: bold;">Order Created: ${orderDate.toLocaleDateString()}</p>
-        <p style="margin-bottom: 15px; font-size: 18px; font-weight: bold;">Order No: ${orderNumber}</p> 
-        <p style="margin-bottom: 15px; font-size: 18px; font-weight: bold;">Customer Name: ${customerDetails.firstName} ${customerDetails.lastName}</p> 
-        <p style="margin-bottom: 15px; font-size: 18px; font-weight: bold;">School Name: ${customerDetails.Skolenavn}</p>
-        <p style="margin-bottom: 15px; font-size: 18px; font-weight: bold;">Deliver to school: ${customerDetails.deliverToSchool ? "Yes" : "No"}</p>
-      </div>
+              <!-- Customer Order Information -->
+              <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr><td style="font-size:18px; font-weight:bold; padding-bottom:15px;">Customer Order Information:</td></tr>
+                <tr><td style="font-size:18px; font-weight:bold; padding-bottom:15px;">Order Created: ${orderDate.toLocaleDateString()}</td></tr>
+                <tr><td style="font-size:18px; font-weight:bold; padding-bottom:15px;">Order No: ${orderNumber}</td></tr>
+                <tr><td style="font-size:18px; font-weight:bold; padding-bottom:15px;">Customer Name: ${customerDetails.firstName} ${customerDetails.lastName}</td></tr>
+                <tr><td style="font-size:18px; font-weight:bold; padding-bottom:15px;">School Name: ${customerDetails.Skolenavn}</td></tr>
+                <tr><td style="font-size:18px; font-weight:bold; padding-bottom:15px;">Deliver to school: ${customerDetails.deliverToSchool ? "Yes" : "No"}</td></tr>
+              </table>
+
+              <!-- Order Details Header -->
+              <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td style="background-color:#ffffff; padding:30px 20px 10px 20px; font-weight:bold; font-size:18px;">Order Details</td>
+                </tr>
+              </table>
+
+              <!-- Package Summary -->
+              <table width="100%" border="0" cellpadding="0" cellspacing="0" style="background-color:#fbfbfb;">
+                <tr>
+                  <td style="padding:30px;">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                      <tr><td style="font-weight:bold; font-size:18px; padding-bottom:10px;">${packageName}</td></tr>
+                      <tr>
+                        <td style="font-size:16px;">
+                          <span style="font-weight:bold; margin-right:5px;">Price:</span>
+                          <span>${totalPrice} DKK</span>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Main Content Area -->
+              <table width="100%" border="0" cellpadding="0" cellspacing="0" style="background-color:#f2f3f2; padding:40px 30px; margin-bottom:30px;">
+
+                <!-- The Cap -->
+                <tr>
+                  <td style="padding-bottom:25px;">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td style="font-size:18px; font-weight:bold; color:#333333; padding-bottom:15px;">The Cap</td>
+                      </tr>
+                      <tr>
+                        <td style="background-color:#f7f8f7; padding:20px;">
+                          <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding-bottom:10px;">
+                                <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Color of the Cap</div>
+                                <div style="font-size:16px;">${programColor}</div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Material</div>
+                                <div style="font-size:16px;">${selectedOptions.UDDANNELSESBÅND.Materiale}</div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="padding-top:10px;">
+                                <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Chinstrap</div>
+                                <div style="font-size:16px;">${selectedOptions.UDDANNELSESBÅND.Hagerem}</div>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+
+                <!-- Embroidery on Frontside -->
+                ${!selectedOptions.UDDANNELSESBÅND["Broderi foran"] ? `` : `
+                <tr>
+                  <td style="padding-bottom:25px;">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td style="font-size:18px; font-weight:bold; color:#333333; padding-bottom:15px;">Embroidery on Frontside</td>
+                      </tr>
+                      <tr>
+                        <td style="background-color:#f7f8f7; padding:20px;">
+                          <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding-bottom:10px;">
+                                <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Text Max. 20 Characters</div>
+                                <div style="font-size:16px;">${selectedOptions.UDDANNELSESBÅND["Broderi foran"]}</div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="padding-top:10px;">
+                                <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Embroidery Color</div>
+                                <div style="font-size:16px;">${selectedOptions.UDDANNELSESBÅND["Broderi farve"]}</div>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>`}
+
+                <!-- Embroidery on the Backside of the Cap -->
+                <tr>
+                  <td style="padding-bottom:25px;">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td style="font-size:18px; font-weight:bold; color:#333333; padding-bottom:15px;">Embroidery on the Backside of the Cap</td>
+                      </tr>
+                      <tr>
+                        <td style="background-color:#f7f8f7; padding:20px;">
+                          <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                            ${!selectedOptions.BRODERI || !selectedOptions.BRODERI["Navne broderi"] ? '' : `
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding-bottom:10px;">
+                                <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Name Embroidery (Text) Max. 26</div>
+                                <div style="font-size:16px;">${selectedOptions.BRODERI["Navne broderi"]}</div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Embroidery Color </div>
+                                <div style="font-size:16px;">${selectedOptions.BRODERI?.Broderifarve || 'Not Chosen'}</div>
+                              </td>
+                            </tr>`}
+                            ${!selectedOptions.BRODERI || !selectedOptions.BRODERI.Skolebroderi ? '' : `
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">School Embroidery (Text) Max. 35</div>
+                                <div style="font-size:16px;">${selectedOptions.BRODERI.Skolebroderi}</div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Embroidery Color </div>
+                                <div style="font-size:16px;">${selectedOptions.BRODERI?.['Skolebroderi farve'] || 'Not Chosen'}</div>
+                              </td>
+                            </tr>`}
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Buttons Color</div>
+                                <div style="font-size:16px;">${selectedOptions.UDDANNELSESBÅND['Knap farve']}</div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="padding-top:10px;">
+                                <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Year</div>
+                                <div style="font-size:16px;">${selectedOptions.UDDANNELSESBÅND.år}</div>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+
+                <!-- Brim -->
+                <tr>
+                  <td style="padding-bottom:25px;">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td style="font-size:18px; font-weight:bold; color:#333333; padding-bottom:15px;">Brim</td>
+                      </tr>
+                      <tr>
+                        <td style="background-color:#f7f8f7; padding:20px;">
+                          <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding-bottom:10px;">
+                                <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Type</div>
+                                <div style="font-size:16px;">${selectedOptions.SKYGGE.Type}</div>
+                              </td>
+                            </tr>
+                            ${selectedOptions.SKYGGE.Type==='Glimmer'? '' : `
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Material </div>
+                                <div style="font-size:16px;">${selectedOptions.SKYGGE.Materiale}</div>
+                              </td>
+                            </tr>`}
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Shadow Band</div>
+                                <div style="font-size:16px;">${selectedOptions.SKYGGE.Skyggebånd}</div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Line 1</div>
+                                <div style="font-size:16px;">${!selectedOptions.SKYGGE["Skyggegravering Line 1"] ? 'Not Selected' : selectedOptions.SKYGGE["Skyggegravering Line 1"]}</div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Line 2</div>
+                                <div style="font-size:16px;">${!selectedOptions.SKYGGE["Skyggegravering Line 2"] ? 'Not Selected' : selectedOptions.SKYGGE["Skyggegravering Line 2"]}</div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="padding-top:10px;">
+                                <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Line 3</div>
+                                <div style="font-size:16px;">${!selectedOptions.SKYGGE["Skyggegravering Line 3"] ? 'Not Selected' : selectedOptions.SKYGGE["Skyggegravering Line 3"]}</div>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
 
 
+                <!-- Extra Cover -->
+                <tr>
+                  <td style="padding-bottom:25px;">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td style="font-size:18px; font-weight:bold; color:#333333; padding-bottom:15px;">Extra Cover</td>
+                      </tr>
+                      <tr>
+                        <td style="background-color:#f7f8f7; padding:20px;">
+                          <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding-bottom:10px;">
+                                <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Option</div>
+                                <div style="font-size:16px;">${selectedOptions.EKSTRABETRÆK.Tilvælg === 'Ja' ? 'Yes' : 'Not Chosen'}</div>
+                              </td>
+                            </tr>
+                            ${selectedOptions.EKSTRABETRÆK.Tilvælg === 'Ja' ? `
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Color</div>
+                                <div style="font-size:16px;">${selectedOptions.EKSTRABETRÆK.Farve}</div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Top Edging</div>
+                                <div style="font-size:16px;">${selectedOptions.EKSTRABETRÆK.Topkant}</div>
+                              </td>
+                            </tr>
+                            ${!shouldHideSelectors ? `
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Edge Ribbon</div>
+                                <div style="font-size:16px;">${selectedOptions.EKSTRABETRÆK.Kantbånd}</div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Flag Ribbon</div>
+                                <div style="font-size:16px;">${!selectedOptions.EKSTRABETRÆK.Flagbånd ? 'Not Chosen':selectedOptions.EKSTRABETRÆK.Flagbånd=='Nej' ? 'Not Chosen': selectedOptions.EKSTRABETRÆK.Flagbånd}</div>
+                              </td>
+                            </tr>
+                            ${selectedOptions.EKSTRABETRÆK.Stjerner === 'INGEN'? '' : `
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Stars (Color Matches the Emblem)</div>
+                                <div style="font-size:16px;">${selectedOptions.KOKARDE.Emblem.name}</div>
+                              </td>
+                            </tr>`}
+                            ` : ''}
+                            ${!selectedOptions.BRODERI || !selectedOptions.BRODERI.Skolebroderi ? '' : `
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">School Embroidery  </div>
+                                <div style="font-size:16px;">${selectedOptions.BRODERI.Skolebroderi}</div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="padding-top:10px;">
+                                <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Embroidery Color</div>
+                                <div style="font-size:16px;">${selectedOptions.BRODERI['Skolebroderi farve']}</div>
+                              </td>
+                            </tr>`}
+                            ` : ''}
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
 
+                <!-- Size -->
+                <tr>
+                  <td style="padding-bottom:25px;">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td style="font-size:18px; font-weight:bold; color:#333333; padding-bottom:15px;">Size</td>
+                      </tr>
+                      <tr>
+                        <td style="background-color:#f7f8f7; padding:20px;">
+                          <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding-bottom:10px;">
+                                <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Chosen Size (Size)</div>
+                                <div style="font-size:16px;">${selectedOptions.STØRRELSE["Vælg størrelse"]}</div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="padding-top:10px;">
+                                <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Foam to Adjust the Size</div>
+                                <div style="font-size:16px;">${selectedOptions.STØRRELSE["Millimeter tilpasningssæt"] === 'Ja' ? 'Yes' : 'Not Chosen'}</div>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
 
-  <!-- Order Details -->
-      <div style="background-color: #ffffff; padding: 30px 20px 10px 20px;">
-          <div>
-              <div style="font-weight: bold; font-size: 18px;">Order Details</div>
-          </div>
-      </div>
-      
-      <div style="background-color: #fbfbfb; padding: 30px;">
-          <div style="margin-bottom: 10px;">
-              <div style="font-weight: bold; font-size: 18px;">${packageName}</div>
-          </div>
-          <div style="margin-bottom: 10px;">
-              <div><span style="font-weight: bold; font-size: 16px; margin-right: 5px;">Price:</span><span style="font-size: 16px;">${totalPrice} DKK</span></div>
-          </div>
-      </div>
+                <!-- Cover -->
+                <tr>
+                  <td style="padding-bottom:25px;">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td style="font-size:18px; font-weight:bold; color:#333333; padding-bottom:15px;">Cover </td>
+                      </tr>
+                      <tr>
+                        <td style="background-color:#f7f8f7; padding:20px;">
+                          <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding-bottom:10px;">
+                                <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Color</div>
+                                <div style="font-size:16px;">${selectedOptions.BETRÆK.Farve}</div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Top Edging</div>
+                                <div style="font-size:16px;">${selectedOptions.BETRÆK.Topkant === 'INGEN' ? 'None' : selectedOptions.BETRÆK.Topkant}</div>
+                              </td>
+                            </tr>
+                            ${!shouldHideSelectors ? `
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Edge Ribbon</div>
+                                <div style="font-size:16px;">${selectedOptions.BETRÆK.Kantbånd === 'INGEN' ? 'None' : selectedOptions.BETRÆK.Kantbånd}</div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Stars</div>
+                                <div style="font-size:16px;">${selectedOptions.BETRÆK.Stjerner === 'INGEN' ? 'None' : selectedOptions.BETRÆK.Stjerner}</div>
+                              </td>
+                            </tr>
+                            ${selectedOptions.BETRÆK.Stjerner === 'INGEN' ? '' : `
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Stars Color</div>
+                                <div style="font-size:16px;">${selectedOptions.KOKARDE.Emblem.name}</div>
+                              </td>
+                            </tr>`}
+                            <tr>
+                              <td style="padding-top:10px;">
+                                <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Flag Ribbon</div>
+                                <div style="font-size:16px;">${!selectedOptions.BETRÆK.Flagbånd ? 'Not Chosen':selectedOptions.BETRÆK.Flagbånd=='Nej' ? 'Not Chosen': selectedOptions.BETRÆK.Flagbånd}</div>
+                              </td>
+                            </tr>
+                            ` : ''}
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
 
+                <!-- Inside of the Cap -->
+                <tr>
+                  <td style="padding-bottom:25px;">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td style="font-size:18px; font-weight:bold; color:#333333; padding-bottom:15px;">Inside of the Cap </td>
+                      </tr>
+                      <tr>
+                        <td style="background-color:#f7f8f7; padding:20px;">
+                          <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding-bottom:10px;">
+                                <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Sweatband </div>
+                                <div style="font-size:16px;">${selectedOptions.FOER.Svederem}</div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Color</div>
+                                <div style="font-size:16px;">${selectedOptions.FOER.Farve}</div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Bow</div>
+                                <div style="font-size:16px;">${selectedOptions.FOER.Sløjfe}</div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Inner Band</div>
+                                <div style="font-size:16px;">${selectedOptions.FOER.Foer}</div>
+                              </td>
+                            </tr>
+                            ${!selectedOptions.FOER || !selectedOptions.FOER['Satin Type'] ? '' : `
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Satin Type</div>
+                                <div style="font-size:16px;">${!selectedOptions.FOER['Satin Type'] ? 'Not Selected' : selectedOptions.FOER['Satin Type']}</div>
+                              </td>
+                            </tr>`}
+                            ${!selectedOptions.FOER || !selectedOptions.FOER['Silk Type'] ? '' : `
+                            <tr>
+                              <td style="padding-top:10px;">
+                                <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Silk Type</div>
+                                <div style="font-size:16px;">${!selectedOptions.FOER['Silk Type'] ? 'Not Selected' : selectedOptions.FOER['Silk Type']}</div>
+                              </td>
+                            </tr>`}
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
 
+                <!-- Accessories -->
+                <tr>
+                  <td style="padding-top:20px;">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td style="font-size:18px; font-weight:bold; color:#333333; padding-bottom:15px;">Accessories</td>
+                      </tr>
+                      <tr>
+                        <td style="background-color:#f7f8f7; padding:20px;">
+                          <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding-bottom:10px;">
+                                <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Silk Cushion</div>
+                                <div style="font-size:16px;">${selectedOptions.TILBEHØR.Silkepude === 'Ja' ? 'Yes' : 'Not Chosen'}</div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="padding-top:10px;">
+                                <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Small Flag</div>
+                                <div style="font-size:16px;">${selectedOptions.TILBEHØR['Lille Flag']==='Fravalgt' ? 'Not Chosen' : selectedOptions.TILBEHØR['Lille Flag Text']}</div>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
 
- <div style="background-color: #f2f3f2; padding: 40px 30px; margin-bottom: 30px;">
-
-    <div style="margin-bottom: 25px;">
-        <div style="font-size: 18px; font-weight: bold; margin-bottom: 15px; color: #333333;">The Cap</div>
-        <div style="background-color: #f7f8f7; padding: 20px;">
-          <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-            <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Color of the Cap</div>
-            <div style="margin-bottom: 10px; font-size: 16px;">${programColor}</div>
-          </div>
-          <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-            <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Material</div>
-            <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.UDDANNELSESBÅND.Materiale}</div>
-          </div>
-          <div>
-            <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Chinstrap</div>
-            <div style="font-size: 16px;">${selectedOptions.UDDANNELSESBÅND.Hagerem}</div>
-          </div>
-        </div>
-    </div>
-
-        <!-- Embroidery on Frontside -->
-        
-        ${!selectedOptions.UDDANNELSESBÅND["Broderi foran"]?
-          `
-          `:`
-          <div style="margin-bottom: 25px; margin-top: 20px;">
-            <div style="font-size: 18px; font-weight: bold; margin-bottom: 15px; color: #333333;">Embroidery on Frontside</div>
-            <div style="background-color: #f7f8f7; padding: 20px;">
-              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Text Max. 20 Characters</div>
-                <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.UDDANNELSESBÅND["Broderi foran"]}</div>
-              </div>
-              <div>
-                <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Embroidery Color</div>
-                <div style="font-size: 16px;">${selectedOptions.UDDANNELSESBÅND["Broderi farve"]}</div>
-              </div>
-            </div>
-          </div>
-          `}
-        
-       
-
-
-        
-         
-        <!-- Embroidery on the Backside of the Cap -->
-        <div style="margin-bottom: 25px; margin-top: 20px;">
-            <div style="font-size: 18px; font-weight: bold; margin-bottom: 15px; color: #333333;">Embroidery on the Backside of the Cap</div>
-            
-            <div style="background-color: #f7f8f7; padding: 20px;">
-                ${!selectedOptions.BRODERI || !selectedOptions.BRODERI["Navne broderi"] ? `
-                  ` :
-                `
-                  <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                    <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Name Embroidery (Text) Max. 26</div>
-                    <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.BRODERI["Navne broderi"]}</div>
-                  </div>
-                   <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                    <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Embroidery Color </div>
-                    <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.BRODERI?.Broderifarve || 'Not Chosen'}</div>
-                  </div>
-                  `}              
-                
-                  ${!selectedOptions.BRODERI || !selectedOptions.BRODERI.Skolebroderi ? `` : `
-                  <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                    <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">School Embroidery (Text) Max. 35</div>
-                    <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.BRODERI.Skolebroderi}</div>
-                  </div>
-                  <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                    <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Embroidery Color </div>
-                    <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.BRODERI?.['Skolebroderi farve'] || 'Not Chosen'}</div>
-                  </div>
-                  `}
-                
-                  <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                    <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Buttons Color</div>
-                    <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.UDDANNELSESBÅND['Knap farve']}</div>
-                  </div>
-                  <div>
-                    <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Year</div>
-                    <div style="font-size: 16px;">${selectedOptions.UDDANNELSESBÅND.år}</div>
-                  </div>
-            </div>
-        </div>
-
-        <!-- Brim -->
-        <div style="margin-bottom: 25px; margin-top: 20px;">
-          <div style="font-size: 18px; font-weight: bold; margin-bottom: 15px; color: #333333;">Brim</div>
-          <div style="background-color: #f7f8f7; padding: 20px;">
-            <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-              <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Type</div>
-              <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.SKYGGE.Type}</div>
-            </div>
-            <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-            ${selectedOptions.SKYGGE.Type==='Glimmer'?`
-            `:`
-            <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Material </div>
-            <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.SKYGGE.Materiale}</div>
-            `}
-            </div>
-            <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-              <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Shadow Band</div>
-              <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.SKYGGE.Skyggebånd}</div>
-            </div>
-            <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-              <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Line 1</div>
-              <div style="margin-bottom: 10px; font-size: 16px;">${!selectedOptions.SKYGGE["Skyggegravering Line 1"] 
-                    ? 'Not Selected'
-                    : selectedOptions.SKYGGE["Skyggegravering Line 1"]
-                  }
-              </div>
-            </div>
-            <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-              <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Line 2</div>
-              <div style="margin-bottom: 10px; font-size: 16px;">${!selectedOptions.SKYGGE["Skyggegravering Line 2"] 
-              ? 'Not Selected'
-              : selectedOptions.SKYGGE["Skyggegravering Line 2"]
-                }
-              </div>
-            </div>
-            <div>
-              <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Line 3</div>
-              <div style="font-size: 16px;">${!selectedOptions.SKYGGE["Skyggegravering Line 3"] 
-                    ? 'Not Selected'
-                    : selectedOptions.SKYGGE["Skyggegravering Line 3"]
-                  }
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Extra Cover -->
-        <div style="margin-bottom: 25px; margin-top: 20px;">
-          <div style="font-size: 18px; font-weight: bold; margin-bottom: 15px; color: #333333;">Extra Cover</div>
-          <div style="background-color: #f7f8f7; padding: 20px;">
-            <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-              <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Option</div>
-              <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.EKSTRABETRÆK.Tilvælg === 'Ja' ? 'Yes' : 'Declined'}</div>
-            </div>
-              ${selectedOptions.EKSTRABETRÆK.Tilvælg === 'Ja'
-          ? `
-          <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-            <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Color</div>
-            <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.EKSTRABETRÆK.Farve}</div>
-          </div>
-          <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-            <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Top Edging</div>
-            <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.EKSTRABETRÆK.Topkant}</div>
-          </div>
-            ${!shouldHideSelectors?`
-            <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-              <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Edge Ribbon</div>
-              <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.EKSTRABETRÆK.Kantbånd}</div>
-            </div>
-            <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-              <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Flag Ribbon</div>
-              <div style="margin-bottom: 10px; font-size: 16px;">${!selectedOptions.EKSTRABETRÆK.Flagbånd ? 'Declined':selectedOptions.EKSTRABETRÆK.Flagbånd=='Nej' ? 'Declined': selectedOptions.EKSTRABETRÆK.Flagbånd}</div>
-            </div>
-            <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-              <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Stars (Color Matches the Emblem)</div>
-              <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.KOKARDE.Emblem.name}</div>
-            </div>
-            `:``}
-            ${!selectedOptions.BRODERI || !selectedOptions.BRODERI.Skolebroderi  ?``:`
-            <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-              <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">School Embroidery  </div>
-              <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.BRODERI.Skolebroderi}</div>
-            </div>
-            <div>
-              <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Embroidery Color</div>
-              <div style="font-size: 16px;">${selectedOptions.BRODERI['Skolebroderi farve']}</div>
-            </div>
-            `}` : '' }
-          </div>
-        </div>
-
-
-        <!-- Size -->
-        <div style="margin-bottom: 25px; margin-top: 20px;">
-          <div style="font-size: 18px; font-weight: bold; margin-bottom: 15px; color: #333333;">Size</div>
-          <div style="background-color: #f7f8f7; padding: 20px;">
-            <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-              <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Chosen Size (Size)</div>
-              <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.STØRRELSE["Vælg størrelse"]}</div>
-            </div>
-            <div>
-              <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Foam to Adjust the Size</div>
-              <div style="font-size: 16px;">${selectedOptions.STØRRELSE["Millimeter tilpasningssæt"] === 'Ja' ? 'Yes' : 'Declined'}</div>
-            </div>
-          </div>
-        </div>
-       
-        <!-- Cover -->
-        <div style="margin-bottom: 25px; margin-top: 20px;">
-          <div style="font-size: 18px; font-weight: bold; margin-bottom: 15px; color: #333333;">Cover </div>
-            <div style="background-color: #f7f8f7; padding: 20px;">
-            <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-              <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Color</div>
-              <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.BETRÆK.Farve}</div>
-            </div>
-            <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-              <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Top Edging</div>
-              <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.BETRÆK.Topkant === 'NONE' || selectedOptions.BETRÆK.Topkant === 'None' ? 'None' : selectedOptions.BETRÆK.Topkant}</div>
-            </div>
-            ${!shouldHideSelectors?`
-            <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-              <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Edge Ribbon</div>
-              <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.BETRÆK.Kantbånd === 'NONE' || selectedOptions.BETRÆK.Kantbånd === 'None' ? 'None' : selectedOptions.BETRÆK.Kantbånd}</div>
-            </div>
-            <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-              <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Stars</div>
-              <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.BETRÆK.Stjerner === 'NONE' || selectedOptions.BETRÆK.Stjerner === 'None' ? 'None' : selectedOptions.BETRÆK.Stjerner}</div>
-            </div>
-            <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-              <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Stars Color</div>
-              <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.KOKARDE.Emblem.name}</div>
-            </div>
-            <div>
-              <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Flag Ribbon</div>
-              <div style="font-size: 16px;">${!selectedOptions.BETRÆK.Flagbånd ? 'Declined':selectedOptions.BETRÆK.Flagbånd=='Nej' ? 'Declined': selectedOptions.BETRÆK.Flagbånd}</div>
-            </div>
-            `:``}
-          </div>
-        </div>
-        
-        
-        <!-- Inside of the Cap -->
-        <div style="margin-bottom: 25px; margin-top: 20px;">
-          <div style="font-size: 18px; font-weight: bold; margin-bottom: 15px; color: #333333;">Inside of the Cap </div>
-          <div style="background-color: #f7f8f7; padding: 20px;">
-          <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-            <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Sweatband </div>
-            <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.FOER.Svederem}</div>
-          </div>
-          <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-            <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Color</div>
-            <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.FOER.Farve}</div>
-          </div>
-          <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-            <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Bow</div>
-            <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.FOER.Sløjfe}</div>
-          </div>
-          <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-            <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Inner Band</div>
-            <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.FOER.Foer}</div>
-          </div>
-          ${!selectedOptions.FOER || !selectedOptions.FOER['Satin Type']  ?``:`
-          <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-            <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Satin Type</div>
-            <div style="margin-bottom: 10px; font-size: 16px;">${!selectedOptions.FOER['Satin Type'] ? 'Not Selected' : selectedOptions.FOER['Satin Type']}</div>
-          </div>
-          `}
-
-          ${!selectedOptions.FOER || !selectedOptions.FOER['Silk Type']  ?``:`
-          <div>
-            <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Silk Type</div>
-            <div style="font-size: 16px;">${!selectedOptions.FOER['Silk Type'] ? 'Not Selected' : selectedOptions.FOER['Silk Type']}</div>
-          </div>
-          `}
-          </div>
-        </div>
-        
-        
-
-        <!-- Accessories -->
-        <div style="margin-bottom: 25px; margin-top: 20px;">
-          <div style="font-size: 18px; font-weight: bold; margin-bottom: 15px; color: #333333;">Accessories</div>
-          <div style="background-color: #f7f8f7; padding: 20px;">
-            <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-              <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Silk Cushion</div>
-              <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.TILBEHØR.Silkepude === 'Ja' ? 'Yes' : 'Declined'}</div>
-            </div>
-            <div>
-              <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Small Flag</div>
-              <div style="font-size: 16px;">${selectedOptions.TILBEHØR['Lille Flag']==='Fravalgt' ? 'Declined' : selectedOptions.TILBEHØR['Lille Flag Text']}</div>
-            </div>
-          </div>
-        </div>
-  </div>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
 
 </body>
 </html>
@@ -867,478 +1035,916 @@ const capOrderEmail = (orderData) => {
 <!DOCTYPE html>
 <html lang="da">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ordrebekræftelse - Studentlife</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ordrebekræftelse - Studentlife</title>
+  <!--[if mso]>
+  <xml>
+    <o:OfficeDocumentSettings>
+      <o:AllowPNG/>
+      <o:PixelsPerInch>96</o:PixelsPerInch>
+    </o:OfficeDocumentSettings>
+  </xml>
+  <![endif]-->
+  <style>
+    @media only screen and (max-width: 600px) {
+      table[class="container"] { width: 100% !important; }
+      td[class="mobile-padding"] { padding: 20px 15px !important; }
+    }
+  </style>
 </head>
-<body style="margin: 0; box-sizing: border-box; padding: 0; font-family: Arial, sans-serif; background-color: #ffff; color: #333333; line-height: 1.4;">
-    <!-- Main Container -->
+<body style="margin:0; padding:0; background-color:#ffffff; font-family:Arial, sans-serif; color:#333333; line-height:1.4;">
+
     <div style="text-align: center; padding: 20px 5px;">
         <img src="https://res.cloudinary.com/ds1ogapco/image/upload/v1761063050/01_q0pctl.png" alt="Studentlife" style="max-width: 100%; height: auto;">
     </div>
 
-    <div style="max-width: 700px; margin: 0 auto; background-color: #ffffff; padding: 0 20px;">
-        
-        <!-- Header -->
-        
-        <!-- Content Area -->
-        <div>
-            
-            <!-- Premium Quality Banner -->
-            <div style="background-color: #f9fafb; padding: 15px 0; border-top: 1px solid #e5e7eb; text-align: center; margin-bottom: 20px;">
-                <span style="font-size: 16px; font-weight: bold; color: #111827; display: inline-block; margin: 0 15px;">
-                    ✓ Premium kvalitet
-                </span>
-                <span style="font-size: 16px; font-weight: bold; color: #111827; display: inline-block; margin: 0 15px;">
-                    ✓ Personligt design
-                </span>
-            </div>
-            
-            <!-- Greeting Section -->
-            <div style="margin-bottom: 30px;">
-                <p style="margin-bottom: 15px; font-size: 18px; font-weight: bold;">Kære: ${customerDetails.firstName} ${customerDetails.lastName},</p>
-                <p style="margin-bottom: 15px; font-size: 18px; font-weight: bold;">Tak for din bestilling hos Studentlife.</p>
-                <p style="margin-bottom: 15px; font-size: 18px; font-weight: bold;">Din bestilling med ordre nummer: ${orderNumber} er nu betalt.</p>
-                <p style="margin-bottom: 15px; font-size: 16px;">Husk at tjekke alle detaljer er korrekte, herunder også leveringstid ${leveringstid.toLocaleDateString()}, skolens logo samt skolebroderi.</p>
-                <p style="margin-bottom: 15px; font-size: 16px;">Vi håber at du kommer til at elske din studenterhue.</p>
-            </div>
-            
-            <!-- Order Information -->
-            <div style="margin-bottom: 30px;">
-                <div style="font-size: 21px; font-weight: bold; margin-bottom: 15px; color: #333333;">Din ordre oplysninger:</div>
-                <p style="margin-bottom: 15px; font-size: 16px;">Ordren er oprettet: ${orderDate.toLocaleDateString()}</p>
-                <div style="background-color: #f2f3f2; padding: 15px; margin: 20px 0; font-weight: bold; font-size: 15px; text-align: center;">
-                    Order nr: ${orderNumber}
-                </div>
-            </div>
-            
-            <!-- Payment & Delivery Info -->
-                <!-- Payment Information -->
-                <div style="background-color: #f2f3f2; padding: 30px 25px; margin-bottom: 20px">
-                    <div style="font-size: 19px; font-weight: bold; margin-bottom: 15px;">Betalingsoplysninger</div>
-                    <div style="margin-bottom: 10px;">
-                        <div style="font-weight: bold; margin-bottom: 5px; font-size: 15px;">Oplysninger om betaleren</div>
-                    </div>
-                    <div style="margin-bottom: 10px;">
-                        <div style="font-weight: bold; margin-bottom: 5px; font-size: 15px;">Navn:</div>
-                        <div style="margin-bottom: 10px; font-size: 16px;">${customerDetails.firstName} ${customerDetails.lastName}</div>
-                    </div>
-                    <div style="margin-bottom: 10px;">
-                        <div style="font-weight: bold; margin-bottom: 5px; font-size: 15px;">Adresse:</div>
-                        <div style="margin-bottom: 10px; font-size: 16px;">${customerDetails.address}</div>
-                    </div>
-                    <div style="margin-bottom: 10px;">
-                        <div style="font-weight: bold; margin-bottom: 5px; font-size: 15px;">Postnummer og by:</div>
-                        <div style="margin-bottom: 10px; font-size: 16px;">${customerDetails.postalCode} ${customerDetails.city}</div>
-                    </div>
-                </div>
-                
-                <!-- Delivery Information -->
-                <div style="background-color: #f2f3f2; padding: 30px 25px; margin-bottom: 20px;">
-                    <div style="font-size: 19px; font-weight: bold; margin-bottom: 15px;">Leveringsoplysninger</div>
-                    <div style="margin-bottom: 10px;">
-                        <div style="font-weight: bold; margin-bottom: 5px; font-size: 15px;">Navn:</div>
-                        <div style="margin-bottom: 10px; font-size: 16px;">${customerDetails.firstName} ${customerDetails.lastName}</div>
-                    </div>
-                    <div style="margin-bottom: 10px;">
-                        <div style="font-weight: bold; margin-bottom: 5px; font-size: 15px;">Adresse:</div>
-                        <div style="margin-bottom: 10px; font-size: 16px;">${customerDetails.address}</div>
-                    </div>
-                    <div style="margin-bottom: 10px;">
-                        <div style="font-weight: bold; margin-bottom: 5px; font-size: 15px;">Postnummer og by:</div>
-                        <div style="margin-bottom: 10px; font-size: 16px;">${customerDetails.postalCode} ${customerDetails.city}</div>
-                    </div>
-                    <div style="margin-bottom: 10px;">
-                        <div style="font-weight: bold; margin-bottom: 5px; font-size: 15px;">Skole navn:</div>
-                        <div style="margin-bottom: 10px; font-size: 16px;">${customerDetails.Skolenavn}</div>
-                    </div>
-                    <div style="margin-bottom: 10px;">
-                        <div style="font-weight: bold; margin-bottom: 5px; font-size: 15px;">levering til skolen:</div>
-                        <div style="margin-bottom: 10px; font-size: 16px;">${customerDetails.deliverToSchool ? "Ja" : "Nej"}</div>
-                    </div>
-                    ${customerDetails.notes ? `
-                    <div style="margin-bottom: 10px;">
-                        <div style="font-weight: bold; margin-bottom: 5px; font-size: 15px;">Levering:</div>
-                        <div style="margin-bottom: 10px; font-size: 16px;">${customerDetails.notes}</div>
-                    </div>
-                    ` : ''}
-                </div>
-            </div>
-            
-            <!-- Order Details -->
-            <div style="background-color: #ffffff; padding: 30px 20px 10px 20px;">
-                <div>
-                    <div style="font-weight: bold; font-size: 18px;">Ordre detaljer</div>
-                </div>
-            </div>
-            
-            <div style="background-color: #fbfbfb; padding: 30px;">
-                <div style="margin-bottom: 10px;">
-                    <div style="font-weight: bold; font-size: 18px;">${packageName}</div>
-                </div>
-                <div style="margin-bottom: 10px;">
-                    <div><span style="font-weight: bold; font-size: 16px; margin-right: 5px;">Pris:</span><span style="font-size: 16px;">${totalPrice} DKK</span></div>
-                </div>
-            </div>
-            
-            <!-- Product Details Section -->
-            <div style="background-color: #f2f3f2; padding: 40px 30px; margin-bottom: 30px;">
-                
-                <!-- Product Details Columns -->
-                <div>
-                    
-                    <!-- Left Column -->
-                    <div>
-                        
-                        <!-- Kokarde Section -->
-                        <div style="margin-bottom: 25px;">
-                            <div style="font-size: 18px; font-weight: bold; margin-bottom: 15px; color: #333333;">Kokarde</div>
-                            <div style="background-color: #f7f8f7; padding: 20px;">
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Roset farve</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.KOKARDE['Roset farve'].name}</div>
-                              </div>
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Kokarde type</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.KOKARDE.Kokarde}</div>
-                              </div>
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Emblem</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.KOKARDE.Emblem.name}</div>
-                              </div>
-                              <div>
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Emblem type</div>
-                                  <div style="font-size: 16px;">${selectedOptions.KOKARDE.Type}</div>
-                              </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Front Embroidery Section -->
-                        ${!selectedOptions.UDDANNELSESBÅND["Broderi foran"] ? '' : `
-                        <div style="margin-bottom: 25px; margin-top: 20px;">
-                            <div style="font-size: 18px; font-weight: bold; margin-bottom: 15px; color: #333333;">Broderi foran</div>
-                            <div style="background-color: #f7f8f7; padding: 20px;">
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Tekst maks. 20 tegn</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.UDDANNELSESBÅND["Broderi foran"]}</div>
-                              </div>
-                              <div>
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Broderi farve</div>
-                                  <div style="font-size: 16px;">${selectedOptions.UDDANNELSESBÅND["Broderi farve"]}</div>
-                              </div>
-                            </div>
-                        </div>
-                        `}
-                        
-                        <!-- Back Embroidery Section -->
-                        <div style="margin-bottom: 25px; margin-top: 20px;">
-                            <div style="font-size: 18px; font-weight: bold; margin-bottom: 15px; color: #333333;">Broderi Bagpå</div>
-                              <div style="background-color: #f7f8f7; padding: 20px;">
-                              ${!selectedOptions.BRODERI || !selectedOptions.BRODERI["Navne broderi"] ? '' : `
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Name embroidery (Tekst) maks. 26</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.BRODERI["Navne broderi"]}</div>
-                              </div>
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Embroidery color</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.BRODERI?.Broderifarve || 'Ikke valgt'}</div>
-                              </div>
-                              `}
-                              
-                              ${!selectedOptions.BRODERI || !selectedOptions.BRODERI.Skolebroderi ? '' : `
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">School embroidery (Tekst) maks. 35</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.BRODERI.Skolebroderi}</div>
-                              </div>
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Embroidery color</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.BRODERI?.['Skolebroderi farve'] || 'Ikke valgt'}</div>
-                              </div>
-                              `}
-                              
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Knap Farve</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.UDDANNELSESBÅND['Knap farve']}</div>
-                              </div>
-                              <div>
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">År</div>
-                                  <div style="font-size: 16px;">${selectedOptions.UDDANNELSESBÅND.år}</div>
-                              </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Brim Section -->
-                        <div style="margin-bottom: 25px; margin-top: 20px;">
-                            <div style="font-size: 18px; font-weight: bold; margin-bottom: 15px; color: #333333;">Skygge</div>
-                            <div style="background-color: #f7f8f7; padding: 20px;">
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Type</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.SKYGGE.Type}</div>
-                              </div>
-                              ${selectedOptions.SKYGGE.Type === 'Glimmer' ? '' : `
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Material</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.SKYGGE.Materiale}</div>
-                              </div>
-                              `}
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Skyggebånd</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.SKYGGE.Skyggebånd}</div>
-                              </div>
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Linje 1</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${!selectedOptions.SKYGGE["Skyggegravering Line 1"] ? 'Ikke valgt' : selectedOptions.SKYGGE["Skyggegravering Line 1"]}</div>
-                              </div>
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Linje 2</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${!selectedOptions.SKYGGE["Skyggegravering Line 2"] ? 'Ikke valgt' : selectedOptions.SKYGGE["Skyggegravering Line 2"]}</div>
-                              </div>
-                              <div>
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Linje 3</div>
-                                  <div style="font-size: 16px;">${!selectedOptions.SKYGGE["Skyggegravering Line 3"] ? 'Ikke valgt' : selectedOptions.SKYGGE["Skyggegravering Line 3"]}</div>
-                              </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Extra Cover Section -->
-                        <div style="margin-bottom: 25px; margin-top: 20px;">
-                            <div style="font-size: 18px; font-weight: bold; margin-bottom: 15px; color: #333333;">Extra Cover</div>
-                            <div style="background-color: #f7f8f7; padding: 20px;">
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Tilvælg</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.EKSTRABETRÆK.Tilvælg === 'Ja' ? 'Ja' : 'Fravalgt'}</div>
-                              </div>
-                              
-                              ${selectedOptions.EKSTRABETRÆK.Tilvælg === 'Ja' ? `
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Farve</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.EKSTRABETRÆK.Farve}</div>
-                              </div>
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Topkant</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.EKSTRABETRÆK.Topkant === 'NONE' || selectedOptions.EKSTRABETRÆK.Topkant === 'None' ? 'Ingen' : selectedOptions.EKSTRABETRÆK.Topkant}</div>
-                              </div>
-                              ${!shouldHideSelectors ? `
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Kantbånd</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.EKSTRABETRÆK.Kantbånd === 'NONE' || selectedOptions.EKSTRABETRÆK.Kantbånd === 'None' ? 'Ingen' : selectedOptions.EKSTRABETRÆK.Kantbånd}</div>
-                              </div>
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Flagbånd</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${!selectedOptions.EKSTRABETRÆK.Flagbånd ? 'Fravalgt' : selectedOptions.EKSTRABETRÆK.Flagbånd == 'Nej' ? 'Fravalgt' : selectedOptions.EKSTRABETRÆK.Flagbånd}</div>
-                              </div>
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Stjerner</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.KOKARDE.Emblem.name}</div>
-                              </div>
-                              ` : ''}
-                              ${!selectedOptions.BRODERI || !selectedOptions.BRODERI.Skolebroderi ? '' : `
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Skolebroderi</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.BRODERI.Skolebroderi}</div>
-                              </div>
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Broderiets farve</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.BRODERI['Skolebroderi farve']}</div>
-                              </div>
-                              `}
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Lyskugle</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.TILBEHØR.Lyskugle === 'Ja' ? 'Ja' : 'Fravalgt'}</div>
-                              </div>
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Luksus champagneglas</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.TILBEHØR['Luksus champagneglas'] === 'Ja' ? 'Ja' : 'Fravalgt'}</div>
-                              </div>
-                              <div>
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Fløjte</div>
-                                  <div style="font-size: 16px;">${selectedOptions.TILBEHØR.Fløjte === 'Ja' ? 'Ja' : 'Fravalgt'}</div>
-                              </div>
-                              ` : ''}
-                            </div>
-                        </div>
-                        
-                        <!-- Size Section -->
-                        <div style="margin-bottom: 25px; margin-top: 20px;">
-                            <div style="font-size: 18px; font-weight: bold; margin-bottom: 15px; color: #333333;">Størrelse</div>
-                            <div style="background-color: #f7f8f7; padding: 20px;">
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Vælg størrelse (Size)</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.STØRRELSE["Vælg størrelse"]}</div>
-                              </div>
-                              <div>
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Millimeter tilpasningssæt</div>
-                                  <div style="font-size: 16px;">${selectedOptions.STØRRELSE["Millimeter tilpasningssæt"] === 'Ja' ? 'Ja' : 'Fravalgt'}</div>
-                              </div>
-                            </div>
-                        </div>
-                        
-                    </div>
-                    
-                    <!-- Right Column -->
-                    <div style="width: 100%;">
-                        
-                        <!-- Education Band Section -->
-                        <div style="margin-bottom: 25px;">
-                            <div style="font-size: 18px; font-weight: bold; margin-bottom: 15px; color: #333333;">Uddannelsesbånd</div>
-                            <div style="background-color: #f7f8f7; padding: 20px;">
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Huebånd</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.UDDANNELSESBÅND.Huebånd}</div>
-                              </div>
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Materiale</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.UDDANNELSESBÅND.Materiale}</div>
-                              </div>
-                              <div>
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Hagerem</div>
-                                  <div style="font-size: 16px;">${selectedOptions.UDDANNELSESBÅND.Hagerem}</div>
-                              </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Cover Section -->
-                        <div style="margin-bottom: 25px; margin-top: 20px;">
-                            <div style="font-size: 18px; font-weight: bold; margin-bottom: 15px; color: #333333;">Betræk</div>
-                            <div style="background-color: #f7f8f7; padding: 20px;">
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Farve</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.BETRÆK.Farve}</div>
-                              </div>
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Topkant</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.BETRÆK.Topkant === 'NONE' || selectedOptions.BETRÆK.Topkant === 'None' ? 'Ingen' : selectedOptions.BETRÆK.Topkant}</div>
-                              </div>
-                              ${!shouldHideSelectors ? `
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Kantbånd</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.BETRÆK.Kantbånd === 'NONE' || selectedOptions.BETRÆK.Kantbånd === 'None' ? 'Ingen' : selectedOptions.BETRÆK.Kantbånd}</div>
-                              </div>
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Stjerner</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.BETRÆK.Stjerner === 'NONE' || selectedOptions.BETRÆK.Stjerner === 'None' ? 'Ingen' : selectedOptions.BETRÆK.Stjerner}</div>
-                              </div>
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Stjerner farve</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.KOKARDE.Emblem.name}</div>
-                              </div>
-                              <div>
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Flagbånd</div>
-                                  <div style="font-size: 16px;">${!selectedOptions.BETRÆK.Flagbånd ? 'Fravalgt' : selectedOptions.BETRÆK.Flagbånd == 'Nej' ? 'Fravalgt' : selectedOptions.BETRÆK.Flagbånd}</div>
-                              </div>
-                              ` : ''}
-                            </div>
-                        </div>
-                        
-                        <!-- Lining Section -->
-                        <div style="margin-bottom: 25px; margin-top: 20px;">
-                            <div style="font-size: 18px; font-weight: bold; margin-bottom: 15px; color: #333333;">Foer</div>
-                            <div style="background-color: #f7f8f7; padding: 20px;">
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Svederem</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.FOER.Svederem}</div>
-                              </div>
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Farve</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.FOER.Farve}</div>
-                              </div>
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Sløjfe</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.FOER.Sløjfe}</div>
-                              </div>
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Forring</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.FOER.Foer}</div>
-                              </div>
-                              ${!selectedOptions.FOER || !selectedOptions.FOER['Satin Type'] ? '' : `
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Satin Type</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${!selectedOptions.FOER['Satin Type'] ? 'Ikke valgt' : selectedOptions.FOER['Satin Type']}</div>
-                              </div>
-                              `}
-                              ${!selectedOptions.FOER || !selectedOptions.FOER['Silk Type'] ? '' : `
-                              <div>
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Silk Type</div>
-                                  <div style="font-size: 16px;">${!selectedOptions.FOER['Silk Type'] ? 'Ikke valgt' : selectedOptions.FOER['Silk Type']}</div>
-                              </div>
-                              `}
-                            </div>
-                        </div>
-                        
-                        <!-- Accessories Section -->
-                        <div style="margin-bottom: 25px; margin-top: 20px;">
-                            <div style="font-size: 18px; font-weight: bold; margin-bottom: 15px; color: #333333;">Tilbehør</div>
-                            <div style="background-color: #f7f8f7; padding: 20px;">
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Hueæske</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.TILBEHØR.Hueæske}</div>
-                              </div>
-                              ${selectedOptions.TILBEHØR['Premium æske'] ? `
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Premium æske</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.TILBEHØR['Premium æske']}</div>
-                              </div>
-                              ` : ''}
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Huekuglepen</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.TILBEHØR.Huekuglepen === 'Ja' ? 'Ja' : 'Fravalgt'}</div>
-                              </div>
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Silkepude</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.TILBEHØR.Silkepude === 'Ja' ? 'Ja' : 'Fravalgt'}</div>
-                              </div>
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Ekstra Kokarde</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.TILBEHØR['Ekstra korkarde'] === 'Fravalgt' ? 'Fravalgt' : selectedOptions.TILBEHØR['Ekstra korkarde Text']}</div>
-                              </div>
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Handsker</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.TILBEHØR.Handsker === 'Ja' ? 'Ja' : 'Fravalgt'}</div>
-                              </div>
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Stor kuglepen</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.TILBEHØR["Store kuglepen"] === 'Ja' ? 'Ja' : 'Fravalgt'}</div>
-                              </div>
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Smarttag</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.TILBEHØR["Smart Tag"] === 'Ja' ? 'Ja' : 'Fravalgt'}</div>
-                              </div>
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Lille flag</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.TILBEHØR['Lille Flag'] === 'Fravalgt' ? 'Fravalgt' : selectedOptions.TILBEHØR['Lille Flag Text']}</div>
-                              </div>
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Trompet</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.TILBEHØR.Trompet === 'Ja' ? 'Ja' : 'Fravalgt'}</div>
-                              </div>
-                              <div>
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Bucketpins</div>
-                                  <div style="font-size: 16px;">${selectedOptions.TILBEHØR.Bucketpins === 'Ja' ? 'Ja' : 'Fravalgt'}</div>
-                              </div>
-                            </div>
-                        </div>
-                    </div>
-            </div>
-        </div>
-        
-        <!-- Footer with Total -->
-        <div style="background-color: #f2f3f2; padding: 20px; margin-top: 30px;">
-            <div style="font-size: 18px; font-weight: bold; margin-bottom: 5px;">Total: ${totalPrice} DKK</div>
-            <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Inklusiv moms</div>
-            <hr style="border: none; border-top: 1px solid #cdcdcd; margin: 15px 0;">
-            <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">SUM: ${totalPrice} DKK</div>
-            <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">LEVERING: 0 DKK</div>
-            <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">MOMS: ${(totalPrice * 0.20).toFixed(2)} DKK</div>
-        </div>
-        
-        <!-- Signature -->
-        <div style="margin: 40px 35px; border-top: 1px solid #cdcdcd;">
-            <p style="font-size: 14px;">Er du i tvivl om noget? Kundeservice altid klar, hvis du har brug for hjælp.</p>
-            <p style="font-size: 14px;">Vi ønsker dig en dejlig dag,</p>
-            <p style="font-size: 14px;">Studentlife 😊</p>
-        </div>
-        
-    </div>
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td style="height:10px; font-size:0; line-height:0;">&nbsp;</td>
+        </tr>
+    </table>
+
+  <!-- Full-width wrapper -->
+  <table width="100%" border="0" cellpadding="0" cellspacing="0" style="background-color:#ffffff;">
+    <tr>
+      <td align="center">
+        <!-- Fixed-width container (700px) -->
+        <table width="700" border="0" cellpadding="0" cellspacing="0" class="container" style="max-width:700px; width:100%;">
+          <tr>
+            <td style="padding:0 20px;">
+
+              <!-- Premium Quality Banner -->
+              <table width="100%" border="0" cellpadding="0" cellspacing="0" style="background-color:#f9fafb; border-top:1px solid #e5e7eb;">
+                <tr>
+                  <td align="center" style="padding:15px 0;">
+                    <table border="0" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td style="font-size:16px; font-weight:bold; color:#111827; padding:0 15px;">✓ Premium kvalitet</td>
+                        <td style="font-size:16px; font-weight:bold; color:#111827; padding:0 15px;">✓ Personligt design</td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+
+              <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td style="height:15px; font-size:0; line-height:0;">&nbsp;</td>
+                </tr>
+              </table>
+
+              <!-- Greeting Section -->
+              <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr><td style="font-size:18px; font-weight:bold; padding-bottom:15px;">Kære: ${customerDetails.firstName} ${customerDetails.lastName},</td></tr>
+                <tr><td style="font-size:18px; font-weight:bold; padding-bottom:15px;">Tak for din bestilling hos Studentlife.</td></tr>
+                <tr><td style="font-size:18px; font-weight:bold; padding-bottom:15px;">Din bestilling med ordre nummer: ${orderNumber} er nu betalt.</td></tr>
+                <tr><td style="font-size:16px; padding-bottom:15px;">Husk at tjekke alle detaljer er korrekte, herunder også leveringstid ${leveringstid.toLocaleDateString()}, skolens logo samt skolebroderi.</td></tr>
+                <tr><td style="font-size:16px; padding-bottom:15px;">Vi håber at du kommer til at elske din studenterhue.</td></tr>
+              </table>
+
+              <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td style="height:15px; font-size:0; line-height:0;">&nbsp;</td>
+                </tr>
+              </table>
+
+              <!-- Order Information -->
+              <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td style="font-size:21px; font-weight:bold; padding-bottom:15px; color:#333333;">Din ordre oplysninger:</td>
+                </tr>
+                <tr>
+                  <td style="font-size:16px; padding-bottom:15px;">Ordren er oprettet: ${orderDate.toLocaleDateString()}</td>
+                </tr>
+                <tr>
+                  <td style="background-color:#f2f3f2; padding:15px; font-weight:bold; font-size:15px; text-align:center;">Order nr: ${orderNumber}</td>
+                </tr>
+              </table>
+
+              <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td style="height:15px; font-size:0; line-height:0;">&nbsp;</td>
+                </tr>
+              </table>
+
+              <!-- Payment Information -->
+              <table width="100%" border="0" cellpadding="0" cellspacing="0" style="background-color:#f2f3f2; padding:30px 25px;">
+                <tr>
+                  <td style="font-size:19px; font-weight:bold; padding-bottom:15px;">Betalingsoplysninger</td>
+                </tr>
+                <tr>
+                  <td style="padding-bottom:10px;">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                      <tr><td style="font-weight:bold; font-size:15px; padding-bottom:5px;">Oplysninger om betaleren</td></tr>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding-bottom:10px;">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                      <tr><td style="font-weight:bold; font-size:15px; padding-bottom:5px;">Navn:</td></tr>
+                      <tr><td style="font-size:16px;">${customerDetails.firstName} ${customerDetails.lastName}</td></tr>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding-bottom:10px;">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                      <tr><td style="font-weight:bold; font-size:15px; padding-bottom:5px;">Adresse:</td></tr>
+                      <tr><td style="font-size:16px;">${customerDetails.address}</td></tr>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding-bottom:10px;">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                      <tr><td style="font-weight:bold; font-size:15px; padding-bottom:5px;">Postnummer og by:</td></tr>
+                      <tr><td style="font-size:16px;">${customerDetails.postalCode} ${customerDetails.city}</td></tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+
+              <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td style="height:15px; font-size:0; line-height:0;">&nbsp;</td>
+                </tr>
+              </table>
+
+              <!-- Delivery Information -->
+              <table width="100%" border="0" cellpadding="0" cellspacing="0" style="background-color:#f2f3f2; padding:30px 25px; margin-bottom:20px;">
+                <tr>
+                  <td style="font-size:19px; font-weight:bold; padding-bottom:15px;">Leveringsoplysninger</td>
+                </tr>
+                <tr>
+                  <td style="padding-bottom:10px;">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                      <tr><td style="font-weight:bold; font-size:15px; padding-bottom:5px;">Navn:</td></tr>
+                      <tr><td style="font-size:16px;">${customerDetails.firstName} ${customerDetails.lastName}</td></tr>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding-bottom:10px;">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                      <tr><td style="font-weight:bold; font-size:15px; padding-bottom:5px;">Adresse:</td></tr>
+                      <tr><td style="font-size:16px;">${customerDetails.address}</td></tr>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding-bottom:10px;">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                      <tr><td style="font-weight:bold; font-size:15px; padding-bottom:5px;">Postnummer og by:</td></tr>
+                      <tr><td style="font-size:16px;">${customerDetails.postalCode} ${customerDetails.city}</td></tr>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding-bottom:10px;">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                      <tr><td style="font-weight:bold; font-size:15px; padding-bottom:5px;">Skole navn:</td></tr>
+                      <tr><td style="font-size:16px;">${customerDetails.Skolenavn}</td></tr>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding-bottom:10px;">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                      <tr><td style="font-weight:bold; font-size:15px; padding-bottom:5px;">levering til skolen:</td></tr>
+                      <tr><td style="font-size:16px;">${customerDetails.deliverToSchool ? "Ja" : "Nej"}</td></tr>
+                    </table>
+                  </td>
+                </tr>
+                ${customerDetails.notes ? `
+                <tr>
+                  <td style="padding-bottom:10px;">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                      <tr><td style="font-weight:bold; font-size:15px; padding-bottom:5px;">Levering:</td></tr>
+                      <tr><td style="font-size:16px;">${customerDetails.notes}</td></tr>
+                    </table>
+                  </td>
+                </tr>
+                ` : ''}
+              </table>
+
+              <!-- Order Details Header -->
+              <table width="100%" border="0" cellpadding="0" cellspacing="0" style="background-color:#ffffff; padding:30px 20px 10px 20px;">
+                <tr>
+                  <td style="font-weight:bold; font-size:18px;">Ordre detaljer</td>
+                </tr>
+              </table>
+
+              <!-- Package Summary -->
+              <table width="100%" border="0" cellpadding="0" cellspacing="0" style="background-color:#fbfbfb;">
+                <tr>
+                  <td style="padding:30px;">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                      <tr><td style="font-weight:bold; font-size:18px; padding-bottom:10px;">${packageName}</td></tr>
+                      <tr>
+                        <td style="font-size:16px;">
+                          <span style="font-weight:bold; margin-right:5px;">Pris:</span>
+                          <span>${totalPrice} DKK</span>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Product Details Area -->
+              <table width="100%" border="0" cellpadding="0" cellspacing="0" style="background-color:#f2f3f2; padding:40px 30px;">
+
+                <!-- Kokarde -->
+                <tr>
+                  <td style="padding-bottom:25px;">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td style="font-size:18px; font-weight:bold; padding-bottom:15px; color:#333333;">Kokarde</td>
+                      </tr>
+                      <tr>
+                        <td style="background-color:#f7f8f7; padding:20px;">
+                          <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Roset farve</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.KOKARDE['Roset farve'].name}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Kokarde type</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.KOKARDE.Kokarde}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Emblem</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.KOKARDE.Emblem.name}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Emblem type</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.KOKARDE.Type}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+
+                <!-- Uddannelsesbånd -->
+                <tr>
+                  <td style="padding-bottom:25px;">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td style="font-size:18px; font-weight:bold; padding-bottom:15px; color:#333333;">Uddannelsesbånd</td>
+                      </tr>
+                      <tr>
+                        <td style="background-color:#f7f8f7; padding:20px;">
+                          <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Huebånd</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.UDDANNELSESBÅND.Huebånd}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Materiale</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.UDDANNELSESBÅND.Materiale}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Hagerem</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.UDDANNELSESBÅND.Hagerem}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+
+                <!-- Broderi foran (Conditional) -->
+                ${!selectedOptions.UDDANNELSESBÅND["Broderi foran"] ? `` : `
+                <tr>
+                  <td style="padding-bottom:25px;">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td style="font-size:18px; font-weight:bold; padding-bottom:15px; color:#333333;">Broderi foran</td>
+                      </tr>
+                      <tr>
+                        <td style="background-color:#f7f8f7; padding:20px;">
+                          <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Tekst maks. 20 tegn</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.UDDANNELSESBÅND["Broderi foran"]}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Broderi farve</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.UDDANNELSESBÅND["Broderi farve"]}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>`}
+
+                <!-- Broderi Bagpå -->
+                <tr>
+                  <td style="padding-bottom:25px;">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td style="font-size:18px; font-weight:bold; padding-bottom:15px; color:#333333;">Broderi Bagpå</td>
+                      </tr>
+                      <tr>
+                        <td style="background-color:#f7f8f7; padding:20px;">
+                          <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                            ${!selectedOptions.BRODERI || !selectedOptions.BRODERI["Navne broderi"] ? `` : `
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Name embroidery (Tekst) maks. 26</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.BRODERI["Navne broderi"]}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Embroidery color</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.BRODERI?.Broderifarve || 'Ikke valgt'}</td></tr>
+                                </table>
+                              </td>
+                            </tr>`}
+                            ${!selectedOptions.BRODERI || !selectedOptions.BRODERI.Skolebroderi ? '' : `
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">School embroidery (Tekst) maks. 35</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.BRODERI.Skolebroderi}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Embroidery color</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.BRODERI?.['Skolebroderi farve'] || 'Ikke valgt'}</td></tr>
+                                </table>
+                              </td>
+                            </tr>`}
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Knap Farve</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.UDDANNELSESBÅND['Knap farve']}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">År</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.UDDANNELSESBÅND.år}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+
+                <!-- Skygge -->
+                <tr>
+                  <td style="padding-bottom:25px;">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td style="font-size:18px; font-weight:bold; padding-bottom:15px; color:#333333;">Skygge</td>
+                      </tr>
+                      <tr>
+                        <td style="background-color:#f7f8f7; padding:20px;">
+                          <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Type</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.SKYGGE.Type}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            ${selectedOptions.SKYGGE.Type === 'Glimmer' ? `` : `
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Material</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.SKYGGE.Materiale}</td></tr>
+                                </table>
+                              </td>
+                            </tr>`}
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Skyggebånd</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.SKYGGE.Skyggebånd}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Linje 1</td></tr>
+                                  <tr><td style="font-size:16px;">${!selectedOptions.SKYGGE["Skyggegravering Line 1"] ? 'Ikke valgt' : selectedOptions.SKYGGE["Skyggegravering Line 1"]}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Linje 2</td></tr>
+                                  <tr><td style="font-size:16px;">${!selectedOptions.SKYGGE["Skyggegravering Line 2"] ? 'Ikke valgt' : selectedOptions.SKYGGE["Skyggegravering Line 2"]}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Linje 3</td></tr>
+                                  <tr><td style="font-size:16px;">${!selectedOptions.SKYGGE["Skyggegravering Line 3"] ? 'Ikke valgt' : selectedOptions.SKYGGE["Skyggegravering Line 3"]}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+
+                <!-- Extra Cover -->
+                <tr>
+                  <td style="padding-bottom:25px;">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td style="font-size:18px; font-weight:bold; padding-bottom:15px; color:#333333;">Extra Cover</td>
+                      </tr>
+                      <tr>
+                        <td style="background-color:#f7f8f7; padding:20px;">
+                          <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Tilvælg</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.EKSTRABETRÆK.Tilvælg === 'Ja' ? 'Ja' : 'Fravalgt'}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            ${selectedOptions.EKSTRABETRÆK.Tilvælg === 'Ja' ? `
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Farve</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.EKSTRABETRÆK.Farve}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Topkant</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.EKSTRABETRÆK.Topkant === 'NONE' || selectedOptions.EKSTRABETRÆK.Topkant === 'None' ? 'Ingen' : selectedOptions.EKSTRABETRÆK.Topkant}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            ${!shouldHideSelectors ? `
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Kantbånd</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.EKSTRABETRÆK.Kantbånd === 'NONE' || selectedOptions.EKSTRABETRÆK.Kantbånd === 'None' ? 'Ingen' : selectedOptions.EKSTRABETRÆK.Kantbånd}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Flagbånd</td></tr>
+                                  <tr><td style="font-size:16px;">${!selectedOptions.EKSTRABETRÆK.Flagbånd ? 'Fravalgt' : selectedOptions.EKSTRABETRÆK.Flagbånd == 'Nej' ? 'Fravalgt' : selectedOptions.EKSTRABETRÆK.Flagbånd}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            ${!selectedOptions.EKSTRABETRÆK.Stjerner === "INGEN" ? `` : `
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Stjerner</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.KOKARDE.Emblem.name}</td></tr>
+                                </table>
+                              </td>
+                            </tr>`}
+                            ` : ''}
+                            ${!selectedOptions.BRODERI || !selectedOptions.BRODERI.Skolebroderi ? `` : `
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Skolebroderi</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.BRODERI.Skolebroderi}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Broderiets farve</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.BRODERI['Skolebroderi farve']}</td></tr>
+                                </table>
+                              </td>
+                            </tr>`}
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Lyskugle</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.TILBEHØR.Lyskugle === 'Ja' ? 'Ja' : 'Fravalgt'}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Luksus champagneglas</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.TILBEHØR['Luksus champagneglas'] === 'Ja' ? 'Ja' : 'Fravalgt'}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Fløjte</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.TILBEHØR.Fløjte === 'Ja' ? 'Ja' : 'Fravalgt'}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            ` : ''}
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+
+                <!-- Størrelse -->
+                <tr>
+                  <td style="padding-bottom:25px;">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td style="font-size:18px; font-weight:bold; padding-bottom:15px; color:#333333;">Størrelse</td>
+                      </tr>
+                      <tr>
+                        <td style="background-color:#f7f8f7; padding:20px;">
+                          <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Vælg størrelse (Size)</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.STØRRELSE["Vælg størrelse"]}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Millimeter tilpasningssæt</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.STØRRELSE["Millimeter tilpasningssæt"] === 'Ja' ? 'Ja' : 'Fravalgt'}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+
+                <!-- Betræk -->
+                <tr>
+                  <td style="padding-bottom:25px;">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td style="font-size:18px; font-weight:bold; padding-bottom:15px; color:#333333;">Betræk</td>
+                      </tr>
+                      <tr>
+                        <td style="background-color:#f7f8f7; padding:20px;">
+                          <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Farve</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.BETRÆK.Farve}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Topkant</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.BETRÆK.Topkant === 'NONE' || selectedOptions.BETRÆK.Topkant === 'None' ? 'Ingen' : selectedOptions.BETRÆK.Topkant}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            ${!shouldHideSelectors ? `
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Kantbånd</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.BETRÆK.Kantbånd === 'NONE' || selectedOptions.BETRÆK.Kantbånd === 'None' ? 'Ingen' : selectedOptions.BETRÆK.Kantbånd}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Stjerner</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.BETRÆK.Stjerner === 'NONE' || selectedOptions.BETRÆK.Stjerner === 'None' ? 'Ingen' : selectedOptions.BETRÆK.Stjerner}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            ${selectedOptions.BETRÆK.Stjerner === "INGEN" ? `` : `
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Stjerner farve</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.KOKARDE.Emblem.name}</td></tr>
+                                </table>
+                              </td>
+                            </tr>`}
+                            <tr>
+                              <td style="padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Flagbånd</td></tr>
+                                  <tr><td style="font-size:16px;">${!selectedOptions.BETRÆK.Flagbånd ? 'Fravalgt' : selectedOptions.BETRÆK.Flagbånd == 'Nej' ? 'Fravalgt' : selectedOptions.BETRÆK.Flagbånd}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            ` : ''}
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+
+                <!-- Foer -->
+                <tr>
+                  <td style="padding-bottom:25px;">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td style="font-size:18px; font-weight:bold; padding-bottom:15px; color:#333333;">Foer</td>
+                      </tr>
+                      <tr>
+                        <td style="background-color:#f7f8f7; padding:20px;">
+                          <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Svederem</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.FOER.Svederem}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Farve</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.FOER.Farve}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Sløjfe</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.FOER.Sløjfe}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Forring</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.FOER.Foer}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            ${!selectedOptions.FOER || !selectedOptions.FOER['Satin Type'] ? '' : `
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Satin Type</td></tr>
+                                  <tr><td style="font-size:16px;">${!selectedOptions.FOER['Satin Type'] ? 'Ikke valgt' : selectedOptions.FOER['Satin Type']}</td></tr>
+                                </table>
+                              </td>
+                            </tr>`}
+                            ${!selectedOptions.FOER || !selectedOptions.FOER['Silk Type'] ? '' : `
+                            <tr>
+                              <td style="padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Silk Type</td></tr>
+                                  <tr><td style="font-size:16px;">${!selectedOptions.FOER['Silk Type'] ? 'Ikke valgt' : selectedOptions.FOER['Silk Type']}</td></tr>
+                                </table>
+                              </td>
+                            </tr>`}
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+
+                <!-- Tilbehør -->
+                <tr>
+                  <td style="padding-top:20px;">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td style="font-size:18px; font-weight:bold; padding-bottom:15px; color:#333333;">Tilbehør</td>
+                      </tr>
+                      <tr>
+                        <td style="background-color:#f7f8f7; padding:20px;">
+                          <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Hueæske</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.TILBEHØR.Hueæske}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            ${selectedOptions.TILBEHØR['Premium æske'] ? `
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Premium æske</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.TILBEHØR['Premium æske']}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            ` : ''}
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Huekuglepen</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.TILBEHØR.Huekuglepen === 'Ja' ? 'Ja' : 'Fravalgt'}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Silkepude</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.TILBEHØR.Silkepude === 'Ja' ? 'Ja' : 'Fravalgt'}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Ekstra Kokarde</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.TILBEHØR['Ekstra korkarde'] === 'Fravalgt' ? 'Fravalgt' : selectedOptions.TILBEHØR['Ekstra korkarde Text']}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Handsker</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.TILBEHØR.Handsker === 'Ja' ? 'Ja' : 'Fravalgt'}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Stor kuglepen</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.TILBEHØR["Store kuglepen"] === 'Ja' ? 'Ja' : 'Fravalgt'}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Smarttag</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.TILBEHØR["Smart Tag"] === 'Ja' ? 'Ja' : 'Fravalgt'}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Lille flag</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.TILBEHØR['Lille Flag'] === 'Fravalgt' ? 'Fravalgt' : selectedOptions.TILBEHØR['Lille Flag Text']}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Trompet</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.TILBEHØR.Trompet === 'Ja' ? 'Ja' : 'Fravalgt'}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Bucketpins</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.TILBEHØR.Bucketpins === 'Ja' ? 'Ja' : 'Fravalgt'}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+
+              </table>
+
+             <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td style="height:15px; font-size:0; line-height:0;">&nbsp;</td>
+                </tr>
+              </table>
+
+              <!-- Footer Total -->
+              <table width="100%" border="0" cellpadding="0" cellspacing="0" style="background-color:#f2f3f2; padding:20px;">
+                <tr>
+                  <td>
+                    <div style="font-size:18px; font-weight:bold; margin-bottom:5px;">Total: ${totalPrice} DKK</div>
+                    <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Inklusiv moms</div>
+                    <hr style="border:none; border-top:1px solid #cdcdcd; margin:15px 0;">
+                    <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">SUM: ${totalPrice} DKK</div>
+                    <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">LEVERING: 0 DKK</div>
+                    <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">MOMS: ${(totalPrice * 0.20).toFixed(2)} DKK</div>
+                  </td>
+                </tr>
+              </table>
+
+              <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td style="height:15px; font-size:0; line-height:0;">&nbsp;</td>
+                </tr>
+              </table>
+
+              <!-- Signature -->
+              <table width="100%" border="0" cellpadding="0" cellspacing="0" style="border-top:1px solid #cdcdcd;">
+                <tr>
+                  <td style="font-size:14px; padding-top:15px;">
+                    <p style="margin:0 0 10px 0;">Er du i tvivl om noget? Kundeservice altid klar, hvis du har brug for hjælp.</p>
+                    <p style="margin:0 0 10px 0;">Vi ønsker dig en dejlig dag,</p>
+                    <p style="margin:0;">Studentlife 😊</p>
+                  </td>
+                </tr>
+              </table>
+
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+
 </body>
 </html>
 `;
@@ -1595,448 +2201,853 @@ const capOrderAdminEmail = (orderData) => {
 <!DOCTYPE html>
 <html lang="da">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ordrebekræftelse - Studentlife</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ordrebekræftelse - Studentlife</title>
+  <!--[if mso]>
+  <xml>
+    <o:OfficeDocumentSettings>
+      <o:AllowPNG/>
+      <o:PixelsPerInch>96</o:PixelsPerInch>
+    </o:OfficeDocumentSettings>
+  </xml>
+  <![endif]-->
+  <style>
+    @media only screen and (max-width: 600px) {
+      table[class="container"] { width: 100% !important; }
+    }
+  </style>
 </head>
-<body style="margin: 0; box-sizing: border-box; padding: 0; font-family: Arial, sans-serif; background-color: #ffff; color: #333333; line-height: 1.4;">
-    <!-- Main Container -->
-    <div style="max-width: 700px; margin: 0 auto; background-color: #ffffff; padding: 0 20px;">
-        
-        <!-- Header -->
-        
-        <!-- Content Area -->
-        <div>
-            
-            <!-- Order Information -->
-            <div style="margin-bottom: 30px; margin-top: 20px;">
-                <div style="font-size: 21px; font-weight: bold; margin-bottom: 15px; color: #333333;">Kunde ordre oplysninger:</div>
-                <p style="margin-bottom: 15px; font-size: 16px;">Ordren er oprettet: ${orderDate.toLocaleDateString()}</p>
-                <div style="background-color: #f2f3f2; padding: 15px; margin: 20px 0; font-weight: bold; font-size: 15px; text-align: center;">
-                    Order nr: ${orderNumber}
-                </div>
-            </div>
-            
-            <!-- Payment & Delivery Info -->
-                <!-- Payment Information -->
-                <div style="background-color: #f2f3f2; padding: 30px 25px; margin-bottom: 20px">
-                    <div style="font-size: 19px; font-weight: bold; margin-bottom: 15px;">Betalingsoplysninger</div>
-                    <div style="margin-bottom: 10px;">
-                        <div style="font-weight: bold; margin-bottom: 5px; font-size: 15px;">Oplysninger om betaleren</div>
-                    </div>
-                    <div style="margin-bottom: 10px;">
-                        <div style="font-weight: bold; margin-bottom: 5px; font-size: 15px;">Navn:</div>
-                        <div style="margin-bottom: 10px; font-size: 16px;">${customerDetails.firstName} ${customerDetails.lastName}</div>
-                    </div>
-                    <div style="margin-bottom: 10px;">
-                        <div style="font-weight: bold; margin-bottom: 5px; font-size: 15px;">Adresse:</div>
-                        <div style="margin-bottom: 10px; font-size: 16px;">${customerDetails.address}</div>
-                    </div>
-                    <div style="margin-bottom: 10px;">
-                        <div style="font-weight: bold; margin-bottom: 5px; font-size: 15px;">Postnummer og by:</div>
-                        <div style="margin-bottom: 10px; font-size: 16px;">${customerDetails.postalCode} ${customerDetails.city}</div>
-                    </div>
-                </div>
-                
-                <!-- Delivery Information -->
-                <div style="background-color: #f2f3f2; padding: 30px 25px; margin-bottom: 20px;">
-                    <div style="font-size: 19px; font-weight: bold; margin-bottom: 15px;">Leveringsoplysninger</div>
-                    <div style="margin-bottom: 10px;">
-                        <div style="font-weight: bold; margin-bottom: 5px; font-size: 15px;">Navn:</div>
-                        <div style="margin-bottom: 10px; font-size: 16px;">${customerDetails.firstName} ${customerDetails.lastName}</div>
-                    </div>
-                    <div style="margin-bottom: 10px;">
-                        <div style="font-weight: bold; margin-bottom: 5px; font-size: 15px;">Adresse:</div>
-                        <div style="margin-bottom: 10px; font-size: 16px;">${customerDetails.address}</div>
-                    </div>
-                    <div style="margin-bottom: 10px;">
-                        <div style="font-weight: bold; margin-bottom: 5px; font-size: 15px;">Postnummer og by:</div>
-                        <div style="margin-bottom: 10px; font-size: 16px;">${customerDetails.postalCode} ${customerDetails.city}</div>
-                    </div>
-                    <div style="margin-bottom: 10px;">
-                        <div style="font-weight: bold; margin-bottom: 5px; font-size: 15px;">Skole navn:</div>
-                        <div style="margin-bottom: 10px; font-size: 16px;">${customerDetails.Skolenavn}</div>
-                    </div>
-                    <div style="margin-bottom: 10px;">
-                        <div style="font-weight: bold; margin-bottom: 5px; font-size: 15px;">levering til skolen:</div>
-                        <div style="margin-bottom: 10px; font-size: 16px;">${customerDetails.deliverToSchool ? "Ja" : "Nej"}</div>
-                    </div>
-                    ${customerDetails.notes ? `
-                    <div style="margin-bottom: 10px;">
-                        <div style="font-weight: bold; margin-bottom: 5px; font-size: 15px;">Levering:</div>
-                        <div style="margin-bottom: 10px; font-size: 16px;">${customerDetails.notes}</div>
-                    </div>
-                    ` : ''}
-                </div>
-            </div>
-            
-            <!-- Order Details -->
-            <div style="background-color: #ffffff; padding: 30px 20px 10px 20px;">
-                <div>
-                    <div style="font-weight: bold; font-size: 18px;">Ordre detaljer</div>
-                </div>
-            </div>
-            
-            <div style="background-color: #fbfbfb; padding: 30px;">
-                <div style="margin-bottom: 10px;">
-                    <div style="font-weight: bold; font-size: 18px;">${packageName}</div>
-                </div>
-                <div style="margin-bottom: 10px;">
-                    <div><span style="font-weight: bold; font-size: 16px; margin-right: 5px;">Pris:</span><span style="font-size: 16px;">${totalPrice} DKK</span></div>
-                </div>
-            </div>
-            
-            <!-- Product Details Section -->
-            <div style="background-color: #f2f3f2; padding: 40px 30px; margin-bottom: 30px;">
-                
-                <!-- Product Details Columns -->
-                <div>
-                    
-                    <!-- Left Column -->
-                    <div>
-                        
-                        <!-- Kokarde Section -->
-                        <div style="margin-bottom: 25px;">
-                            <div style="font-size: 18px; font-weight: bold; margin-bottom: 15px; color: #333333;">Kokarde</div>
-                            <div style="background-color: #f7f8f7; padding: 20px;">
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Roset farve</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.KOKARDE['Roset farve'].name}</div>
-                              </div>
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Kokarde type</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.KOKARDE.Kokarde}</div>
-                              </div>
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Emblem</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.KOKARDE.Emblem.name} </div>
-                              </div>
-                              <div>
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Emblem type</div>
-                                  <div style="font-size: 16px;">${selectedOptions.KOKARDE.Type}</div>
-                              </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Front Embroidery Section -->
-                        ${!selectedOptions.UDDANNELSESBÅND["Broderi foran"] ? '' : `
-                        <div style="margin-bottom: 25px; margin-top: 20px;">
-                            <div style="font-size: 18px; font-weight: bold; margin-bottom: 15px; color: #333333;">Broderi foran</div>
-                            <div style="background-color: #f7f8f7; padding: 20px;">
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Tekst maks. 20 tegn</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.UDDANNELSESBÅND["Broderi foran"]}</div>
-                              </div>
-                              <div>
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Broderi farve</div>
-                                  <div style="font-size: 16px;">${selectedOptions.UDDANNELSESBÅND["Broderi farve"]}</div>
-                              </div>
-                            </div>
-                        </div>
-                        `}
-                        
-                        <!-- Back Embroidery Section -->
-                        <div style="margin-bottom: 25px; margin-top: 20px;">
-                            <div style="font-size: 18px; font-weight: bold; margin-bottom: 15px; color: #333333;">Broderi Bagpå</div>
-                              <div style="background-color: #f7f8f7; padding: 20px;">
-                              ${!selectedOptions.BRODERI || !selectedOptions.BRODERI["Navne broderi"] ? '' : `
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Name embroidery (Tekst) maks. 26</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.BRODERI["Navne broderi"]}</div>
-                              </div>
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Embroidery color</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.BRODERI?.Broderifarve || 'Ikke valgt'}</div>
-                              </div>
-                              `}
-                              
-                              ${!selectedOptions.BRODERI || !selectedOptions.BRODERI.Skolebroderi ? '' : `
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">School embroidery (Tekst) maks. 35</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.BRODERI.Skolebroderi}</div>
-                              </div>
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Embroidery color</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.BRODERI?.['Skolebroderi farve'] || 'Ikke valgt'}</div>
-                              </div>
-                              `}
-                              
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Knap Farve</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.UDDANNELSESBÅND['Knap farve']}</div>
-                              </div>
-                              <div>
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">År</div>
-                                  <div style="font-size: 16px;">${selectedOptions.UDDANNELSESBÅND.år}</div>
-                              </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Brim Section -->
-                        <div style="margin-bottom: 25px; margin-top: 20px;">
-                            <div style="font-size: 18px; font-weight: bold; margin-bottom: 15px; color: #333333;">Skygge</div>
-                            <div style="background-color: #f7f8f7; padding: 20px;">
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Type</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.SKYGGE.Type}</div>
-                              </div>
-                              ${selectedOptions.SKYGGE.Type === 'Glimmer' ? '' : `
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Material</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.SKYGGE.Materiale}</div>
-                              </div>
-                              `}
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Skyggebånd</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.SKYGGE.Skyggebånd}</div>
-                              </div>
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Linje 1</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${!selectedOptions.SKYGGE["Skyggegravering Line 1"] ? 'Ikke valgt' : selectedOptions.SKYGGE["Skyggegravering Line 1"]}</div>
-                              </div>
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Linje 2</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${!selectedOptions.SKYGGE["Skyggegravering Line 2"] ? 'Ikke valgt' : selectedOptions.SKYGGE["Skyggegravering Line 2"]}</div>
-                              </div>
-                              <div>
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Linje 3</div>
-                                  <div style="font-size: 16px;">${!selectedOptions.SKYGGE["Skyggegravering Line 3"] ? 'Ikke valgt' : selectedOptions.SKYGGE["Skyggegravering Line 3"]}</div>
-                              </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Extra Cover Section -->
-                        <div style="margin-bottom: 25px; margin-top: 20px;">
-                            <div style="font-size: 18px; font-weight: bold; margin-bottom: 15px; color: #333333;">Extra Cover</div>
-                            <div style="background-color: #f7f8f7; padding: 20px;">
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Tilvælg</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.EKSTRABETRÆK.Tilvælg === 'Ja' ? 'Ja' : 'Fravalgt'}</div>
-                              </div>
-                              
-                              ${selectedOptions.EKSTRABETRÆK.Tilvælg === 'Ja' ? `
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Farve</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.EKSTRABETRÆK.Farve}</div>
-                              </div>
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Topkant</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.EKSTRABETRÆK.Topkant === 'NONE' || selectedOptions.EKSTRABETRÆK.Topkant === 'None' ? 'Ingen' : selectedOptions.EKSTRABETRÆK.Topkant}</div>
-                              </div>
-                              ${!shouldHideSelectors ? `
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Kantbånd</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.EKSTRABETRÆK.Kantbånd === 'NONE' || selectedOptions.EKSTRABETRÆK.Kantbånd === 'None' ? 'Ingen' : selectedOptions.EKSTRABETRÆK.Kantbånd}</div>
-                              </div>
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Flagbånd</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${!selectedOptions.EKSTRABETRÆK.Flagbånd ? 'Fravalgt' : selectedOptions.EKSTRABETRÆK.Flagbånd == 'Nej' ? 'Fravalgt' : selectedOptions.EKSTRABETRÆK.Flagbånd}</div>
-                              </div>
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Stjerner</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.KOKARDE.Emblem.name}</div>
-                              </div>
-                              ` : ''}
-                              ${!selectedOptions.BRODERI || !selectedOptions.BRODERI.Skolebroderi ? '' : `
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Skolebroderi</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.BRODERI.Skolebroderi}</div>
-                              </div>
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Broderiets farve</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.BRODERI['Skolebroderi farve']}</div>
-                              </div>
-                              `}
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Lyskugle</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.TILBEHØR.Lyskugle === 'Ja' ? 'Ja' : 'Fravalgt'}</div>
-                              </div>
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Luksus champagneglas</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.TILBEHØR['Luksus champagneglas'] === 'Ja' ? 'Ja' : 'Fravalgt'}</div>
-                              </div>
-                              <div>
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Fløjte</div>
-                                  <div style="font-size: 16px;">${selectedOptions.TILBEHØR.Fløjte === 'Ja' ? 'Ja' : 'Fravalgt'}</div>
-                              </div>
-                              ` : ''}
-                            </div>
-                        </div>
-                        
-                        <!-- Size Section -->
-                        <div style="margin-bottom: 25px; margin-top: 20px;">
-                            <div style="font-size: 18px; font-weight: bold; margin-bottom: 15px; color: #333333;">Størrelse</div>
-                            <div style="background-color: #f7f8f7; padding: 20px;">
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Vælg størrelse (Size)</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.STØRRELSE["Vælg størrelse"]}</div>
-                              </div>
-                              <div>
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Millimeter tilpasningssæt</div>
-                                  <div style="font-size: 16px;">${selectedOptions.STØRRELSE["Millimeter tilpasningssæt"] === 'Ja' ? 'Ja' : 'Fravalgt'}</div>
-                              </div>
-                            </div>
-                        </div>
-                        
-                    </div>
-                    
-                    <!-- Right Column -->
-                    <div style="width: 100%;">
-                        
-                        <!-- Education Band Section -->
-                        <div style="margin-bottom: 25px;">
-                            <div style="font-size: 18px; font-weight: bold; margin-bottom: 15px; color: #333333;">Uddannelsesbånd</div>
-                            <div style="background-color: #f7f8f7; padding: 20px;">
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Huebånd</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.UDDANNELSESBÅND.Huebånd}</div>
-                              </div>
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Materiale</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.UDDANNELSESBÅND.Materiale}</div>
-                              </div>
-                              <div>
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Hagerem</div>
-                                  <div style="font-size: 16px;">${selectedOptions.UDDANNELSESBÅND.Hagerem}</div>
-                              </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Cover Section -->
-                        <div style="margin-bottom: 25px; margin-top: 20px;">
-                            <div style="font-size: 18px; font-weight: bold; margin-bottom: 15px; color: #333333;">Betræk</div>
-                            <div style="background-color: #f7f8f7; padding: 20px;">
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Farve</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.BETRÆK.Farve}</div>
-                              </div>
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Topkant</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.BETRÆK.Topkant === 'NONE' || selectedOptions.BETRÆK.Topkant === 'None' ? 'Ingen' : selectedOptions.BETRÆK.Topkant}</div>
-                              </div>
-                              ${!shouldHideSelectors ? `
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Kantbånd</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.BETRÆK.Kantbånd === 'NONE' || selectedOptions.BETRÆK.Kantbånd === 'None' ? 'Ingen' : selectedOptions.BETRÆK.Kantbånd}</div>
-                              </div>
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Stjerner</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.BETRÆK.Stjerner === 'NONE' || selectedOptions.BETRÆK.Stjerner === 'None' ? 'Ingen' : selectedOptions.BETRÆK.Stjerner}</div>
-                              </div>
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Stjerner farve</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.KOKARDE.Emblem.name}</div>
-                              </div>
-                              <div>
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Flagbånd</div>
-                                  <div style="font-size: 16px;">${!selectedOptions.BETRÆK.Flagbånd ? 'Fravalgt' : selectedOptions.BETRÆK.Flagbånd == 'Nej' ? 'Fravalgt' : selectedOptions.BETRÆK.Flagbånd}</div>
-                              </div>
-                              ` : ''}
-                            </div>
-                        </div>
-                        
-                        <!-- Lining Section -->
-                        <div style="margin-bottom: 25px; margin-top: 20px;">
-                            <div style="font-size: 18px; font-weight: bold; margin-bottom: 15px; color: #333333;">Foer</div>
-                            <div style="background-color: #f7f8f7; padding: 20px;">
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Svederem</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.FOER.Svederem}</div>
-                              </div>
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Farve</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.FOER.Farve}</div>
-                              </div>
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Sløjfe</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.FOER.Sløjfe}</div>
-                              </div>
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Forring</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.FOER.Foer}</div>
-                              </div>
-                              ${!selectedOptions.FOER || !selectedOptions.FOER['Satin Type'] ? '' : `
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Satin Type</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${!selectedOptions.FOER['Satin Type'] ? 'Ikke valgt' : selectedOptions.FOER['Satin Type']}</div>
-                              </div>
-                              `}
-                              ${!selectedOptions.FOER || !selectedOptions.FOER['Silk Type'] ? '' : `
-                              <div>
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Silk Type</div>
-                                  <div style="font-size: 16px;">${!selectedOptions.FOER['Silk Type'] ? 'Ikke valgt' : selectedOptions.FOER['Silk Type']}</div>
-                              </div>
-                              `}
-                            </div>
-                        </div>
-                        
-                        <!-- Accessories Section -->
-                        <div style="margin-bottom: 25px; margin-top: 20px;">
-                            <div style="font-size: 18px; font-weight: bold; margin-bottom: 15px; color: #333333;">Tilbehør</div>
-                            <div style="background-color: #f7f8f7; padding: 20px;">
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Hueæske</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.TILBEHØR.Hueæske}</div>
-                              </div>
-                              ${selectedOptions.TILBEHØR['Premium æske'] ? `
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Premium æske</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.TILBEHØR['Premium æske']}</div>
-                              </div>
-                              ` : ''}
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Huekuglepen</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.TILBEHØR.Huekuglepen === 'Ja' ? 'Ja' : 'Fravalgt'}</div>
-                              </div>
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Silkepude</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.TILBEHØR.Silkepude === 'Ja' ? 'Ja' : 'Fravalgt'}</div>
-                              </div>
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Ekstra Kokarde</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.TILBEHØR['Ekstra korkarde'] === 'Fravalgt' ? 'Fravalgt' : selectedOptions.TILBEHØR['Ekstra korkarde Text']}</div>
-                              </div>
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Handsker</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.TILBEHØR.Handsker === 'Ja' ? 'Ja' : 'Fravalgt'}</div>
-                              </div>
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Stor kuglepen</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.TILBEHØR["Store kuglepen"] === 'Ja' ? 'Ja' : 'Fravalgt'}</div>
-                              </div>
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Smarttag</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.TILBEHØR["Smart Tag"] === 'Ja' ? 'Ja' : 'Fravalgt'}</div>
-                              </div>
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Lille flag</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.TILBEHØR['Lille Flag'] === 'Fravalgt' ? 'Fravalgt' : selectedOptions.TILBEHØR['Lille Flag Text']}</div>
-                              </div>
-                              <div style="margin-bottom: 10px; border-bottom: 1px solid #cdcdcd;">
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Trompet</div>
-                                  <div style="margin-bottom: 10px; font-size: 16px;">${selectedOptions.TILBEHØR.Trompet === 'Ja' ? 'Ja' : 'Fravalgt'}</div>
-                              </div>
-                              <div>
-                                  <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Bucketpins</div>
-                                  <div style="font-size: 16px;">${selectedOptions.TILBEHØR.Bucketpins === 'Ja' ? 'Ja' : 'Fravalgt'}</div>
-                              </div>
-                            </div>
-                        </div>
-                    </div>
-            </div>
-        </div>
-        
-        <!-- Footer with Total -->
-        <div style="background-color: #f2f3f2; padding: 20px; margin-top: 30px; margin-bottom: 30px;">
-            <div style="font-size: 18px; font-weight: bold; margin-bottom: 5px;">Total: ${totalPrice} DKK</div>
-            <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">Inklusiv moms</div>
-            <hr style="border: none; border-top: 1px solid #cdcdcd; margin: 15px 0;">
-            <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">SUM: ${totalPrice} DKK</div>
-            <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">LEVERING: 0 DKK</div>
-            <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">MOMS: ${(totalPrice * 0.20).toFixed(2)} DKK</div>
-        </div>
-        
-    </div>
+<body style="margin:0; padding:0; background-color:#ffffff; font-family:Arial, sans-serif; color:#333333; line-height:1.4;">
+
+  <!-- Full-width wrapper -->
+  <table width="100%" border="0" cellpadding="0" cellspacing="0" style="background-color:#ffffff;">
+    <tr>
+      <td align="center">
+        <!-- Fixed-width container (700px) -->
+        <table width="700" border="0" cellpadding="0" cellspacing="0" class="container" style="max-width:700px; width:100%;">
+          <tr>
+            <td style="padding:0 20px;">
+
+              <!-- Order Information -->
+              <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td style="font-size:18px; font-weight:bold; padding-bottom:15px; color:#333333;">Kunde ordre oplysninger:</td>
+                </tr>
+                <tr>
+                  <td style="font-size:16px; padding-bottom:15px;">Ordren er oprettet: ${orderDate.toLocaleDateString()}</td>
+                </tr>
+                <tr>
+                  <td style="background-color:#f2f3f2; padding:15px; font-weight:bold; font-size:15px; text-align:center;">Order nr: ${orderNumber}</td>
+                </tr>
+              </table>
+
+              <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td style="height:15px; font-size:0; line-height:0;">&nbsp;</td>
+                </tr>
+              </table>
+
+              <!-- Payment Information -->
+              <table width="100%" border="0" cellpadding="0" cellspacing="0" style="background-color:#f2f3f2; padding:30px 25px;">
+                <tr>
+                  <td style="font-size:19px; font-weight:bold; padding-bottom:15px;">Betalingsoplysninger</td>
+                </tr>
+                <tr>
+                  <td style="padding-bottom:10px;">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                      <tr><td style="font-weight:bold; font-size:15px; padding-bottom:5px;">Oplysninger om betaleren</td></tr>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding-bottom:10px;">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                      <tr><td style="font-weight:bold; font-size:15px; padding-bottom:5px;">Navn:</td></tr>
+                      <tr><td style="font-size:16px;">${customerDetails.firstName} ${customerDetails.lastName}</td></tr>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding-bottom:10px;">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                      <tr><td style="font-weight:bold; font-size:15px; padding-bottom:5px;">Adresse:</td></tr>
+                      <tr><td style="font-size:16px;">${customerDetails.address}</td></tr>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding-bottom:10px;">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                      <tr><td style="font-weight:bold; font-size:15px; padding-bottom:5px;">Postnummer og by:</td></tr>
+                      <tr><td style="font-size:16px;">${customerDetails.postalCode} ${customerDetails.city}</td></tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+
+              <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td style="height:15px; font-size:0; line-height:0;">&nbsp;</td>
+                </tr>
+              </table>
+
+              <!-- Delivery Information -->
+              <table width="100%" border="0" cellpadding="0" cellspacing="0" style="background-color:#f2f3f2; padding:30px 25px; margin-bottom:20px;">
+                <tr>
+                  <td style="font-size:19px; font-weight:bold; padding-bottom:15px;">Leveringsoplysninger</td>
+                </tr>
+                <tr>
+                  <td style="padding-bottom:10px;">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                      <tr><td style="font-weight:bold; font-size:15px; padding-bottom:5px;">Navn:</td></tr>
+                      <tr><td style="font-size:16px;">${customerDetails.firstName} ${customerDetails.lastName}</td></tr>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding-bottom:10px;">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                      <tr><td style="font-weight:bold; font-size:15px; padding-bottom:5px;">Adresse:</td></tr>
+                      <tr><td style="font-size:16px;">${customerDetails.address}</td></tr>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding-bottom:10px;">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                      <tr><td style="font-weight:bold; font-size:15px; padding-bottom:5px;">Postnummer og by:</td></tr>
+                      <tr><td style="font-size:16px;">${customerDetails.postalCode} ${customerDetails.city}</td></tr>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding-bottom:10px;">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                      <tr><td style="font-weight:bold; font-size:15px; padding-bottom:5px;">Skole navn:</td></tr>
+                      <tr><td style="font-size:16px;">${customerDetails.Skolenavn}</td></tr>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding-bottom:10px;">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                      <tr><td style="font-weight:bold; font-size:15px; padding-bottom:5px;">levering til skolen:</td></tr>
+                      <tr><td style="font-size:16px;">${customerDetails.deliverToSchool ? "Ja" : "Nej"}</td></tr>
+                    </table>
+                  </td>
+                </tr>
+                ${customerDetails.notes ? `
+                <tr>
+                  <td style="padding-bottom:10px;">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                      <tr><td style="font-weight:bold; font-size:15px; padding-bottom:5px;">Levering:</td></tr>
+                      <tr><td style="font-size:16px;">${customerDetails.notes}</td></tr>
+                    </table>
+                  </td>
+                </tr>
+                ` : ''}
+              </table>
+
+              <!-- Order Details Header -->
+              <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td style="background-color:#ffffff; padding:30px 20px 10px 20px; font-weight:bold; font-size:18px;">Ordre detaljer</td>
+                </tr>
+              </table>
+
+              <!-- Package Summary -->
+              <table width="100%" border="0" cellpadding="0" cellspacing="0" style="background-color:#fbfbfb;">
+                <tr>
+                  <td style="padding:30px;">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                      <tr><td style="font-weight:bold; font-size:18px; padding-bottom:10px;">${packageName}</td></tr>
+                      <tr>
+                        <td style="font-size:16px;">
+                          <span style="font-weight:bold; margin-right:5px;">Pris:</span>
+                          <span>${totalPrice} DKK</span>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Product Details Area -->
+              <table width="100%" border="0" cellpadding="0" cellspacing="0" style="background-color:#f2f3f2; padding:40px 30px;">
+
+                <!-- Kokarde -->
+                <tr>
+                  <td style="padding-bottom:25px;">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td style="font-size:18px; font-weight:bold; padding-bottom:15px; color:#333333;">Kokarde</td>
+                      </tr>
+                      <tr>
+                        <td style="background-color:#f7f8f7; padding:20px;">
+                          <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Roset farve</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.KOKARDE['Roset farve'].name}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Kokarde type</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.KOKARDE.Kokarde}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Emblem</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.KOKARDE.Emblem.name}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Emblem type</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.KOKARDE.Type}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+
+                <!-- Uddannelsesbånd -->
+                <tr>
+                  <td style="padding-bottom:25px;">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td style="font-size:18px; font-weight:bold; padding-bottom:15px; color:#333333;">Uddannelsesbånd</td>
+                      </tr>
+                      <tr>
+                        <td style="background-color:#f7f8f7; padding:20px;">
+                          <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Huebånd</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.UDDANNELSESBÅND.Huebånd}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Materiale</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.UDDANNELSESBÅND.Materiale}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Hagerem</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.UDDANNELSESBÅND.Hagerem}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+
+                <!-- Broderi foran (Conditional) -->
+                ${!selectedOptions.UDDANNELSESBÅND["Broderi foran"] ? `` : `
+                <tr>
+                  <td style="padding-bottom:25px;">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td style="font-size:18px; font-weight:bold; padding-bottom:15px; color:#333333;">Broderi foran</td>
+                      </tr>
+                      <tr>
+                        <td style="background-color:#f7f8f7; padding:20px;">
+                          <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Tekst maks. 20 tegn</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.UDDANNELSESBÅND["Broderi foran"]}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Broderi farve</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.UDDANNELSESBÅND["Broderi farve"]}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>`}
+
+                <!-- Broderi Bagpå -->
+                <tr>
+                  <td style="padding-bottom:25px;">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td style="font-size:18px; font-weight:bold; padding-bottom:15px; color:#333333;">Broderi Bagpå</td>
+                      </tr>
+                      <tr>
+                        <td style="background-color:#f7f8f7; padding:20px;">
+                          <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                            ${!selectedOptions.BRODERI || !selectedOptions.BRODERI["Navne broderi"] ? `` : `
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Name embroidery (Tekst) maks. 26</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.BRODERI["Navne broderi"]}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Embroidery color</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.BRODERI?.Broderifarve || 'Ikke valgt'}</td></tr>
+                                </table>
+                              </td>
+                            </tr>`}
+                            ${!selectedOptions.BRODERI || !selectedOptions.BRODERI.Skolebroderi ? '' : `
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">School embroidery (Tekst) maks. 35</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.BRODERI.Skolebroderi}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Embroidery color</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.BRODERI?.['Skolebroderi farve'] || 'Ikke valgt'}</td></tr>
+                                </table>
+                              </td>
+                            </tr>`}
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Knap Farve</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.UDDANNELSESBÅND['Knap farve']}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">År</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.UDDANNELSESBÅND.år}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+
+                <!-- Skygge -->
+                <tr>
+                  <td style="padding-bottom:25px;">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td style="font-size:18px; font-weight:bold; padding-bottom:15px; color:#333333;">Skygge</td>
+                      </tr>
+                      <tr>
+                        <td style="background-color:#f7f8f7; padding:20px;">
+                          <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Type</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.SKYGGE.Type}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            ${selectedOptions.SKYGGE.Type === 'Glimmer' ? `` : `
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Material</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.SKYGGE.Materiale}</td></tr>
+                                </table>
+                              </td>
+                            </tr>`}
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Skyggebånd</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.SKYGGE.Skyggebånd}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Linje 1</td></tr>
+                                  <tr><td style="font-size:16px;">${!selectedOptions.SKYGGE["Skyggegravering Line 1"] ? 'Ikke valgt' : selectedOptions.SKYGGE["Skyggegravering Line 1"]}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Linje 2</td></tr>
+                                  <tr><td style="font-size:16px;">${!selectedOptions.SKYGGE["Skyggegravering Line 2"] ? 'Ikke valgt' : selectedOptions.SKYGGE["Skyggegravering Line 2"]}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Linje 3</td></tr>
+                                  <tr><td style="font-size:16px;">${!selectedOptions.SKYGGE["Skyggegravering Line 3"] ? 'Ikke valgt' : selectedOptions.SKYGGE["Skyggegravering Line 3"]}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+
+                <!-- Extra Cover -->
+                <tr>
+                  <td style="padding-bottom:25px;">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td style="font-size:18px; font-weight:bold; padding-bottom:15px; color:#333333;">Extra Cover</td>
+                      </tr>
+                      <tr>
+                        <td style="background-color:#f7f8f7; padding:20px;">
+                          <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Tilvælg</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.EKSTRABETRÆK.Tilvælg === 'Ja' ? 'Ja' : 'Fravalgt'}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            ${selectedOptions.EKSTRABETRÆK.Tilvælg === 'Ja' ? `
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Farve</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.EKSTRABETRÆK.Farve}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Topkant</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.EKSTRABETRÆK.Topkant === 'NONE' || selectedOptions.EKSTRABETRÆK.Topkant === 'None' ? 'Ingen' : selectedOptions.EKSTRABETRÆK.Topkant}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            ${!shouldHideSelectors ? `
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Kantbånd</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.EKSTRABETRÆK.Kantbånd === 'NONE' || selectedOptions.EKSTRABETRÆK.Kantbånd === 'None' ? 'Ingen' : selectedOptions.EKSTRABETRÆK.Kantbånd}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Flagbånd</td></tr>
+                                  <tr><td style="font-size:16px;">${!selectedOptions.EKSTRABETRÆK.Flagbånd ? 'Fravalgt' : selectedOptions.EKSTRABETRÆK.Flagbånd == 'Nej' ? 'Fravalgt' : selectedOptions.EKSTRABETRÆK.Flagbånd}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            ${!selectedOptions.EKSTRABETRÆK.Stjerner === "INGEN" ? `` : `
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Stjerner</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.KOKARDE.Emblem.name}</td></tr>
+                                </table>
+                              </td>
+                            </tr>`}
+                            ` : ''}
+                            ${!selectedOptions.BRODERI || !selectedOptions.BRODERI.Skolebroderi ? `` : `
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Skolebroderi</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.BRODERI.Skolebroderi}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Broderiets farve</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.BRODERI['Skolebroderi farve']}</td></tr>
+                                </table>
+                              </td>
+                            </tr>`}
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Lyskugle</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.TILBEHØR.Lyskugle === 'Ja' ? 'Ja' : 'Fravalgt'}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Luksus champagneglas</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.TILBEHØR['Luksus champagneglas'] === 'Ja' ? 'Ja' : 'Fravalgt'}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Fløjte</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.TILBEHØR.Fløjte === 'Ja' ? 'Ja' : 'Fravalgt'}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            ` : ''}
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+
+                <!-- Størrelse -->
+                <tr>
+                  <td style="padding-bottom:25px;">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td style="font-size:18px; font-weight:bold; padding-bottom:15px; color:#333333;">Størrelse</td>
+                      </tr>
+                      <tr>
+                        <td style="background-color:#f7f8f7; padding:20px;">
+                          <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Vælg størrelse (Size)</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.STØRRELSE["Vælg størrelse"]}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Millimeter tilpasningssæt</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.STØRRELSE["Millimeter tilpasningssæt"] === 'Ja' ? 'Ja' : 'Fravalgt'}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+
+                <!-- Betræk -->
+                <tr>
+                  <td style="padding-bottom:25px;">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td style="font-size:18px; font-weight:bold; padding-bottom:15px; color:#333333;">Betræk</td>
+                      </tr>
+                      <tr>
+                        <td style="background-color:#f7f8f7; padding:20px;">
+                          <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Farve</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.BETRÆK.Farve}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Topkant</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.BETRÆK.Topkant === 'NONE' || selectedOptions.BETRÆK.Topkant === 'None' ? 'Ingen' : selectedOptions.BETRÆK.Topkant}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            ${!shouldHideSelectors ? `
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Kantbånd</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.BETRÆK.Kantbånd === 'NONE' || selectedOptions.BETRÆK.Kantbånd === 'None' ? 'Ingen' : selectedOptions.BETRÆK.Kantbånd}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Stjerner</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.BETRÆK.Stjerner === 'NONE' || selectedOptions.BETRÆK.Stjerner === 'None' ? 'Ingen' : selectedOptions.BETRÆK.Stjerner}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            ${selectedOptions.BETRÆK.Stjerner === "INGEN" ? `` : `
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Stjerner farve</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.KOKARDE.Emblem.name}</td></tr>
+                                </table>
+                              </td>
+                            </tr>`}
+                            <tr>
+                              <td style="padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Flagbånd</td></tr>
+                                  <tr><td style="font-size:16px;">${!selectedOptions.BETRÆK.Flagbånd ? 'Fravalgt' : selectedOptions.BETRÆK.Flagbånd == 'Nej' ? 'Fravalgt' : selectedOptions.BETRÆK.Flagbånd}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            ` : ''}
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+
+                <!-- Foer -->
+                <tr>
+                  <td style="padding-bottom:25px;">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td style="font-size:18px; font-weight:bold; padding-bottom:15px; color:#333333;">Foer</td>
+                      </tr>
+                      <tr>
+                        <td style="background-color:#f7f8f7; padding:20px;">
+                          <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Svederem</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.FOER.Svederem}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Farve</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.FOER.Farve}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Sløjfe</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.FOER.Sløjfe}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Forring</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.FOER.Foer}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            ${!selectedOptions.FOER || !selectedOptions.FOER['Satin Type'] ? '' : `
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Satin Type</td></tr>
+                                  <tr><td style="font-size:16px;">${!selectedOptions.FOER['Satin Type'] ? 'Ikke valgt' : selectedOptions.FOER['Satin Type']}</td></tr>
+                                </table>
+                              </td>
+                            </tr>`}
+                            ${!selectedOptions.FOER || !selectedOptions.FOER['Silk Type'] ? '' : `
+                            <tr>
+                              <td style="padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Silk Type</td></tr>
+                                  <tr><td style="font-size:16px;">${!selectedOptions.FOER['Silk Type'] ? 'Ikke valgt' : selectedOptions.FOER['Silk Type']}</td></tr>
+                                </table>
+                              </td>
+                            </tr>`}
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+
+                <!-- Tilbehør -->
+                <tr>
+                  <td style="padding-top:20px;">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td style="font-size:18px; font-weight:bold; padding-bottom:15px; color:#333333;">Tilbehør</td>
+                      </tr>
+                      <tr>
+                        <td style="background-color:#f7f8f7; padding:20px;">
+                          <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Hueæske</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.TILBEHØR.Hueæske}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            ${selectedOptions.TILBEHØR['Premium æske'] ? `
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Premium æske</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.TILBEHØR['Premium æske']}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            ` : ''}
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Huekuglepen</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.TILBEHØR.Huekuglepen === 'Ja' ? 'Ja' : 'Fravalgt'}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Silkepude</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.TILBEHØR.Silkepude === 'Ja' ? 'Ja' : 'Fravalgt'}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Ekstra Kokarde</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.TILBEHØR['Ekstra korkarde'] === 'Fravalgt' ? 'Fravalgt' : selectedOptions.TILBEHØR['Ekstra korkarde Text']}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Handsker</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.TILBEHØR.Handsker === 'Ja' ? 'Ja' : 'Fravalgt'}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Stor kuglepen</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.TILBEHØR["Store kuglepen"] === 'Ja' ? 'Ja' : 'Fravalgt'}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Smarttag</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.TILBEHØR["Smart Tag"] === 'Ja' ? 'Ja' : 'Fravalgt'}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Lille flag</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.TILBEHØR['Lille Flag'] === 'Fravalgt' ? 'Fravalgt' : selectedOptions.TILBEHØR['Lille Flag Text']}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Trompet</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.TILBEHØR.Trompet === 'Ja' ? 'Ja' : 'Fravalgt'}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Bucketpins</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.TILBEHØR.Bucketpins === 'Ja' ? 'Ja' : 'Fravalgt'}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+
+              </table>
+
+              <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td style="height:15px; font-size:0; line-height:0;">&nbsp;</td>
+                </tr>
+              </table>
+
+              <!-- Footer Total -->
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                    <tr>
+                        <td class="footer-total" style="background-color: #f2f3f2; padding: 20px; margin-top: 30px; margin-bottom: 30px;">
+                            <div style="font-size: 18px; font-weight: bold; margin-bottom: 5px;">Total: ${totalPrice} DKK</div>
+                            <div style="font-size: 14px; text-transform: uppercase;">Inklusiv moms</div>
+                            <hr style="border: none; border-top: 1px solid #cdcdcd; margin: 15px 0;">
+                            <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">SUM: ${totalPrice} DKK</div>
+                            <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">LEVERING: 0 DKK</div>
+                            <div style="margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">MOMS: ${(totalPrice * 0.20).toFixed(2)} DKK</div>
+                        </td>
+                    </tr>
+              </table>
+
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+
 </body>
 </html>
 
