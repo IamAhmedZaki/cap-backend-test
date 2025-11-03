@@ -46,6 +46,80 @@ const workflowStatusChange = async (req, res) => {
 
 }
 
+const translateValue = (value) => {
+  if (!value || value === '' || value === 'Ingen' || value === 'INGEN' || value === 'Nej' || value === 'NONE') {
+    return 'Not Chosen';
+  }
+
+  const map = {
+    // Materials
+    'BOMULD': 'Cotton',
+    'SATIN': 'Satin',
+    'VELOUR': 'Velvet',
+    'GLIMMER': 'Glitter',
+    'SHIMMER': 'Shimmer',
+
+    // Chin Strap
+    'Mat': 'Matte',
+    'Blank': 'Shiny',
+    'Sort/Sort': 'Black/Black',
+    'Sort/Guld': 'Black/Gold',
+    'Sølv/Sort': 'Silver/Black',
+    'Guld': 'Gold',
+    'Sølv': 'Silver',
+
+    // Chin Strap Materials
+    'Mat hagerem': 'Matte Leather Strap',
+    'Blank hagerem': 'Shiny Leather Strap',
+    'Blank kunstlæder hagerem': 'Shiny Faux Leather Strap',
+    'Sort med sorteknuder': 'Black with black knots',
+    'Sort hagerem med sorte knuder': 'Black Strap with Black Knots',
+    'Sort hagerem med guld knuder': 'Black Strap with Gold Knots',
+    'Sølv hagerem med sølvknuder': 'Silver Strap with Silver Knots',
+    'Sølv hagerem med sort knuder': 'Silver Strap with Black Knots',
+    'Guld hagerem med guld knuder': 'Gold Strap with Gold Knots',
+
+    // Colors
+    'Hvid': 'White',
+    'Sort': 'Black',
+    'Hvid med glimmer': 'White Glitter',
+    'Sort med glimmer': 'Black Glitter',
+
+    // Brim
+    'Blank': 'Plain',
+    'Shiny': 'Shiny',
+    'Glimmer': 'Glitter',
+    'Uden kant': 'Without Edge',
+    'Med kant': 'With Edge',
+
+    // Lining
+    'Læder': 'Leather',
+    'Kunstlæder': 'Artificial leather',
+    'Ruskin': 'Ruskin Leather',
+    'Alcantra': 'Alcantara',
+    'Vegansk': 'Vegan',
+    'Cognac': 'Cognac',
+    'Viskose': 'Viscose',
+    'Polyester': 'Polyester',
+    'Satin': 'Satin',
+    'Silk': 'Silk',
+    'Brun': 'Brown',
+    'Champagne': 'Champagne',
+    'Rosa': 'Pink',
+
+    // Flag Bands
+    'International': 'International',
+    'Frankrig-Spanien-Tyskland-UK-Danmark': 'France-Spain-Germany-UK-Denmark',
+    'Usa-Kina-Danmark': 'USA-China-Denmark',
+
+    // Extra
+    'Ja': 'Yes',
+    'Nej': 'No',
+    'Standard': 'Standard'
+  };
+
+  return map[value] || value;
+};
 
 const factoryOrderEmail = (orderData) => {
   let kokardeValue = '';
@@ -308,6 +382,8 @@ const factoryOrderEmail = (orderData) => {
       .join('');
   };
 
+  const t = (value) => translateValue(value);
+
   const html = `
 <!DOCTYPE html>
 <html lang="en">
@@ -394,13 +470,13 @@ const factoryOrderEmail = (orderData) => {
                             <tr>
                               <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
                                 <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Material</div>
-                                <div style="font-size:16px;">${selectedOptions.UDDANNELSESBÅND.Materiale}</div>
+                                <div style="font-size:16px;">${t(selectedOptions.UDDANNELSESBÅND?.Materiale)}</div>
                               </td>
                             </tr>
                             <tr>
                               <td style="padding-top:10px;">
                                 <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Chinstrap</div>
-                                <div style="font-size:16px;">${selectedOptions.UDDANNELSESBÅND.Hagerem}</div>
+                                <div style="font-size:16px;">${t(selectedOptions.UDDANNELSESBÅND?.Hagerem)}</div>
                               </td>
                             </tr>
                           </table>
@@ -430,7 +506,7 @@ const factoryOrderEmail = (orderData) => {
                             <tr>
                               <td style="padding-top:10px;">
                                 <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Embroidery Color</div>
-                                <div style="font-size:16px;">${selectedOptions.UDDANNELSESBÅND["Broderi farve"]}</div>
+                                <div style="font-size:16px;">${t(selectedOptions.UDDANNELSESBÅND?.["Broderi farve"])}</div>
                               </td>
                             </tr>
                           </table>
@@ -460,7 +536,7 @@ const factoryOrderEmail = (orderData) => {
                             <tr>
                               <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
                                 <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Embroidery Color </div>
-                                <div style="font-size:16px;">${selectedOptions.BRODERI?.Broderifarve || 'Not Chosen'}</div>
+                                <div style="font-size:16px;">${t(selectedOptions.BRODERI?.Broderifarve) || 'Not Chosen'}</div>
                               </td>
                             </tr>`}
                             ${!selectedOptions.BRODERI || !selectedOptions.BRODERI.Skolebroderi ? '' : `
@@ -473,13 +549,13 @@ const factoryOrderEmail = (orderData) => {
                             <tr>
                               <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
                                 <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Embroidery Color </div>
-                                <div style="font-size:16px;">${selectedOptions.BRODERI?.['Skolebroderi farve'] || 'Not Chosen'}</div>
+                                <div style="font-size:16px;">${t(selectedOptions.BRODERI?.['Skolebroderi farve']) || 'Not Chosen'}</div>
                               </td>
                             </tr>`}
                             <tr>
                               <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
                                 <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Buttons Color</div>
-                                <div style="font-size:16px;">${selectedOptions.UDDANNELSESBÅND['Knap farve']}</div>
+                                <div style="font-size:16px;">${t(selectedOptions.UDDANNELSESBÅND?.['Knap farve'])}</div>
                               </td>
                             </tr>
                             <tr>
@@ -508,20 +584,20 @@ const factoryOrderEmail = (orderData) => {
                             <tr>
                               <td style="border-bottom:1px solid #cdcdcd; padding-bottom:10px;">
                                 <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Type</div>
-                                <div style="font-size:16px;">${selectedOptions.SKYGGE.Type}</div>
+                                <div style="font-size:16px;">${t(selectedOptions.SKYGGE?.Type)}</div>
                               </td>
                             </tr>
                             ${selectedOptions.SKYGGE.Type==='Glimmer'? '' : `
                             <tr>
                               <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
                                 <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Material </div>
-                                <div style="font-size:16px;">${selectedOptions.SKYGGE.Materiale}</div>
+                                <div style="font-size:16px;">${t(selectedOptions.SKYGGE?.Materiale)}</div>
                               </td>
                             </tr>`}
                             <tr>
                               <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
                                 <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Shadow Band</div>
-                                <div style="font-size:16px;">${selectedOptions.SKYGGE.Skyggebånd}</div>
+                                <div style="font-size:16px;">${t(selectedOptions.SKYGGE?.Skyggebånd)}</div>
                               </td>
                             </tr>
                             <tr>
@@ -570,33 +646,33 @@ const factoryOrderEmail = (orderData) => {
                             <tr>
                               <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
                                 <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Color</div>
-                                <div style="font-size:16px;">${selectedOptions.EKSTRABETRÆK.Farve}</div>
+                                <div style="font-size:16px;">${t(selectedOptions.EKSTRABETRÆK?.Farve)}</div>
                               </td>
                             </tr>
                             <tr>
                               <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
                                 <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Top Edging</div>
-                                <div style="font-size:16px;">${selectedOptions.EKSTRABETRÆK.Topkant}</div>
+                                <div style="font-size:16px;">${t(selectedOptions.EKSTRABETRÆK?.Topkant)}</div>
                               </td>
                             </tr>
                             ${!shouldHideSelectors ? `
                             <tr>
                               <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
                                 <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Edge Ribbon</div>
-                                <div style="font-size:16px;">${selectedOptions.EKSTRABETRÆK.Kantbånd}</div>
+                                <div style="font-size:16px;">${t(selectedOptions.EKSTRABETRÆK?.Kantbånd)}</div>
                               </td>
                             </tr>
                             <tr>
                               <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
                                 <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Flag Ribbon</div>
-                                <div style="font-size:16px;">${!selectedOptions.EKSTRABETRÆK.Flagbånd ? 'Not Chosen':selectedOptions.EKSTRABETRÆK.Flagbånd=='Nej' ? 'Not Chosen': selectedOptions.EKSTRABETRÆK.Flagbånd}</div>
+                                <div style="font-size:16px;">${!selectedOptions.EKSTRABETRÆK.Flagbånd ? 'Not Chosen':selectedOptions.EKSTRABETRÆK.Flagbånd=='Nej' ? 'Not Chosen': t(selectedOptions.EKSTRABETRÆK.Flagbånd)}</div>
                               </td>
                             </tr>
                             ${selectedOptions.EKSTRABETRÆK.Stjerner === 'INGEN'? '' : `
                             <tr>
                               <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
                                 <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Stars (Color Matches the Emblem)</div>
-                                <div style="font-size:16px;">${selectedOptions.KOKARDE.Emblem.name}</div>
+                                <div style="font-size:16px;">${t(selectedOptions.KOKARDE?.Emblem?.name)}</div>
                               </td>
                             </tr>`}
                             ` : ''}
@@ -610,7 +686,7 @@ const factoryOrderEmail = (orderData) => {
                             <tr>
                               <td style="padding-top:10px;">
                                 <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Embroidery Color</div>
-                                <div style="font-size:16px;">${selectedOptions.BRODERI['Skolebroderi farve']}</div>
+                                <div style="font-size:16px;">${t(selectedOptions.BRODERI?.['Skolebroderi farve'])}</div>
                               </td>
                             </tr>`}
                             ` : ''}
@@ -663,20 +739,20 @@ const factoryOrderEmail = (orderData) => {
                             <tr>
                               <td style="border-bottom:1px solid #cdcdcd; padding-bottom:10px;">
                                 <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Color</div>
-                                <div style="font-size:16px;">${selectedOptions.BETRÆK.Farve}</div>
+                                <div style="font-size:16px;">${t(selectedOptions.BETRÆK?.Farve)}</div>
                               </td>
                             </tr>
                             <tr>
                               <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
                                 <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Top Edging</div>
-                                <div style="font-size:16px;">${selectedOptions.BETRÆK.Topkant === 'INGEN' ? 'None' : selectedOptions.BETRÆK.Topkant}</div>
+                                <div style="font-size:16px;">${selectedOptions.BETRÆK?.Topkant === 'INGEN' ? 'None' : t(selectedOptions.BETRÆK?.Topkant)}</div>
                               </td>
                             </tr>
                             ${!shouldHideSelectors ? `
                             <tr>
                               <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
                                 <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Edge Ribbon</div>
-                                <div style="font-size:16px;">${selectedOptions.BETRÆK.Kantbånd === 'INGEN' ? 'None' : selectedOptions.BETRÆK.Kantbånd}</div>
+                                <div style="font-size:16px;">${selectedOptions.BETRÆK?.Kantbånd === 'INGEN' ? 'None' : t(selectedOptions.BETRÆK?.Kantbånd)}</div>
                               </td>
                             </tr>
                             <tr>
@@ -689,13 +765,13 @@ const factoryOrderEmail = (orderData) => {
                             <tr>
                               <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
                                 <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Stars Color</div>
-                                <div style="font-size:16px;">${selectedOptions.KOKARDE.Emblem.name}</div>
+                                <div style="font-size:16px;">${t(selectedOptions.KOKARDE?.Emblem?.name)}</div>
                               </td>
                             </tr>`}
                             <tr>
                               <td style="padding-top:10px;">
                                 <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Flag Ribbon</div>
-                                <div style="font-size:16px;">${!selectedOptions.BETRÆK.Flagbånd ? 'Not Chosen':selectedOptions.BETRÆK.Flagbånd=='Nej' ? 'Not Chosen': selectedOptions.BETRÆK.Flagbånd}</div>
+                                <div style="font-size:16px;">${!selectedOptions.BETRÆK.Flagbånd ? 'Not Chosen':selectedOptions.BETRÆK.Flagbånd=='Nej' ? 'Not Chosen': t(selectedOptions.BETRÆK.Flagbånd)}</div>
                               </td>
                             </tr>
                             ` : ''}
@@ -719,39 +795,39 @@ const factoryOrderEmail = (orderData) => {
                             <tr>
                               <td style="border-bottom:1px solid #cdcdcd; padding-bottom:10px;">
                                 <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Sweatband </div>
-                                <div style="font-size:16px;">${selectedOptions.FOER.Svederem}</div>
+                                <div style="font-size:16px;">${t(selectedOptions.FOER?.Svederem)}</div>
                               </td>
                             </tr>
                             <tr>
                               <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
                                 <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Color</div>
-                                <div style="font-size:16px;">${selectedOptions.FOER.Farve}</div>
+                                <div style="font-size:16px;">${t(selectedOptions.FOER?.Farve)}</div>
                               </td>
                             </tr>
                             <tr>
                               <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
                                 <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Bow</div>
-                                <div style="font-size:16px;">${selectedOptions.FOER.Sløjfe}</div>
+                                <div style="font-size:16px;">${t(selectedOptions.FOER?.Sløjfe)}</div>
                               </td>
                             </tr>
                             <tr>
                               <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
                                 <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Inner Band</div>
-                                <div style="font-size:16px;">${selectedOptions.FOER.Foer}</div>
+                                <div style="font-size:16px;">${t(selectedOptions.FOER?.Foer)}</div>
                               </td>
                             </tr>
                             ${!selectedOptions.FOER || !selectedOptions.FOER['Satin Type'] ? '' : `
                             <tr>
                               <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
                                 <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Satin Type</div>
-                                <div style="font-size:16px;">${!selectedOptions.FOER['Satin Type'] ? 'Not Selected' : selectedOptions.FOER['Satin Type']}</div>
+                                <div style="font-size:16px;">${!selectedOptions.FOER['Satin Type'] ? 'Not Selected' : t(selectedOptions.FOER['Satin Type'])}</div>
                               </td>
                             </tr>`}
                             ${!selectedOptions.FOER || !selectedOptions.FOER['Silk Type'] ? '' : `
                             <tr>
                               <td style="padding-top:10px;">
                                 <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Silk Type</div>
-                                <div style="font-size:16px;">${!selectedOptions.FOER['Silk Type'] ? 'Not Selected' : selectedOptions.FOER['Silk Type']}</div>
+                                <div style="font-size:16px;">${!selectedOptions.FOER['Silk Type'] ? 'Not Selected' : t(selectedOptions.FOER['Silk Type'])}</div>
                               </td>
                             </tr>`}
                           </table>
@@ -801,7 +877,6 @@ const factoryOrderEmail = (orderData) => {
 </body>
 </html>
 `;
-
 
   const text = `
 Customer Order Information
@@ -1030,7 +1105,7 @@ const capOrderEmail = (orderData) => {
   };
   const programColor = programColorMap[program] || program;
 
-  const html = `
+ const html = `
 
 <!DOCTYPE html>
 <html lang="da">
@@ -1592,30 +1667,6 @@ const capOrderEmail = (orderData) => {
                                 </table>
                               </td>
                             </tr>`}
-                            <tr>
-                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
-                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Lyskugle</td></tr>
-                                  <tr><td style="font-size:16px;">${selectedOptions.TILBEHØR.Lyskugle === 'Ja' ? 'Ja' : 'Fravalgt'}</td></tr>
-                                </table>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
-                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Luksus champagneglas</td></tr>
-                                  <tr><td style="font-size:16px;">${selectedOptions.TILBEHØR['Luksus champagneglas'] === 'Ja' ? 'Ja' : 'Fravalgt'}</td></tr>
-                                </table>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td style="padding:10px 0;">
-                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Fløjte</td></tr>
-                                  <tr><td style="font-size:16px;">${selectedOptions.TILBEHØR.Fløjte === 'Ja' ? 'Ja' : 'Fravalgt'}</td></tr>
-                                </table>
-                              </td>
-                            </tr>
                             ` : ''}
                           </table>
                         </td>
@@ -1873,6 +1924,30 @@ const capOrderEmail = (orderData) => {
                                 <table width="100%" border="0" cellpadding="0" cellspacing="0">
                                   <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Lille flag</td></tr>
                                   <tr><td style="font-size:16px;">${selectedOptions.TILBEHØR['Lille Flag'] === 'Fravalgt' ? 'Fravalgt' : selectedOptions.TILBEHØR['Lille Flag Text']}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Fløjte</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.TILBEHØR.Fløjte === 'Ja' ? 'Ja' : 'Fravalgt'}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Lyskugle</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.TILBEHØR.Lyskugle === 'Ja' ? 'Ja' : 'Fravalgt'}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Luksus champagneglas</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.TILBEHØR['Luksus champagneglas'] === 'Ja' ? 'Ja' : 'Fravalgt'}</td></tr>
                                 </table>
                               </td>
                             </tr>
@@ -2712,30 +2787,6 @@ const capOrderAdminEmail = (orderData) => {
                                 </table>
                               </td>
                             </tr>`}
-                            <tr>
-                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
-                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Lyskugle</td></tr>
-                                  <tr><td style="font-size:16px;">${selectedOptions.TILBEHØR.Lyskugle === 'Ja' ? 'Ja' : 'Fravalgt'}</td></tr>
-                                </table>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
-                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Luksus champagneglas</td></tr>
-                                  <tr><td style="font-size:16px;">${selectedOptions.TILBEHØR['Luksus champagneglas'] === 'Ja' ? 'Ja' : 'Fravalgt'}</td></tr>
-                                </table>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td style="padding:10px 0;">
-                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Fløjte</td></tr>
-                                  <tr><td style="font-size:16px;">${selectedOptions.TILBEHØR.Fløjte === 'Ja' ? 'Ja' : 'Fravalgt'}</td></tr>
-                                </table>
-                              </td>
-                            </tr>
                             ` : ''}
                           </table>
                         </td>
@@ -2997,6 +3048,30 @@ const capOrderAdminEmail = (orderData) => {
                               </td>
                             </tr>
                             <tr>
+                              <td style="padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Fløjte</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.TILBEHØR.Fløjte === 'Ja' ? 'Ja' : 'Fravalgt'}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Lyskugle</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.TILBEHØR.Lyskugle === 'Ja' ? 'Ja' : 'Fravalgt'}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Luksus champagneglas</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.TILBEHØR['Luksus champagneglas'] === 'Ja' ? 'Ja' : 'Fravalgt'}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
                               <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
                                 <table width="100%" border="0" cellpadding="0" cellspacing="0">
                                   <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Trompet</td></tr>
@@ -3047,10 +3122,8 @@ const capOrderAdminEmail = (orderData) => {
       </td>
     </tr>
   </table>
-
 </body>
 </html>
-
 `;
 
 
