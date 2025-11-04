@@ -626,77 +626,6 @@ const factoryOrderEmail = (orderData) => {
                 </tr>
 
 
-                <!-- Extra Cover -->
-                <tr>
-                  <td style="padding-bottom:25px;">
-                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                      <tr>
-                        <td style="font-size:18px; font-weight:bold; color:#333333; padding-bottom:15px;">Extra Cover</td>
-                      </tr>
-                      <tr>
-                        <td style="background-color:#f7f8f7; padding:20px;">
-                          <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                            <tr>
-                              <td style="border-bottom:1px solid #cdcdcd; padding-bottom:10px;">
-                                <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Option</div>
-                                <div style="font-size:16px;">${selectedOptions.EKSTRABETRÆK.Tilvælg === 'Ja' ? 'Yes' : 'Not Chosen'}</div>
-                              </td>
-                            </tr>
-                            ${selectedOptions.EKSTRABETRÆK.Tilvælg === 'Ja' ? `
-                            <tr>
-                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
-                                <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Color</div>
-                                <div style="font-size:16px;">${t(selectedOptions.EKSTRABETRÆK?.Farve)}</div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
-                                <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Top Edging</div>
-                                <div style="font-size:16px;">${t(selectedOptions.EKSTRABETRÆK?.Topkant)}</div>
-                              </td>
-                            </tr>
-                            ${!shouldHideSelectors ? `
-                            <tr>
-                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
-                                <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Edge Ribbon</div>
-                                <div style="font-size:16px;">${t(selectedOptions.EKSTRABETRÆK?.Kantbånd)}</div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
-                                <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Flag Ribbon</div>
-                                <div style="font-size:16px;">${!selectedOptions.EKSTRABETRÆK.Flagbånd ? 'Not Chosen':selectedOptions.EKSTRABETRÆK.Flagbånd=='Nej' ? 'Not Chosen': t(selectedOptions.EKSTRABETRÆK.Flagbånd)}</div>
-                              </td>
-                            </tr>
-                            ${selectedOptions.EKSTRABETRÆK.Stjerner === 'INGEN'? '' : `
-                            <tr>
-                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
-                                <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Stars (Color Matches the Emblem)</div>
-                                <div style="font-size:16px;">${t(selectedOptions.KOKARDE?.Emblem?.name)}</div>
-                              </td>
-                            </tr>`}
-                            ` : ''}
-                            ${!selectedOptions.BRODERI || !selectedOptions.BRODERI.Skolebroderi ? '' : `
-                            <tr>
-                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
-                                <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">School Embroidery  </div>
-                                <div style="font-size:16px;">${selectedOptions.BRODERI.Skolebroderi}</div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td style="padding-top:10px;">
-                                <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Embroidery Color</div>
-                                <div style="font-size:16px;">${t(selectedOptions.BRODERI?.['Skolebroderi farve'])}</div>
-                              </td>
-                            </tr>`}
-                            ` : ''}
-                          </table>
-                        </td>
-                      </tr>
-                    </table>
-                  </td>
-                </tr>
-
                 <!-- Size -->
                 <tr>
                   <td style="padding-bottom:25px;">
@@ -830,6 +759,77 @@ const factoryOrderEmail = (orderData) => {
                                 <div style="font-size:16px;">${!selectedOptions.FOER['Silk Type'] ? 'Not Selected' : t(selectedOptions.FOER['Silk Type'])}</div>
                               </td>
                             </tr>`}
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+
+                <!-- Extra Cover -->
+                <tr>
+                  <td style="padding-bottom:25px;">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td style="font-size:18px; font-weight:bold; color:#333333; padding-bottom:15px;">Extra Cover</td>
+                      </tr>
+                      <tr>
+                        <td style="background-color:#f7f8f7; padding:20px;">
+                          <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding-bottom:10px;">
+                                <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Option</div>
+                                <div style="font-size:16px;">${selectedOptions.EKSTRABETRÆK.Tilvælg === 'Ja' ? 'Yes' : 'Not Chosen'}</div>
+                              </td>
+                            </tr>
+                            ${selectedOptions.EKSTRABETRÆK.Tilvælg === 'Ja' ? `
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Color</div>
+                                <div style="font-size:16px;">${t(selectedOptions.EKSTRABETRÆK?.Farve)}</div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Top Edging</div>
+                                <div style="font-size:16px;">${t(selectedOptions.EKSTRABETRÆK?.Topkant)}</div>
+                              </td>
+                            </tr>
+                            ${!shouldHideSelectors ? `
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Edge Ribbon</div>
+                                <div style="font-size:16px;">${t(selectedOptions.EKSTRABETRÆK?.Kantbånd)}</div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Flag Ribbon</div>
+                                <div style="font-size:16px;">${!selectedOptions.EKSTRABETRÆK.Flagbånd ? 'Not Chosen':selectedOptions.EKSTRABETRÆK.Flagbånd=='Nej' ? 'Not Chosen': t(selectedOptions.EKSTRABETRÆK.Flagbånd)}</div>
+                              </td>
+                            </tr>
+                            ${selectedOptions.EKSTRABETRÆK.Stjerner === 'INGEN'? '' : `
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Stars (Color Matches the Emblem)</div>
+                                <div style="font-size:16px;">${t(selectedOptions.KOKARDE?.Emblem?.name)}</div>
+                              </td>
+                            </tr>`}
+                            ` : ''}
+                            ${!selectedOptions.BRODERI || !selectedOptions.BRODERI.Skolebroderi ? '' : `
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">School Embroidery  </div>
+                                <div style="font-size:16px;">${selectedOptions.BRODERI.Skolebroderi}</div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="padding-top:10px;">
+                                <div style="font-size:14px; text-transform:uppercase; margin-bottom:5px;">Embroidery Color</div>
+                                <div style="font-size:16px;">${t(selectedOptions.BRODERI?.['Skolebroderi farve'])}</div>
+                              </td>
+                            </tr>`}
+                            ` : ''}
                           </table>
                         </td>
                       </tr>
@@ -1588,93 +1588,6 @@ const capOrderEmail = (orderData) => {
                   </td>
                 </tr>
 
-                <!-- Extra Cover -->
-                <tr>
-                  <td style="padding-bottom:25px;">
-                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                      <tr>
-                        <td style="font-size:18px; font-weight:bold; padding-bottom:15px; color:#333333;">Extra Cover</td>
-                      </tr>
-                      <tr>
-                        <td style="background-color:#f7f8f7; padding:20px;">
-                          <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                            <tr>
-                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
-                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Tilvælg</td></tr>
-                                  <tr><td style="font-size:16px;">${selectedOptions.EKSTRABETRÆK.Tilvælg === 'Ja' ? 'Ja' : 'Fravalgt'}</td></tr>
-                                </table>
-                              </td>
-                            </tr>
-                            ${selectedOptions.EKSTRABETRÆK.Tilvælg === 'Ja' ? `
-                            <tr>
-                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
-                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Farve</td></tr>
-                                  <tr><td style="font-size:16px;">${selectedOptions.EKSTRABETRÆK.Farve}</td></tr>
-                                </table>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
-                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Topkant</td></tr>
-                                  <tr><td style="font-size:16px;">${selectedOptions.EKSTRABETRÆK.Topkant === 'NONE' || selectedOptions.EKSTRABETRÆK.Topkant === 'None' ? 'Ingen' : selectedOptions.EKSTRABETRÆK.Topkant}</td></tr>
-                                </table>
-                              </td>
-                            </tr>
-                            ${!shouldHideSelectors ? `
-                            <tr>
-                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
-                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Kantbånd</td></tr>
-                                  <tr><td style="font-size:16px;">${selectedOptions.EKSTRABETRÆK.Kantbånd === 'NONE' || selectedOptions.EKSTRABETRÆK.Kantbånd === 'None' ? 'Ingen' : selectedOptions.EKSTRABETRÆK.Kantbånd}</td></tr>
-                                </table>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
-                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Flagbånd</td></tr>
-                                  <tr><td style="font-size:16px;">${!selectedOptions.EKSTRABETRÆK.Flagbånd ? 'Fravalgt' : selectedOptions.EKSTRABETRÆK.Flagbånd == 'Nej' ? 'Fravalgt' : selectedOptions.EKSTRABETRÆK.Flagbånd}</td></tr>
-                                </table>
-                              </td>
-                            </tr>
-                            ${!selectedOptions.EKSTRABETRÆK.Stjerner === "INGEN" ? `` : `
-                            <tr>
-                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
-                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Stjerner</td></tr>
-                                  <tr><td style="font-size:16px;">${selectedOptions.KOKARDE.Emblem.name}</td></tr>
-                                </table>
-                              </td>
-                            </tr>`}
-                            ` : ''}
-                            ${!selectedOptions.BRODERI || !selectedOptions.BRODERI.Skolebroderi ? `` : `
-                            <tr>
-                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
-                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Skolebroderi</td></tr>
-                                  <tr><td style="font-size:16px;">${selectedOptions.BRODERI.Skolebroderi}</td></tr>
-                                </table>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
-                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Broderiets farve</td></tr>
-                                  <tr><td style="font-size:16px;">${selectedOptions.BRODERI['Skolebroderi farve']}</td></tr>
-                                </table>
-                              </td>
-                            </tr>`}
-                            ` : ''}
-                          </table>
-                        </td>
-                      </tr>
-                    </table>
-                  </td>
-                </tr>
-
                 <!-- Størrelse -->
                 <tr>
                   <td style="padding-bottom:25px;">
@@ -1836,6 +1749,93 @@ const capOrderEmail = (orderData) => {
                                 </table>
                               </td>
                             </tr>`}
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+
+                <!-- Extra Cover -->
+                <tr>
+                  <td style="padding-bottom:25px;">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td style="font-size:18px; font-weight:bold; padding-bottom:15px; color:#333333;">Ekstra betræk</td>
+                      </tr>
+                      <tr>
+                        <td style="background-color:#f7f8f7; padding:20px;">
+                          <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Tilvælg</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.EKSTRABETRÆK.Tilvælg === 'Ja' ? 'Ja' : 'Fravalgt'}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            ${selectedOptions.EKSTRABETRÆK.Tilvælg === 'Ja' ? `
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Farve</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.EKSTRABETRÆK.Farve}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Topkant</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.EKSTRABETRÆK.Topkant === 'NONE' || selectedOptions.EKSTRABETRÆK.Topkant === 'None' ? 'Ingen' : selectedOptions.EKSTRABETRÆK.Topkant}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            ${!shouldHideSelectors ? `
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Kantbånd</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.EKSTRABETRÆK.Kantbånd === 'NONE' || selectedOptions.EKSTRABETRÆK.Kantbånd === 'None' ? 'Ingen' : selectedOptions.EKSTRABETRÆK.Kantbånd}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Flagbånd</td></tr>
+                                  <tr><td style="font-size:16px;">${!selectedOptions.EKSTRABETRÆK.Flagbånd ? 'Fravalgt' : selectedOptions.EKSTRABETRÆK.Flagbånd == 'Nej' ? 'Fravalgt' : selectedOptions.EKSTRABETRÆK.Flagbånd}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            ${!selectedOptions.EKSTRABETRÆK.Stjerner === "INGEN" ? `` : `
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Stjerner</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.KOKARDE.Emblem.name}</td></tr>
+                                </table>
+                              </td>
+                            </tr>`}
+                            ` : ''}
+                            ${!selectedOptions.BRODERI || !selectedOptions.BRODERI.Skolebroderi ? `` : `
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Skolebroderi</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.BRODERI.Skolebroderi}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Broderiets farve</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.BRODERI['Skolebroderi farve']}</td></tr>
+                                </table>
+                              </td>
+                            </tr>`}
+                            ` : ''}
                           </table>
                         </td>
                       </tr>
@@ -2708,93 +2708,6 @@ const capOrderAdminEmail = (orderData) => {
                   </td>
                 </tr>
 
-                <!-- Extra Cover -->
-                <tr>
-                  <td style="padding-bottom:25px;">
-                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                      <tr>
-                        <td style="font-size:18px; font-weight:bold; padding-bottom:15px; color:#333333;">Extra Cover</td>
-                      </tr>
-                      <tr>
-                        <td style="background-color:#f7f8f7; padding:20px;">
-                          <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                            <tr>
-                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
-                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Tilvælg</td></tr>
-                                  <tr><td style="font-size:16px;">${selectedOptions.EKSTRABETRÆK.Tilvælg === 'Ja' ? 'Ja' : 'Fravalgt'}</td></tr>
-                                </table>
-                              </td>
-                            </tr>
-                            ${selectedOptions.EKSTRABETRÆK.Tilvælg === 'Ja' ? `
-                            <tr>
-                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
-                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Farve</td></tr>
-                                  <tr><td style="font-size:16px;">${selectedOptions.EKSTRABETRÆK.Farve}</td></tr>
-                                </table>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
-                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Topkant</td></tr>
-                                  <tr><td style="font-size:16px;">${selectedOptions.EKSTRABETRÆK.Topkant === 'NONE' || selectedOptions.EKSTRABETRÆK.Topkant === 'None' ? 'Ingen' : selectedOptions.EKSTRABETRÆK.Topkant}</td></tr>
-                                </table>
-                              </td>
-                            </tr>
-                            ${!shouldHideSelectors ? `
-                            <tr>
-                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
-                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Kantbånd</td></tr>
-                                  <tr><td style="font-size:16px;">${selectedOptions.EKSTRABETRÆK.Kantbånd === 'NONE' || selectedOptions.EKSTRABETRÆK.Kantbånd === 'None' ? 'Ingen' : selectedOptions.EKSTRABETRÆK.Kantbånd}</td></tr>
-                                </table>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
-                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Flagbånd</td></tr>
-                                  <tr><td style="font-size:16px;">${!selectedOptions.EKSTRABETRÆK.Flagbånd ? 'Fravalgt' : selectedOptions.EKSTRABETRÆK.Flagbånd == 'Nej' ? 'Fravalgt' : selectedOptions.EKSTRABETRÆK.Flagbånd}</td></tr>
-                                </table>
-                              </td>
-                            </tr>
-                            ${!selectedOptions.EKSTRABETRÆK.Stjerner === "INGEN" ? `` : `
-                            <tr>
-                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
-                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Stjerner</td></tr>
-                                  <tr><td style="font-size:16px;">${selectedOptions.KOKARDE.Emblem.name}</td></tr>
-                                </table>
-                              </td>
-                            </tr>`}
-                            ` : ''}
-                            ${!selectedOptions.BRODERI || !selectedOptions.BRODERI.Skolebroderi ? `` : `
-                            <tr>
-                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
-                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Skolebroderi</td></tr>
-                                  <tr><td style="font-size:16px;">${selectedOptions.BRODERI.Skolebroderi}</td></tr>
-                                </table>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
-                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Broderiets farve</td></tr>
-                                  <tr><td style="font-size:16px;">${selectedOptions.BRODERI['Skolebroderi farve']}</td></tr>
-                                </table>
-                              </td>
-                            </tr>`}
-                            ` : ''}
-                          </table>
-                        </td>
-                      </tr>
-                    </table>
-                  </td>
-                </tr>
-
                 <!-- Størrelse -->
                 <tr>
                   <td style="padding-bottom:25px;">
@@ -2956,6 +2869,93 @@ const capOrderAdminEmail = (orderData) => {
                                 </table>
                               </td>
                             </tr>`}
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+
+                <!-- Extra Cover -->
+                <tr>
+                  <td style="padding-bottom:25px;">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td style="font-size:18px; font-weight:bold; padding-bottom:15px; color:#333333;">Ekstra betræk</td>
+                      </tr>
+                      <tr>
+                        <td style="background-color:#f7f8f7; padding:20px;">
+                          <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Tilvælg</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.EKSTRABETRÆK.Tilvælg === 'Ja' ? 'Ja' : 'Fravalgt'}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            ${selectedOptions.EKSTRABETRÆK.Tilvælg === 'Ja' ? `
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Farve</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.EKSTRABETRÆK.Farve}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Topkant</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.EKSTRABETRÆK.Topkant === 'NONE' || selectedOptions.EKSTRABETRÆK.Topkant === 'None' ? 'Ingen' : selectedOptions.EKSTRABETRÆK.Topkant}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            ${!shouldHideSelectors ? `
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Kantbånd</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.EKSTRABETRÆK.Kantbånd === 'NONE' || selectedOptions.EKSTRABETRÆK.Kantbånd === 'None' ? 'Ingen' : selectedOptions.EKSTRABETRÆK.Kantbånd}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Flagbånd</td></tr>
+                                  <tr><td style="font-size:16px;">${!selectedOptions.EKSTRABETRÆK.Flagbånd ? 'Fravalgt' : selectedOptions.EKSTRABETRÆK.Flagbånd == 'Nej' ? 'Fravalgt' : selectedOptions.EKSTRABETRÆK.Flagbånd}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            ${!selectedOptions.EKSTRABETRÆK.Stjerner === "INGEN" ? `` : `
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Stjerner</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.KOKARDE.Emblem.name}</td></tr>
+                                </table>
+                              </td>
+                            </tr>`}
+                            ` : ''}
+                            ${!selectedOptions.BRODERI || !selectedOptions.BRODERI.Skolebroderi ? `` : `
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Skolebroderi</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.BRODERI.Skolebroderi}</td></tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Broderiets farve</td></tr>
+                                  <tr><td style="font-size:16px;">${selectedOptions.BRODERI['Skolebroderi farve']}</td></tr>
+                                </table>
+                              </td>
+                            </tr>`}
+                            ` : ''}
                           </table>
                         </td>
                       </tr>
