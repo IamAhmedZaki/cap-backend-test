@@ -1469,7 +1469,7 @@ const capOrderEmail = (orderData) => {
                             <tr>
                               <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
                                 <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Name embroidery (Tekst) maks. 26</td></tr>
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Navnebroderi (Tekst) maks. 26</td></tr>
                                   <tr><td style="font-size:16px;">${selectedOptions.BRODERI["Navne broderi"]}</td></tr>
                                 </table>
                               </td>
@@ -1477,7 +1477,7 @@ const capOrderEmail = (orderData) => {
                             <tr>
                               <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
                                 <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Embroidery color</td></tr>
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Broderi farve</td></tr>
                                   <tr><td style="font-size:16px;">${selectedOptions.BRODERI?.Broderifarve || 'Ikke valgt'}</td></tr>
                                 </table>
                               </td>
@@ -1486,7 +1486,7 @@ const capOrderEmail = (orderData) => {
                             <tr>
                               <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
                                 <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">School embroidery (Tekst) maks. 35</td></tr>
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Skolebroderi (Tekst) maks. 35</td></tr>
                                   <tr><td style="font-size:16px;">${selectedOptions.BRODERI.Skolebroderi}</td></tr>
                                 </table>
                               </td>
@@ -1494,7 +1494,7 @@ const capOrderEmail = (orderData) => {
                             <tr>
                               <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
                                 <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Embroidery color</td></tr>
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Broderi farve</td></tr>
                                   <tr><td style="font-size:16px;">${selectedOptions.BRODERI?.['Skolebroderi farve'] || 'Ikke valgt'}</td></tr>
                                 </table>
                               </td>
@@ -1544,7 +1544,7 @@ const capOrderEmail = (orderData) => {
                             <tr>
                               <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
                                 <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Material</td></tr>
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Materiale</td></tr>
                                   <tr><td style="font-size:16px;">${selectedOptions.SKYGGE.Materiale}</td></tr>
                                 </table>
                               </td>
@@ -2589,7 +2589,7 @@ const capOrderAdminEmail = (orderData) => {
                             <tr>
                               <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
                                 <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Name embroidery (Tekst) maks. 26</td></tr>
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Navnebroderi (Tekst) maks. 26</td></tr>
                                   <tr><td style="font-size:16px;">${selectedOptions.BRODERI["Navne broderi"]}</td></tr>
                                 </table>
                               </td>
@@ -2597,7 +2597,7 @@ const capOrderAdminEmail = (orderData) => {
                             <tr>
                               <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
                                 <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Embroidery color</td></tr>
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Broderi farve</td></tr>
                                   <tr><td style="font-size:16px;">${selectedOptions.BRODERI?.Broderifarve || 'Ikke valgt'}</td></tr>
                                 </table>
                               </td>
@@ -2606,7 +2606,7 @@ const capOrderAdminEmail = (orderData) => {
                             <tr>
                               <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
                                 <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">School embroidery (Tekst) maks. 35</td></tr>
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Skolebroderi (Tekst) maks. 35</td></tr>
                                   <tr><td style="font-size:16px;">${selectedOptions.BRODERI.Skolebroderi}</td></tr>
                                 </table>
                               </td>
@@ -2614,7 +2614,7 @@ const capOrderAdminEmail = (orderData) => {
                             <tr>
                               <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
                                 <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Embroidery color</td></tr>
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Broderi farve</td></tr>
                                   <tr><td style="font-size:16px;">${selectedOptions.BRODERI?.['Skolebroderi farve'] || 'Ikke valgt'}</td></tr>
                                 </table>
                               </td>
@@ -2664,7 +2664,7 @@ const capOrderAdminEmail = (orderData) => {
                             <tr>
                               <td style="border-bottom:1px solid #cdcdcd; padding:10px 0;">
                                 <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Material</td></tr>
+                                  <tr><td style="font-size:14px; text-transform:uppercase; padding-bottom:5px;">Materiale</td></tr>
                                   <tr><td style="font-size:16px;">${selectedOptions.SKYGGE.Materiale}</td></tr>
                                 </table>
                               </td>
