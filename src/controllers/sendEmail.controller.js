@@ -1133,7 +1133,7 @@ const capOrderEmail = (orderData) => {
 <body style="margin:0; padding:0; background-color:#ffffff; font-family:Arial, sans-serif; color:#333333; line-height:1.4;">
 
     <div style="text-align: center; padding: 20px 5px;">
-        <img src="https://res.cloudinary.com/ds1ogapco/image/upload/v1761063050/01_q0pctl.png" alt="Studentlife" style="max-width: 100%; height: auto;">
+        <img src="https://elipsestudio.com/student/01.png" alt="Studentlife" style="max-width: 100%; height: auto;">
     </div>
 
     <table width="100%" border="0" cellpadding="0" cellspacing="0">
